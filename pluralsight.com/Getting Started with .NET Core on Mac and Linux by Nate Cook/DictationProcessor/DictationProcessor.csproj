@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <!-- publish targets for self contained applications on different OSes -->
+    <!-- complete list of targets at https://github.com/dotnet/corefx/blob/master/src/pkg/Microsoft.NETCore.Platforms/runtime.json -->
+    <RuntimeIdentifiers>ubuntu.18.04-x64; win10-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+</Project>
