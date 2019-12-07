@@ -1,0 +1,6 @@
+# Getting Started with .NET Core on Mac and Linux
+## by Nate Cook
+
+Mac and Linux developers have a compelling option in .NET Core. This course will teach you how to create, package, and deploy .NET Core applications for macOS and Linux, and also how to create a .NET Core service, or daemon, for those platforms.
+
+Mac and Linux developers can now create applications with .NET Core. But is it a compelling option? In this course, Getting Started with .NET Core on Mac and Linux, you'll learn exactly what .NET Core offers on those platforms. First, not only will you see how to use the .NET Core command line interface and the cross platform editor Visual Studio Code to create .NET Core applications for macOS and Linux, you'll also learn how to package and deploy those applications in a user-friendly way. Next, you'll see how to create a .NET Core service, or daemonâ€”leveraging a .NET Core class library in the process. Then, you'll learn how to manage such a .NET Core service using the init systems provided by each operating system. Finally, you'll learn how to use .NET Core's interop to make native system calls. When you're finished with this course, you'll have a solid understanding of the .NET ecosystem available to Mac and Linux developers, and the skills to begin using .NET Core right away on those operating systems for your own projects.
