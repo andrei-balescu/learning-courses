@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace DictationProcessor.RepositoryContracts
+namespace DictationProcessorLib.RepositoryContracts
 {
     public interface IFileRepository
     {
