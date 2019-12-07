@@ -1,0 +1,13 @@
+# systemd configuration to start DictationProcessorSvc service on system start-up
+# place in /etc/systemd/system
+# place service bin/Release folder in /opt
+
+[Unit]
+Description=Dictation Processor Service
+
+[Service]
+ExecStart=/usr/bin/dotnet /opt/DictationProcessorSvc/DictationProcessorSvc.dll
+Restart=always
+
+[Install]
+WantedBy=default.target
