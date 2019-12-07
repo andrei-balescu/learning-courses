@@ -5,13 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Launch Dictation Processor Application",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "buildApp",
             "program": "${workspaceFolder}/DictationProcessorApp/bin/Debug/netcoreapp3.0/DictationProcessorApp.dll",
             "args": [],
             "cwd": "${workspaceFolder}/DictationProcessorApp",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            // launch config for second startup project
+            "name": "Launch Dictation Processor Service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildSvc",
+            "program": "${workspaceFolder}/DictationProcessorSvc/bin/Debug/netcoreapp3.0/DictationProcessorSvc.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/DictationProcessorSvc",
             "console": "internalConsole",
             "stopAtEntry": false
         },
