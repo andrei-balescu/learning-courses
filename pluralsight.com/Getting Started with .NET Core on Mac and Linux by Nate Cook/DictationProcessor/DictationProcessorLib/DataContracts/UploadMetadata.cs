@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DictationProcessor.DataContracts
+namespace DictationProcessorLib.DataContracts
 {
     public class UploadMetadata
     {

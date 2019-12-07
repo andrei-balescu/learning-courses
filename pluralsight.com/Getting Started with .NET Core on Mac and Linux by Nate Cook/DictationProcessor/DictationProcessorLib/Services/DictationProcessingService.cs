@@ -1,47 +1,38 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using DictationProcessor.DataContracts;
-using DictationProcessor.RepositoryContracts;
+using DictationProcessorLib.DataContracts;
+using DictationProcessorLib.RepositoryContracts;
+using DictationProcessorLib.ServiceContracts;
 
-namespace DictationProcessor.Services
+namespace DictationProcessorLib.Services
 {
-    public class DictationProcessingService
+    public class DictationProcessingService : IDictationProcessingService
     {
         private IMetadataRepository _metadataRepository;
 
         private IFileRepository _fileRepository;
 
-        public DictationProcessingService (IMetadataRepository metadataRepository, IFileRepository fileRepository)
+        public DictationProcessingService(IMetadataRepository metadataRepository, IFileRepository fileRepository)
         {
             _metadataRepository = metadataRepository;
             _fileRepository = fileRepository;
         }
 
-        public async Task ProcessUploadFolder(string inputFolderPath, string outputFolderPath)
+        public async Task ProcessFolder(string inputFolderPath, string outputFolderPath)
         {
-            // cleaning up output folder
-            Console.WriteLine("Deleting files in output folder");
-            _fileRepository.DeleteAllFilesFromFolder(outputFolderPath);
+            const string c_metadataFileName = "metadata.json";
+            var metadataFilePath = Path.Combine(inputFolderPath, c_metadataFileName);
 
-            IEnumerable<string> subfolders = Directory.EnumerateDirectories(inputFolderPath);
+            Console.WriteLine($"Reading {metadataFilePath}");
 
-            foreach (var subfolder in subfolders)
+            UploadMetadata[] metadataCollection = await _metadataRepository.GetMetadata(metadataFilePath);
+
+            foreach (UploadMetadata fileMetadata in metadataCollection)
             {
-                const string c_metadataFileName = "metadata.json";
-                var metadataFilePath = Path.Combine(subfolder, c_metadataFileName);
+                var audioFilePath = Path.Combine(inputFolderPath, fileMetadata.File.FileName);
 
-                Console.WriteLine($"Reading {metadataFilePath}");
-
-                UploadMetadata[] metadataCollection = await _metadataRepository.GetMetadata(metadataFilePath);
-
-                foreach(UploadMetadata fileMetadata in metadataCollection)
-                {
-                    var audioFilePath = Path.Combine(subfolder, fileMetadata.File.FileName);
-
-                    await ProcessFile(audioFilePath, outputFolderPath, fileMetadata);
-                }
+                await ProcessFile(audioFilePath, outputFolderPath, fileMetadata);
             }
         }
 
