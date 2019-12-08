@@ -1,0 +1,15 @@
+# config file for running the application from the Gnome menu
+# keys are case sensitive
+
+# copy this file to /usr/share/applications
+# publish as self contained application
+# update paths in appsettings.json
+# add icon to publish folder
+# copy published files to /opt/DictationProcessorApp
+
+[Desktop Entry]
+Type=Application
+Name=Dictation Processor
+Exec=/opt/DictationProcessorApp/DictationProcessorApp
+Terminal=true
+Icon=/opt/DictationProcessorApp/Icon.png
