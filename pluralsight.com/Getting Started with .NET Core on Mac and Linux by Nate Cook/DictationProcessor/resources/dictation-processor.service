@@ -1,6 +1,6 @@
-# systemd configuration to start DictationProcessorSvc service on system start-up
-# place in /etc/systemd/system
-# place service bin/Release folder in /opt
+# systemd configuration to start DictationProcessorSvc as a service on Linux
+# place this file in /etc/systemd/system
+# place DictationProcessorSvc build (Release) files in /opt
 
 [Unit]
 Description=Dictation Processor Service
