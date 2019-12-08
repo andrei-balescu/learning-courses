@@ -3,9 +3,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using DictationProcessor.RepositoryContracts;
+using DictationProcessorLib.RepositoryContracts;
 
-namespace DictationProcessor.Repositories
+namespace DictationProcessorLib.Repositories
 {
     public class FileRepository : IFileRepository
     {

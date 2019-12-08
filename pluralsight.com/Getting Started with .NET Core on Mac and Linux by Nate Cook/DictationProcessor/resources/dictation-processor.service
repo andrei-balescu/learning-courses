@@ -1,0 +1,22 @@
+# systemd configuration to start DictationProcessorSvc as a service on Linux
+# place this file in /etc/systemd/system
+# place DictationProcessorSvc build (Release) files in /opt
+# update input/output paths in DictationProcessorSvc/appsettings.json
+
+# Run 'sudo systemctl start dictation-processor' to start the service
+# Run 'sudo systemctl status dictation-processor' to check service status
+# Run 'sudo journalctl -u dictation-processor -f' to monitor service output
+
+# Run 'sudo systemctl enable dictation-processor' to run the service on system start
+# Run 'sudo systemctl disable dictation-processor' to stop running service on system start
+
+
+[Unit]
+Description=Dictation Processor Service
+
+[Service]
+ExecStart=/usr/bin/dotnet /opt/DictationProcessorSvc/DictationProcessorSvc.dll
+Restart=always
+
+[Install]
+WantedBy=default.target

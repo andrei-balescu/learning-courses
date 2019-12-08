@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+
+    <!-- Support for JSON serialization -->
+    <PackageReference Include="System.Text.Json">
+      <Version>*</Version>
+    </PackageReference>
+
+    <!-- Support for reading configuration from json file -->
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>*</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>*</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>*</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

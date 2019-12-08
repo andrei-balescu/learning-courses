@@ -2,10 +2,10 @@ using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using DictationProcessor.DataContracts;
-using DictationProcessor.RepositoryContracts;
+using DictationProcessorLib.DataContracts;
+using DictationProcessorLib.RepositoryContracts;
 
-namespace DictationProcessor.Repositories
+namespace DictationProcessorLib.Repositories
 {
     public class MetadataRepository : IMetadataRepository
     {
