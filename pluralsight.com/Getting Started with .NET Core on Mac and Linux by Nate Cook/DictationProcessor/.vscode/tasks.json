@@ -2,12 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "buildApp",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/DictationProcessor.csproj",
+                "${workspaceFolder}/DictationProcessorApp/DictationProcessorApp.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            // build task for second startup project
+            "label": "buildSvc",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/DictationProcessorSvc/DictationProcessorSvc.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +32,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/DictationProcessor.csproj",
+                "${workspaceFolder}/DictationProcessorApp/DictationProcessorApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +45,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/DictationProcessor.csproj",
+                "${workspaceFolder}/DictationProcessorApp/DictationProcessorApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

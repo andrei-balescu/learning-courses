@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using DictationProcessor.DataContracts;
+using DictationProcessorLib.DataContracts;
 
-namespace DictationProcessor.RepositoryContracts
+namespace DictationProcessorLib.RepositoryContracts
 {
     public interface IMetadataRepository
     {

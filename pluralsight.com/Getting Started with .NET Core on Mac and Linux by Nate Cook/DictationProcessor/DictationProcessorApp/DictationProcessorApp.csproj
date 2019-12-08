@@ -9,4 +9,11 @@
     <RuntimeIdentifiers>ubuntu.18.04-x64; win10-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- copy settings file to output directory -->
+    <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+
+    <ProjectReference Include="../DictationProcessorLib/DictationProcessorLib.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-namespace DictationProcessor.DataContracts
+namespace DictationProcessorLib.DataContracts
 {
     public class UploadMetadataAudioFile
     {
