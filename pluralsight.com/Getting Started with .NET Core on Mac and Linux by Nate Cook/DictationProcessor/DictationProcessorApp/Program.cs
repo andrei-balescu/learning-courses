@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using DictationProcessorLib.DataContracts;
 using DictationProcessorLib.Repositories;
@@ -24,11 +25,16 @@ namespace DictationProcessorApp
             var configurationService = new ConfigurationService();
             AppSettings appSettings = configurationService.GetAppSettings();
 
-            Task asyncProgram = ProcessUploadFolder(appSettings);
-            asyncProgram.Wait();
+            Task<string> asyncProgram = ProcessUploadFolder(appSettings);
+            string completedMessage = asyncProgram.Result;
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                GtkHelper.DisplayAlert(completedMessage);
+            }
         }
 
-        private static async Task ProcessUploadFolder(AppSettings appSettings)
+        private static async Task<string> ProcessUploadFolder(AppSettings appSettings)
         {
             // cleaning up output folder
             Console.WriteLine("Deleting files in output folder");
@@ -36,10 +42,15 @@ namespace DictationProcessorApp
 
             IEnumerable<string> subfolders = Directory.EnumerateDirectories(appSettings.InputFolderPath);
 
+            int numberOfProcessedFolders = 0;
+
             foreach (var subfolder in subfolders)
             {
                 await _dictationProcessingService.ProcessFolder(subfolder, appSettings.OutputFolderPath);
+                numberOfProcessedFolders++;
             }
+            string completedMessage = ($"{numberOfProcessedFolders} folders were processed");
+            return completedMessage;
         }
     }
 }
