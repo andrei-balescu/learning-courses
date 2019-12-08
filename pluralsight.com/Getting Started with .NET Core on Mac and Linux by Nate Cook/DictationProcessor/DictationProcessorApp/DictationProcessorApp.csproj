@@ -10,6 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- copy settings file to output directory -->
+    <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+
     <ProjectReference Include="../DictationProcessorLib/DictationProcessorLib.csproj" />
   </ItemGroup>
 

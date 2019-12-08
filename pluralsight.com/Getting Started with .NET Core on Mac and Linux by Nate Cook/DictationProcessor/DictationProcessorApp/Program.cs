@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using DictationProcessorLib.DataContracts;
 using DictationProcessorLib.Repositories;
 using DictationProcessorLib.RepositoryContracts;
 using DictationProcessorLib.ServiceContracts;
@@ -20,24 +21,24 @@ namespace DictationProcessorApp
             _fileRepository = new FileRepository();
             _dictationProcessingService = new DictationProcessingService(metadataRepository, _fileRepository);
 
-            string inputFolderPath = "../../../../../pluralsight.com/Getting Started with .NET Core on Mac and Linux by Nate Cook/dotnet-core-mac-linux-getting-started/m2/uploads";
-            string outputFolderPath = "../../../../../pluralsight.com/Getting Started with .NET Core on Mac and Linux by Nate Cook/dotnet-core-mac-linux-getting-started/ready_for_transcription";
+            var configurationService = new ConfigurationService();
+            AppSettings appSettings = configurationService.GetAppSettings();
 
-            Task asyncProgram = ProcessUploadFolder(inputFolderPath, outputFolderPath);
+            Task asyncProgram = ProcessUploadFolder(appSettings);
             asyncProgram.Wait();
         }
 
-        private static async Task ProcessUploadFolder(string inputFolderPath, string outputFolderPath)
+        private static async Task ProcessUploadFolder(AppSettings appSettings)
         {
             // cleaning up output folder
             Console.WriteLine("Deleting files in output folder");
-            _fileRepository.DeleteAllFilesFromFolder(outputFolderPath);
+            _fileRepository.DeleteAllFilesFromFolder(appSettings.OutputFolderPath);
 
-            IEnumerable<string> subfolders = Directory.EnumerateDirectories(inputFolderPath);
+            IEnumerable<string> subfolders = Directory.EnumerateDirectories(appSettings.InputFolderPath);
 
             foreach (var subfolder in subfolders)
             {
-                await _dictationProcessingService.ProcessFolder(subfolder, outputFolderPath);
+                await _dictationProcessingService.ProcessFolder(subfolder, appSettings.OutputFolderPath);
             }
         }
     }

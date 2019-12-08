@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using DictationProcessorLib.DataContracts;
 using DictationProcessorLib.Repositories;
 using DictationProcessorLib.RepositoryContracts;
 using DictationProcessorLib.ServiceContracts;
@@ -19,17 +20,17 @@ namespace DictationProcessorSvc
             var metadataRepository = new MetadataRepository();
             _fileRepository = new FileRepository();
             _dictationProcessingService = new DictationProcessingService(metadataRepository, _fileRepository);
+            
+            var configurationService = new ConfigurationService();
+            AppSettings appSettings = configurationService.GetAppSettings();
 
-            string inputFolderPath = "../../../../../pluralsight.com/Getting Started with .NET Core on Mac and Linux by Nate Cook/dotnet-core-mac-linux-getting-started/m3/demos/uploads";
-            string outputFolderPath = "../../../../../pluralsight.com/Getting Started with .NET Core on Mac and Linux by Nate Cook/dotnet-core-mac-linux-getting-started/ready_for_transcription";
-
-            Task asyncProgram = ProcessNewUploads(inputFolderPath, outputFolderPath);
+            Task asyncProgram = ProcessNewUploads(appSettings);
             asyncProgram.Wait();
         }
 
-        private static async Task ProcessNewUploads(string inputFolderPath, string outputFolderPath)
+        private static async Task ProcessNewUploads(AppSettings appSettings)
         {
-            var fileSystemWatcher = new FileSystemWatcher(inputFolderPath, "metadata.json")
+            var fileSystemWatcher = new FileSystemWatcher(appSettings.InputFolderPath, "metadata.json")
             {
                 IncludeSubdirectories = true
             };
@@ -39,10 +40,10 @@ namespace DictationProcessorSvc
                 var result = fileSystemWatcher.WaitForChanged(WatcherChangeTypes.Created);
                 Console.WriteLine($"New metadata file {result.Name}");
 
-                string fullMetadataFilePath = Path.Combine(inputFolderPath, result.Name);
+                string fullMetadataFilePath = Path.Combine(appSettings.InputFolderPath, result.Name);
                 string inputDirectoryName = Path.GetDirectoryName(fullMetadataFilePath);
 
-                await _dictationProcessingService.ProcessFolder(inputDirectoryName, outputFolderPath);
+                await _dictationProcessingService.ProcessFolder(inputDirectoryName, appSettings.OutputFolderPath);
 
                 const int c_sleepTimeMilliseconds = 1000;
                 Thread.Sleep(c_sleepTimeMilliseconds);
