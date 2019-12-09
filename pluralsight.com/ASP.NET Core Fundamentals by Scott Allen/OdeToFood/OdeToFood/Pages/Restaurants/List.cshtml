@@ -13,8 +13,9 @@
     <div>
         <div class="form-group">
             <div class="input-group">
-                <input type="search" class="form-control" 
-                    value="" name="searchTerm"/>
+                <!-- asp-for sets the 'value' and 'name' attributes of an input tag to the value of the specified property in the model -->
+                <!-- do not use Model.Property notation -->
+                <input type="search" class="form-control" asp-for="SearchTerm"/>
                 <span class="input-group-append">
                     <button class="btn btn-secondary">
                         <i>Search</i>
