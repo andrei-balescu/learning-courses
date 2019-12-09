@@ -1,0 +1,24 @@
+@page "{restaurantId:int}"
+<!-- can use "{id?:int} to specify optional parameters" -->
+
+<!-- Page auto-generated with 'dotnet aspnet-codegenerator razorpage Detail Empty -udl -outDir=Pages/Restaurants' -->
+
+@model OdeToFood.Pages.Restaurants.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Model.Restaurant.Name</h1>
+
+<div>
+    Id: @Model.Restaurant.Id
+</div>
+<div>
+    Location: @Model.Restaurant.Location
+</div>
+<div>
+    Cuisine: @Model.Restaurant.Cuisine
+</div>
+
+<!-- see list of button style classes in bootstrap.css -->
+<a asp-page="./List" class="btn btn-light">All restaurants</a>

@@ -37,6 +37,12 @@ namespace OdeToFood.Data
             };
         }
 
+        public Restaurant GetById(int id)
+        {
+            var restaurant = _restaurants.SingleOrDefault(r => r.Id == id);
+            return restaurant;
+        }
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
             bool ContainsText(string searchTarget, string searchTerm = null)
