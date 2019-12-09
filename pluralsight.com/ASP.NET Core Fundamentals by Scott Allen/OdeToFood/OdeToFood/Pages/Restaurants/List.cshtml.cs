@@ -20,16 +20,20 @@ namespace OdeToFood.Pages.Restaurants
 
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
+        // ensures property is bound to value in the request if present
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public ListModel(IConfiguration configuration, IRestaurantData restaurantData)
         {
             _configuration = configuration;
             _restaurantData = restaurantData;
         }
 
-        public void OnGet(string searchTerm)
+        public void OnGet()
         {
             Message = _configuration["Message"];
-            Restaurants = _restaurantData.GetRestaurantsByName(searchTerm);
+            Restaurants = _restaurantData.GetRestaurantsByName(SearchTerm);
         }
     }
 }
