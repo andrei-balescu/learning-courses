@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OdeToFood.Core;
@@ -36,9 +37,24 @@ namespace OdeToFood.Data
             };
         }
 
-        public IEnumerable<Restaurant> GetAll()
+        public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
+            bool ContainsText(string searchTarget, string searchTerm = null)
+            {
+                bool containsText = true;
+
+                bool hasSearchTerm = !string.IsNullOrEmpty(searchTerm);
+                if (hasSearchTerm)
+                {
+                    int searchIndex = searchTarget.IndexOf(searchTerm, StringComparison.InvariantCultureIgnoreCase);
+                    containsText = searchIndex > -1;
+                }
+
+                return containsText;
+            }
+
             IEnumerable<Restaurant> restaurants = from r in _restaurants
+                                                  where ContainsText(r.Name, name)
                                                   orderby r.Name
                                                   select r;
 
