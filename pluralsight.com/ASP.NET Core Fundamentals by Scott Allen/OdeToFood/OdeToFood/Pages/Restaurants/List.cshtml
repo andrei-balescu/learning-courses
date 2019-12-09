@@ -1,5 +1,7 @@
 @page
 
+<!-- Page auto-generated with 'dotnet aspnet-codegenerator razorpage List Empty -udl -outDir=Pages/Restaurants' -->
+
 @using OdeToFood.Core
 
 @model OdeToFood.Pages.Restaurants.ListModel
@@ -33,6 +35,12 @@
             <td>@restaurant.Name</td>
             <td>@restaurant.Location</td>
             <td>@restaurant.Cuisine</td>
+            <td>
+                <!-- 'asp-route-<property name>' specifies a value for an input property on the target page -->
+                <a class="btn btn-lg btn-light" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">
+                    <i>Details</i>
+                </a>
+            </td>
         </tr>
     }
 </table>
