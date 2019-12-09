@@ -1,4 +1,7 @@
 @page
+
+@using OdeToFood.Core
+
 @model OdeToFood.Pages.Restaurants.ListModel
 @{
     ViewData["Title"] = "Restaurants";
@@ -6,4 +9,15 @@
 
 <h1>@ViewData["Title"]</h1>
 
-@Model.Message
+<table class="table">
+    @foreach (Restaurant restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Cuisine</td>
+        </tr>
+    }
+</table>
+
+<div>@Model.Message</div>
