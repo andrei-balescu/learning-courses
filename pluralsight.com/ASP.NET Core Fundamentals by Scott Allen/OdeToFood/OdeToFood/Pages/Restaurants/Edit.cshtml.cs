@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OdeToFood.Core;
@@ -50,11 +51,22 @@ namespace OdeToFood.Pages.Restaurants
 
         public IActionResult OnPost()
         {
-            Restaurant = _restaurantData.Update(Restaurant);
-            _restaurantData.Commit();
-            
             Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
 
+            // Can use following properties on the ModelState
+            // ModelStateEntry locationFieldState = ModelState["Location"];
+            // if (locationFieldState.Errors != null)
+            // {
+            //     // handle validation errors
+            // }
+            // var userEnteredInvalidValue = locationFieldState.AttemptedValue;
+
+            if (ModelState.IsValid)
+            {
+                Restaurant = _restaurantData.Update(Restaurant);
+                _restaurantData.Commit();
+            }
+            
             return Page();
         }
     }

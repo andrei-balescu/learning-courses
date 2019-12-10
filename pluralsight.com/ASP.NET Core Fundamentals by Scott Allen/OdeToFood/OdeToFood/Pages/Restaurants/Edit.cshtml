@@ -14,12 +14,17 @@
     <input type="hidden" asp-for="Restaurant.Id" />
     <div class="form-group">
         <label asp-for="Restaurant.Name"></label>
-        <!-- asp-for sets the 'type' and 'name' attributes of an input tag to the value of the specified property in the model -->
+        <!-- 'asp-for' sets the 'type' and 'name' attributes of an input tag to the value of the specified property in the model -->
         <input asp-for="Restaurant.Name" class="form-control" />
-
+        <!-- 'asp-validation-for' displays any validation errors in the target elements -->
+        <span class="text-danger" asp-validation-for="Restaurant.Name"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="Restaurant.Location"></label>
         <input asp-for="Restaurant.Location" class="form-control" />
-
+        <span class="text-danger" asp-validation-for="Restaurant.Location"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="Restaurant.Cuisine"></label>
 
         <!-- Use 'asp-items' to generate <option> tags for a <select> -->
@@ -27,6 +32,7 @@
         <select class="form-control" asp-for="Restaurant.Cuisine"
                                      asp-items="Model.Cuisines">
                                      <!-- asp-items="Html.GetEnumSelectList<CuisineType>()"> -->
+        <span class="text-danger" asp-validation-for="Restaurant.Cuisine"></span>
         </select>
     </div>
 
