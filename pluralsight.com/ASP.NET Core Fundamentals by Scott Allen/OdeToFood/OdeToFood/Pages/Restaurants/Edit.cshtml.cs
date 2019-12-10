@@ -51,7 +51,7 @@ namespace OdeToFood.Pages.Restaurants
 
         public IActionResult OnPost()
         {
-            Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
+            IActionResult result;
 
             // Can use following properties on the ModelState
             // ModelStateEntry locationFieldState = ModelState["Location"];
@@ -65,9 +65,20 @@ namespace OdeToFood.Pages.Restaurants
             {
                 Restaurant = _restaurantData.Update(Restaurant);
                 _restaurantData.Commit();
+
+                // Use Post-Redirect-Get (PRG) pattern to avoid returning the user to a POST form.
+                result = RedirectToPage("./Detail", 
+                new {
+                    RestaurantId = Restaurant.Id
+                });
+            }
+            else
+            {
+                Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
+                result = Page();
             }
             
-            return Page();
+            return result;
         }
     }
 }
