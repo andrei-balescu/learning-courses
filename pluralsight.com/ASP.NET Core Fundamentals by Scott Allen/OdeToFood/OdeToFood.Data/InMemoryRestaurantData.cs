@@ -37,6 +37,12 @@ namespace OdeToFood.Data
             };
         }
 
+        public int Commit()
+        {
+            const int c_noAction = 0;
+            return c_noAction;
+        }
+
         public Restaurant GetById(int id)
         {
             var restaurant = _restaurants.SingleOrDefault(r => r.Id == id);
@@ -65,6 +71,20 @@ namespace OdeToFood.Data
                                                   select r;
 
             return restaurants;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = GetById(updatedRestaurant.Id);
+
+            if (restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+
+            return restaurant;
         }
     }
 }
