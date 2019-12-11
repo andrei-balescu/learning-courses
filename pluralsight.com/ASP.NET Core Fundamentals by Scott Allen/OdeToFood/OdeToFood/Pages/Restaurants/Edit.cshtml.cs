@@ -22,6 +22,8 @@ namespace OdeToFood.Pages.Restaurants
 
         public IEnumerable<SelectListItem> Cuisines { get; set; }
 
+        private const string c_actionTakenMessageProperty = "Message";
+
         public EditModel(IRestaurantData restaurantData,
                          IHtmlHelper htmlHelper)
         {
@@ -75,10 +77,13 @@ namespace OdeToFood.Pages.Restaurants
                 if (restaurantHasdId)
                 {
                     Restaurant = _restaurantData.Update(Restaurant);
+                    // TempData only available to next request (page)
+                    TempData[c_actionTakenMessageProperty] = "Restaurant updated!";
                 }
                 else
                 {
                     Restaurant = _restaurantData.Add(Restaurant);
+                    TempData[c_actionTakenMessageProperty] = "Restaurant created!";
                 }
                 _restaurantData.Commit();
 
