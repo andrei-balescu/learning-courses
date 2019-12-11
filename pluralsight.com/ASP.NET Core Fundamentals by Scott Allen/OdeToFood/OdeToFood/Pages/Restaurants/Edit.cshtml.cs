@@ -29,11 +29,18 @@ namespace OdeToFood.Pages.Restaurants
             _htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet(int restaurantId)
+        public IActionResult OnGet(int? restaurantId)
         {
             IActionResult result;
 
-            Restaurant = _restaurantData.GetById(restaurantId);
+            if (restaurantId.HasValue)
+            {
+                Restaurant = _restaurantData.GetById(restaurantId.Value);
+            }
+            else
+            {
+                Restaurant = new Restaurant();
+            }
 
             if (Restaurant == null)
             {
@@ -63,7 +70,16 @@ namespace OdeToFood.Pages.Restaurants
 
             if (ModelState.IsValid)
             {
-                Restaurant = _restaurantData.Update(Restaurant);
+                const int c_noRestaurantId = 0;
+                bool restaurantHasdId = Restaurant.Id != c_noRestaurantId;
+                if (restaurantHasdId)
+                {
+                    Restaurant = _restaurantData.Update(Restaurant);
+                }
+                else
+                {
+                    Restaurant = _restaurantData.Add(Restaurant);
+                }
                 _restaurantData.Commit();
 
                 // Use Post-Redirect-Get (PRG) pattern to avoid returning the user to a POST form.
