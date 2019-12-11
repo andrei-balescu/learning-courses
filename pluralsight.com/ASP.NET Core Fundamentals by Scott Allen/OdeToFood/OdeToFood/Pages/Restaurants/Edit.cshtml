@@ -1,0 +1,40 @@
+@page "{restaurantId:int?}"
+
+<!-- Page auto-generated with 'dotnet aspnet-codegenerator razorpage Edit Empty -udl -outDir=Pages/Restaurants' -->
+
+<!-- @using OdeToFood.Core; -->
+@model OdeToFood.Pages.Restaurants.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Restaurant.Id" />
+    <div class="form-group">
+        <label asp-for="Restaurant.Name"></label>
+        <!-- 'asp-for' sets the 'type' and 'name' attributes of an input tag to the value of the specified property in the model -->
+        <input asp-for="Restaurant.Name" class="form-control" />
+        <!-- 'asp-validation-for' displays any validation errors in the target elements -->
+        <span class="text-danger" asp-validation-for="Restaurant.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Restaurant.Location"></label>
+        <input asp-for="Restaurant.Location" class="form-control" />
+        <span class="text-danger" asp-validation-for="Restaurant.Location"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Restaurant.Cuisine"></label>
+
+        <!-- Use 'asp-items' to generate <option> tags for a <select> -->
+        <!-- Need to specify Model explicitly for 'asp-items' as it can work with any data source -->
+        <select class="form-control" asp-for="Restaurant.Cuisine"
+                                     asp-items="Model.Cuisines">
+                                     <!-- asp-items="Html.GetEnumSelectList<CuisineType>()"> -->
+        <span class="text-danger" asp-validation-for="Restaurant.Cuisine"></span>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

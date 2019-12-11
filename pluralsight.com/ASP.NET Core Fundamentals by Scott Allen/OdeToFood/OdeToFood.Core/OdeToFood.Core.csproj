@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+
+    <!-- Required for model validation attributes -->
+    <!-- Using alternative System.ComponentModel.DataAnnotations does NOT work -->
+    <PackageReference Include="System.ComponentModel.Annotations">
+      <Version>*</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
