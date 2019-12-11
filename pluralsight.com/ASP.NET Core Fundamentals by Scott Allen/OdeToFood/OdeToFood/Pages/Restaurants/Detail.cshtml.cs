@@ -15,6 +15,9 @@ namespace OdeToFood.Pages.Restaurants
 
         private IRestaurantData _restaurantData;
 
+        [TempData]
+        public string Message { get; set; }
+
         public DetailModel(IRestaurantData restaurantData)
         {
             _restaurantData = restaurantData;
