@@ -1,0 +1,53 @@
+@page
+
+<!-- Page auto-generated with 'dotnet aspnet-codegenerator razorpage List Empty -udl -outDir=Pages/Restaurants' -->
+
+@using OdeToFood.Core
+
+@model OdeToFood.Pages.Restaurants.ListModel
+@{
+    ViewData["Title"] = "Restaurants";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div>
+        <div class="form-group">
+            <div class="input-group">
+                <!-- asp-for sets the 'value' and 'name' attributes of an input tag to the value of the specified property in the model -->
+                <!-- do not use Model.Property notation -->
+                <input type="search" class="form-control" asp-for="SearchTerm"/>
+                <span class="input-group-append">
+                    <button class="btn btn-secondary">
+                        <i>Search</i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    @foreach (Restaurant restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Cuisine</td>
+            <td>
+                <!-- 'asp-route-<property name>' specifies a value for an input property on the target page -->
+                <a class="btn btn-lg btn-light" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">
+                    <i>Details</i>
+                </a>
+                <a class="btn btn-lg btn-light" asp-page="./Edit" asp-route-restaurantId="@restaurant.Id">
+                    <i>Edit</i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-page="./Edit" class="btn btn-primary">Add New</a>
+
+<div>@Model.Message</div>
