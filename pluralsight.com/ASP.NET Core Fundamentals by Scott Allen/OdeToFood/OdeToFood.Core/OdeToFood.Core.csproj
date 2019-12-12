@@ -7,7 +7,7 @@
   <ItemGroup>
 
     <!-- Required for model validation attributes -->
-    <!-- Using alternative System.ComponentModel.DataAnnotations does NOT work -->
+    <!-- Using alternative library System.ComponentModel.DataAnnotations does NOT work -->
     <PackageReference Include="System.ComponentModel.Annotations">
       <Version>*</Version>
     </PackageReference>
