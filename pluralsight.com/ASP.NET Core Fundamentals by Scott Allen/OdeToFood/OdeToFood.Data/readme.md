@@ -1,4 +1,4 @@
-# Ode to Dood - data management library
+# Ode to Food - data management library
 
 ## Using Entity Framework migrations
 
