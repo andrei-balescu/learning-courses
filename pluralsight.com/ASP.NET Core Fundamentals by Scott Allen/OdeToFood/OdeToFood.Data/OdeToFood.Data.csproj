@@ -1,11 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Need to target .NET Core to run the 'dotnet ef' tools on this project - not compatible with .NET Standard projects -->
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../OdeToFood.Core/OdeToFood.Core.csproj" />
+
+    <!-- Support for Entity Framework -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>*</Version>
+    </PackageReference>
+    <!-- Support for ruinning EF migrations via 'dotnet ef' tools -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <Version>*</Version>
+    </PackageReference>
+    <!-- Enables EF to work with PostgreSQL -->
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+      <Version>*</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
