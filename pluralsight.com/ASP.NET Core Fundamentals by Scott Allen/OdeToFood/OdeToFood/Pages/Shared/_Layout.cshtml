@@ -41,6 +41,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <!-- allow pages to inject content into this section -->
+            @RenderSection("footer", required: false)
             &copy; 2019 - OdeToFood - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
