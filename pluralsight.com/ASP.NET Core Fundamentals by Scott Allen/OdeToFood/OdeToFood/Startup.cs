@@ -31,7 +31,8 @@ namespace OdeToFood
                 options.UseNpgsql(connectionString);
             });
 
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            // services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, PostgreSqlRestaurantData>();
 
             services.AddRazorPages();
         }
