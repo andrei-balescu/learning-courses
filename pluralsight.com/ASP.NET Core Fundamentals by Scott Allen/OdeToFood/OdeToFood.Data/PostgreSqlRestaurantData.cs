@@ -9,22 +9,22 @@ namespace OdeToFood.Data
 {
     public class PostgreSqlRestaurantData : IRestaurantData
     {
-        private readonly OdeToFoodDbContext _dbContext;
+        private readonly OdeToFoodDbContext _db;
 
         public PostgreSqlRestaurantData(OdeToFoodDbContext dbContext)
         {
-            _dbContext = dbContext;
+            _db = dbContext;
         }
 
         public Restaurant Add(Restaurant newRestaurant)
         {
-            _dbContext.Add(newRestaurant);
+            _db.Restaurants.Add(newRestaurant);
             return newRestaurant;
         }
 
         public int Commit()
         {
-            int savedRecords = _dbContext.SaveChanges();
+            int savedRecords = _db.SaveChanges();
             return savedRecords;
         }
 
@@ -34,7 +34,7 @@ namespace OdeToFood.Data
 
             if (restaurant != null)
             {
-                _dbContext.Remove(restaurant);
+                _db.Restaurants.Remove(restaurant);
             }
 
             return restaurant;
@@ -44,13 +44,19 @@ namespace OdeToFood.Data
         {
             // Can use _dbContext.Find(id) as well
             // Pass in primary key type
-            Restaurant restaurant = _dbContext.Restaurants.Find(id);
+            Restaurant restaurant = _db.Restaurants.Find(id);
             return restaurant;
+        }
+
+        public int GetCountOfRestaurants()
+        {
+            int restaurantCount = _db.Restaurants.Count();
+            return restaurantCount;
         }
 
         public IEnumerable<Restaurant> GetRestaurantsByName(string name)
         {
-            IQueryable<Restaurant> query = from r in _dbContext.Restaurants
+            IQueryable<Restaurant> query = from r in _db.Restaurants
                                            // can only use code that is translatable to SQL with LINQ to SQL
                                            // where ContainsText(r.Name, name)
                                            where string.IsNullOrEmpty(name) || r.Name.Contains(name)
@@ -61,7 +67,7 @@ namespace OdeToFood.Data
 
         public Restaurant Update(Restaurant updatedRestaurant)
         {
-            EntityEntry<Restaurant> entity = _dbContext.Attach(updatedRestaurant);
+            EntityEntry<Restaurant> entity = _db.Restaurants.Attach(updatedRestaurant);
             entity.State = EntityState.Modified;
 
             return updatedRestaurant;
