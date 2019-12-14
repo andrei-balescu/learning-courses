@@ -78,6 +78,17 @@ body {
   max-width: 210px;
   margin-left: -40px;
   max-height: 55px;
-  margin-top: -55px;
+  margin-top: -32px;
   overflow: hidden;
+}
+
+/* adjust footer line height to reduce empty space */
+.footer {
+  line-height: 2rem;
+}
+
+/* adjust padding so that the body content does not overlap with the footer content;
+   used naming convention from the bootstrap pb-* (padding bottom) classes */
+.pb-9 {
+  padding-bottom: 5rem;
 }
