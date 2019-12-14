@@ -72,6 +72,11 @@ namespace OdeToFood.Data
             return restaurant;
         }
 
+        public int GetCountOfRestaurants()
+        {
+            return _restaurants.Count;
+        }
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
             bool ContainsText(string searchTarget, string searchTerm = null)

@@ -41,8 +41,15 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <!-- render the RestaurantCount view component -->
+            <vc:restaurant-count></vc:restaurant-count>
+
+            <!-- pass parameters to view components -->
+            <!-- <vc:restaurant-count zipcode=""></vc:restaurant-count> -->
+
             <!-- allow pages to inject content into this section -->
             @RenderSection("footer", required: false)
+
             &copy; 2019 - OdeToFood - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
