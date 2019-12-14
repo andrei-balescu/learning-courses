@@ -73,3 +73,11 @@ body {
 .card-columns.restaurant-card-columns {
   column-count: 1;
 }
+
+.ode-to-food-logo-extra-margin {
+  max-width: 210px;
+  margin-left: -40px;
+  max-height: 55px;
+  margin-top: -55px;
+  overflow: hidden;
+}
