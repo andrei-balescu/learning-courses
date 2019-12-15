@@ -2,3 +2,13 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your Javascript code.
+
+pages = {};
+
+pages.clientRestaurants = function(){
+    $.ajax("/api/restaurants", 
+        { method: "get" }) // returns a promise
+    .then(function(response){
+        console.dir(response);
+    });
+}

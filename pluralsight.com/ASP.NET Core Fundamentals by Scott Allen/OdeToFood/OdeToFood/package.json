@@ -1,0 +1,16 @@
+{
+  "name": "odetofood",
+  "version": "1.0.0",
+  "description": "OdeToFood NPM configuration",
+  "dependencies": {
+    "datatables.net-bs4": "^1.10.20"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.1.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
+}
