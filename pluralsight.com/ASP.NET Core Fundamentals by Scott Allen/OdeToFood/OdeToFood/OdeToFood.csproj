@@ -10,6 +10,14 @@
       <Version>*</Version>
     </PackageReference>
 
+    <!-- Enables Entity Framework code scaffolding support for aspnet-codegenerator -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <Version>*</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>*</Version>
+    </PackageReference>
+
     <ProjectReference Include="../OdeToFood.Core/OdeToFood.Core.csproj" />
     <ProjectReference Include="../OdeToFood.Data/OdeToFood.Data.csproj" />
   </ItemGroup>

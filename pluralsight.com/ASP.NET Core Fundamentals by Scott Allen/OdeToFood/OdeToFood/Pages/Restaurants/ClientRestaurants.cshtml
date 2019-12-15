@@ -1,0 +1,22 @@
+@page
+@model OdeToFood.Pages.Restaurants.ClientRestaurantsModel
+
+<!-- page autogenerasted using `dotnet aspnet-codegenerator razorpage ClientRestaurants Empty -udl -outDir=Pages/Restaurants` -->
+
+@{
+    ViewData["Title"] = "Client Restaurants";
+}
+
+<h1>Client Restaurants</h1>
+
+@section Scripts {
+    <script>
+        $(function(){
+            $.ajax("/api/restaurants", 
+                { method: "get" }) // returns a promise
+            .then(function(response){
+                console.dir(response);
+            });
+        });
+    </script>
+}
