@@ -61,6 +61,9 @@ namespace OdeToFood
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
+                // enables routing to API controllers
+                endpoints.MapControllers();
             });
         }
     }
