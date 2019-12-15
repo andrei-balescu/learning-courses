@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OdeToFood</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.bundle.css" />
 </head>
 <body>
     <header>
@@ -53,14 +53,14 @@
             <p>&copy; 2019 - OdeToFood - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
 
             <div class="ode-to-food-logo-extra-margin">
-                <img src="~/OdeToFood.svg" width="250" height="70" />
+                <img src="~/images/OdeToFood.svg" width="250" height="70" />
             </div>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/dist/js/site.bundle.js" asp-append-version="true"></script>
+    <script src="~/js/site.bundle.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
