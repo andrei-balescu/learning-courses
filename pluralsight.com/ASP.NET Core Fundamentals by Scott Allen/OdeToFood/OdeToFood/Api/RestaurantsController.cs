@@ -10,6 +10,7 @@ using OdeToFood.Data;
 
 namespace OdeToFood.Api
 {
+    // controller auto generated using `dotnet aspnet-codegenerator controller -name="RestaurantsController" -api -async -m=OdeToFood.Core.Restaurant -dc=OdeToFood.Data.OdeToFoodDbContext -outDir=Api`
     [Route("api/[controller]")]
     [ApiController]
     public class RestaurantsController : ControllerBase
