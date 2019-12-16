@@ -9,17 +9,14 @@
     <ProjectReference Include="../OdeToFood.Core/OdeToFood.Core.csproj" />
 
     <!-- Support for Entity Framework -->
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>*</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     <!-- Support for ruinning EF migrations via 'dotnet ef' tools -->
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
-      <Version>*</Version>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <!-- Enables EF to work with PostgreSQL -->
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
-      <Version>*</Version>
-    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
   </ItemGroup>
 
 </Project>
