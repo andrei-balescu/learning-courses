@@ -1,6 +1,8 @@
 // builds complete output path
 let path = require('path');
 
+// name has to be 'CleanWebpackPlugin' (bug?)
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // css minifier
@@ -19,6 +21,8 @@ module.exports = {
         path: path.resolve(__dirname, "../OdeToFood/wwwroot")
     },
     plugins: [
+        // clean up output folder
+        new CleanWebpackPlugin(),
         new CopyPlugin([
             // to path relative to module.exports.output.path
             { from: "node_modules/jquery", to: "lib/jquery/" },

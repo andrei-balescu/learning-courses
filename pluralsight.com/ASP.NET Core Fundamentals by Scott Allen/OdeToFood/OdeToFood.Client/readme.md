@@ -7,6 +7,7 @@
     * Run command at the root of the web project.
 * Use default settings at prompt
 * Install webpack compiler as a development dependency only: `npm install webpack --save-dev`
+* Install webpack plugin to clean up output folder before build: `npm install --save-dev clean-webpack-plugin`
 * Install webpack plugins to bundle CSS files: `npm install --save-dev mini-css-extract-plugin css-loader`
 * Install webpack plugin to minify CSS and JS: `npm install --save-dev optimize-css-assets-webpack-plugin terser-webpack-plugin`
     * JS minifier only needed because specifying a CSS minifier overrides default webpack JS minifier as well.
