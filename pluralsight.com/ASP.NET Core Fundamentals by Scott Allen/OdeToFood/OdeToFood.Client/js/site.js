@@ -34,6 +34,6 @@ pages.clientRestaurants = function(){
     $.when(getCuisines(), getRestaurants()).done(function(cuisineResponse, restaurantResponse){
         console.log("received cuisines: ", cuisineResponse);
         console.log("received restaurants: ", restaurantResponse);
-        displayRestaurants(cuisineResponse.data, restaurantResponse.data);
+        displayRestaurants(cuisineResponse[0], restaurantResponse[0]);
     });
 }
