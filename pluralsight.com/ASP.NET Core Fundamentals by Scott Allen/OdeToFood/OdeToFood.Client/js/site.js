@@ -6,9 +6,24 @@
 pages = {};
 
 pages.clientRestaurants = function(){
+    var cuisines = ["Unknown", "Mexican", "Italian", "Indian"];
+
     $.ajax("/api/restaurants", 
         { method: "get" }) // returns a promise
     .then(function(response){
-        console.dir(response);
+        // populate table using dataTable plugin
+        $("#restaurants").dataTable({
+            data: response,
+            columns: [
+                { data: "name" },
+                { data: "location" },
+                { 
+                    data: "cuisine", 
+                    render: function(data) {
+                        return cuisines[data];
+                    }
+                }
+            ]
+        });
     });
 }
