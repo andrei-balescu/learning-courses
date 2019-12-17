@@ -6,14 +6,18 @@
 pages = {};
 
 pages.clientRestaurants = function(){
-    var cuisines = ["Unknown", "Mexican", "Italian", "Indian"];
+    function getCuisines(){
+        return $.ajax("/api/cuisines", { method: "get" }); // returns a promise
+    }
 
-    $.ajax("/api/restaurants", 
-        { method: "get" }) // returns a promise
-    .then(function(response){
-        // populate table using dataTable plugin
+    function getRestaurants(){
+        return $.ajax("/api/restaurants", { method: "get" });
+    }
+
+    function displayRestaurants(cuisines, restaurants)
+    {
         $("#restaurants").dataTable({
-            data: response,
+            data: restaurants,
             columns: [
                 { data: "name" },
                 { data: "location" },
@@ -25,5 +29,11 @@ pages.clientRestaurants = function(){
                 }
             ]
         });
+    }
+
+    $.when(getCuisines(), getRestaurants()).done(function(cuisineResponse, restaurantResponse){
+        console.log("received cuisines: ", cuisineResponse);
+        console.log("received restaurants: ", restaurantResponse);
+        displayRestaurants(cuisineResponse.data, restaurantResponse.data);
     });
 }
