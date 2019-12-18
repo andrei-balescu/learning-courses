@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OdeToFood
 {
+    // runs web application as a self executing program
     public class Program
     {
         public static void Main(string[] args)
