@@ -18,6 +18,7 @@ namespace OdeToFood
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
+            // Can view source of ASP.NET classes at https://github.com/aspnet/AspNetCore
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
