@@ -15,3 +15,10 @@
 * Use the following command to get info about the DB contexts configured in the project: `dotnet ef dbcontext list --startup-project=../OdeToFood`
 * Use the following command to create a DB migration: `dotnet ef migrations add initialcreate -s ../OdeToFood`
 * Use the following command to update DB using a created DB migration: `dotnet ef database update -s ../OdeToFood`
+* Use the following command to create a SQL script that executes a DB migration: `dotnet ef migrations script -s ../OdeToFood`
+
+## Hosting web application
+
+* Using NGINX (Linux): https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-3.1
+* Using Apache (Linux): https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-3.1
+* Using IIS (Windows): https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-3.1
