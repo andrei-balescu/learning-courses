@@ -1,0 +1,30 @@
+@page
+@model OdeToFood.Pages.Restaurants.ClientRestaurantsModel
+
+<!-- page autogenerasted using `dotnet aspnet-codegenerator razorpage ClientRestaurants Empty -udl -outDir=Pages/Restaurants` -->
+
+@{
+    ViewData["Title"] = "Client Restaurants";
+}
+
+<h1>Client Restaurants</h1>
+
+<table class="table" id="restaurants">
+
+</table>
+
+@section Scripts {
+    <environment include="Development">
+        <script src="~/lib/datatables.net/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="~/lib/datatables.net-bs4/css/dataTables.bootstrap4.css"/>
+        <script src="~/lib/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    </environment>
+
+    <script>
+        $(pages.clientRestaurants);
+    </script>
+}

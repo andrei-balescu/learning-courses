@@ -7,8 +7,16 @@
   <ItemGroup>
     <!-- Enables code scaffolding generation via dotnet aspnet-codegenerator -->
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design">
-      <Version>*</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
+
+    <!-- Enables Entity Framework code scaffolding support for aspnet-codegenerator -->
+    <!-- Installed using `dotnet add package Microsoft.EntityFrameworkCore.Design` -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
 
     <ProjectReference Include="../OdeToFood.Core/OdeToFood.Core.csproj" />
     <ProjectReference Include="../OdeToFood.Data/OdeToFood.Data.csproj" />

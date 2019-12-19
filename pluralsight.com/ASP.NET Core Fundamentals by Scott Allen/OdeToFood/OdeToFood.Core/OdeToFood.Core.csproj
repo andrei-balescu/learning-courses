@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-
     <!-- Required for model validation attributes -->
-    <!-- Using alternative System.ComponentModel.DataAnnotations does NOT work -->
-    <PackageReference Include="System.ComponentModel.Annotations">
-      <Version>*</Version>
-    </PackageReference>
+    <!-- Using alternative library System.ComponentModel.DataAnnotations does NOT work -->
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

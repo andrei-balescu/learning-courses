@@ -11,7 +11,9 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            // build client assets as a prerequisite
+            "dependsOn": "buildClient"
         },
         {
             "label": "publish",
@@ -23,7 +25,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildClient"
         },
         {
             "label": "watch",
@@ -36,7 +39,19 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildClient"
+        },
+        {
+            // build client project using npm
+            "label": "buildClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "build",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
         }
     ]
 }

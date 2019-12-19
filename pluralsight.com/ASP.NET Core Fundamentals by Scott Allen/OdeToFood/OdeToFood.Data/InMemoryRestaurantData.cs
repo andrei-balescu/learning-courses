@@ -54,10 +54,27 @@ namespace OdeToFood.Data
             return c_noAction;
         }
 
+        public Restaurant Delete(int id)
+        {
+            var restaurant = _restaurants.FirstOrDefault(r => r.Id == id);
+
+            if (restaurant != null)
+            {
+                _restaurants.Remove(restaurant);
+            }
+
+            return restaurant;
+        }
+
         public Restaurant GetById(int id)
         {
             var restaurant = _restaurants.SingleOrDefault(r => r.Id == id);
             return restaurant;
+        }
+
+        public int GetCountOfRestaurants()
+        {
+            return _restaurants.Count;
         }
 
         public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
