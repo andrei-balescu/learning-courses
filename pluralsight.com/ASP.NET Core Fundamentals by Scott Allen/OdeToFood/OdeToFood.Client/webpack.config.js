@@ -10,6 +10,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // js minifier (override)
 const TerserPlugin= require('terser-webpack-plugin');
 
+var isProdEnv = process.env.NODE_ENV === 'production';
+
+
 module.exports = {
     // input file entry points
     entry: {
@@ -53,6 +56,7 @@ module.exports = {
         }]
     },
     optimization: {
-        minimizer: [ new TerserPlugin(), new OptimizeCSSAssetsPlugin() ]
+        // only minify in production environment
+        minimizer: isProdEnv ? [ new TerserPlugin(), new OptimizeCSSAssetsPlugin() ] : []
     }
 };
