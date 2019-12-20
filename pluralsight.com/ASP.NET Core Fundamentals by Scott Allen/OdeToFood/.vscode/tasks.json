@@ -13,7 +13,7 @@
             ],
             "problemMatcher": "$msCompile",
             // build client assets as a prerequisite
-            "dependsOn": "buildClient"
+            "dependsOn": "buildDevClient"
         },
         {
             "label": "publish",
@@ -26,7 +26,7 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile",
-            "dependsOn": "buildClient"
+            "dependsOn": "buildProdClient"
         },
         {
             "label": "watch",
@@ -40,16 +40,27 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile",
-            "dependsOn": "buildClient"
+            "dependsOn": "buildDevClient"
         },
         {
-            // build client project using npm
-            "label": "buildClient",
+            // build client project using npm (development)
+            "label": "buildDevClient",
             "command": "npm",
             "type": "shell",
             "args": [
                 "run",
-                "build",
+                "dev",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
+        },
+        {
+            // build client project using npm (production)
+            "label": "buildProdClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "prod",
                 "--prefix=${workspaceFolder}/OdeToFood.Client"
             ]
         }

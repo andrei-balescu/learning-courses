@@ -16,6 +16,7 @@
     "webpack-cli": "^3.3.10"
   },
   "scripts": {
-    "build": "webpack"
+    "dev": "webpack",
+    "prod": "NODE_ENV=production webpack"
   }
 }
