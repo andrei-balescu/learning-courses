@@ -11,7 +11,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildClient"
         },
         {
             "label": "publish",
@@ -37,6 +38,17 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            // build client project
+            "label": "buildClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "build",
+                "--prefix=${workspaceFolder}/Client"
+            ]
+        },
     ]
 }
