@@ -1,0 +1,4 @@
+# Docker for Web Developers
+## by Dan Wahlin
+
+Building web apps that run the same in multiple environments can be a time-consuming process. This course, Docker for Web Developers, will teach you how to use Docker's open platform so that you can efficiently build apps that run consistently across any machine. First, you'll learn about Docker, its toolbox, the Docker Machine and Docker Client commands, and how all these components help you in your development environment. Next, you'll learn to work with images, as well as Docker containers and how to link and manage them. After that, you'll discover how to get a fully-functional development environment up and running, both locally and in the cloud. By the end of this course, you'll be able to increase your productivity and create lightweight apps that run the same no matter the environment.
