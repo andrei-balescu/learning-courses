@@ -22,5 +22,8 @@
 
 ## Creating custom image for website
 * Install `docker` extension for VS code
-* Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
+* (Optional) Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
     * Specify ports `5000,5001`
+* Build dev image: `docker build -t andrei.balescu/aspnetcore-demo:dev .` to build image
+* Run dev image (swap container code with local code): `docker run -d -p 8080:5001 -v "$(pwd)":/app andrei.balescu/aspnetcore-demo:dev`
+* To access site go to `https://localhost:8080` in browser
