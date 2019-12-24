@@ -17,4 +17,10 @@
     * `/bin/bash` runs a bash terminal inside container
 * Build application: `dotnet build`
     * node.js not available inside container
-* Rune application: `dotnet run`
+* Run application: `dotnet run`
+* To access site go to `https://localhost:8080` in browser
+
+## Creating custom image for website
+* Install `docker` extension for VS code
+* Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
+    * Specify ports `5000,5001`

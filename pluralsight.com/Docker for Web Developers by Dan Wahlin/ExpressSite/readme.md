@@ -20,7 +20,7 @@
     * node.js command that calls `rm -rf`
 * Build custome image: `docker build -f Dockerfile -t andrei.balescu/express-site .`
     * `-f` optionally specify name of docker file; looks for `Dockerfile` by default
-    * `-t` specifies image name (repository)
+    * `-t` tag, specifies image name (repository)
     * `.` folder to run in
 Run image: `docker run -d -p 8080:3000 andrei.balescu/express-site`
     * `-d` runs container in separate daemon so terminal can be reused
