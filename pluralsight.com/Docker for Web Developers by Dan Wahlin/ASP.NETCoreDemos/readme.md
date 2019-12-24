@@ -24,6 +24,14 @@
 * Install `docker` extension for VS code
 * (Optional) Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
     * Specify ports `5000,5001`
-* Build dev image: `docker build -t andrei.balescu/aspnetcore-demo:dev .` to build image
-* Run dev image (swap container code with local code): `docker run -d -p 8080:5001 -v "$(pwd)":/app andrei.balescu/aspnetcore-demo:dev`
+    * See `auto.dockerfile`
+### Dev image
+* Create docker file (see `Dockerfile`)
+* Build image: `docker build -t andrei.balescu/aspnetcore-demo:dev .` to build image
+* Run image - swap container code with local code: `docker run -d -p 8080:5001 -v "$(pwd)":/app andrei.balescu/aspnetcore-demo:dev`
 * To access site go to `https://localhost:8080` in browser
+### Prod image
+* Create docker file (see `prod.dockerfile`)
+* Build image: `docker build -t andrei.balescu/aspnetcore-demo:prod -f prod.dockerfile .`
+    * Can also build using VS code: `F1` > `Docker: Build Image`
+* Run image: `docker run -d -p:8080:5001 andrei.balescu/aspnetcore-demo:prod`
