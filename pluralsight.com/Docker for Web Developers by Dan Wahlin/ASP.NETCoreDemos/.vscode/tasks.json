@@ -58,7 +58,7 @@
             "dockerBuild": {
                 "tag": "aspnetcoredemos:dev",
                 "target": "base",
-                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "dockerfile": "${workspaceFolder}/vscode.dockerfile",
                 "context": "${workspaceFolder}"
             },
             "netCore": {
@@ -73,7 +73,7 @@
             ],
             "dockerBuild": {
                 "tag": "aspnetcoredemos:latest",
-                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "dockerfile": "${workspaceFolder}/vscode.dockerfile",
                 "context": "${workspaceFolder}"
             },
             "netCore": {
@@ -86,7 +86,18 @@
             "dependsOn": [
                 "docker-build: debug"
             ],
-            "dockerRun": {},
+            "dockerRun": {
+                "ports": [
+                    {
+                        "hostPort": 5001,
+                        "containerPort": 443
+                    },
+                    {
+                        "hostPort": 5000,
+                        "containerPort": 80
+                    },
+                ]
+            },
             "netCore": {
                 "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj",
                 "enableDebugging": true

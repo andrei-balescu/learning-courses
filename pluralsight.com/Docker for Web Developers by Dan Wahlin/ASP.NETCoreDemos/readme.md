@@ -24,7 +24,10 @@
 * Install `docker` extension for VS code
 * (Optional) Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
     * Specify ports `5000,5001`
-    * See `auto.dockerfile`
+    * See `vscode.dockerfile`
+    * Also adds VS code launch options / tasks
+        * Change host port bindings in `tasks.json` in order to run target - does not work with defaults (80/443)
+        * Container port bindings cannot be changed - build ignores ENV variable if set
 ### Dev image
 * Create docker file (see `Dockerfile`)
 * Build image: `docker build -t andrei.balescu/aspnetcore-demo:dev .` to build image
