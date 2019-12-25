@@ -22,12 +22,16 @@
 
 ## Creating custom image for website
 * Install `docker` extension for VS code
-* (Optional) Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
+* Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
     * Specify ports `5000,5001`
     * See `vscode.dockerfile`
     * Also adds VS code launch options / tasks
-        * Change host port bindings in `tasks.json` in order to run target - does not work with defaults (80/443)
-        * Container port bindings cannot be changed - build ignores ENV variable if set
+    * Change host port bindings in `tasks.json` in order to run targets - does not work with defaults (80/443)
+* Debug task (see label `docker-run: debug` in `tasks.json`)
+    * Container port bindings cannot be changed - build ignores ENV variables if set
+    * Hit `F5` to execute launch target
+* Release task (see label `docker-run: release` in `tasks.json`)
+    * Hit `F1` > `Run Task` > `docker-run:release` to execute
 ### Dev image
 * Create docker file (see `Dockerfile`)
 * Build image: `docker build -t andrei.balescu/aspnetcore-demo:dev .` to build image

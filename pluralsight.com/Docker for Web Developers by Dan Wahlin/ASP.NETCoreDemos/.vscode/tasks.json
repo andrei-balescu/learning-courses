@@ -91,11 +91,7 @@
                     {
                         "hostPort": 5001,
                         "containerPort": 443
-                    },
-                    {
-                        "hostPort": 5000,
-                        "containerPort": 80
-                    },
+                    }
                 ]
             },
             "netCore": {
@@ -109,7 +105,14 @@
             "dependsOn": [
                 "docker-build: release"
             ],
-            "dockerRun": {},
+            "dockerRun": {
+                "ports": [
+                    {
+                        "hostPort": 5001,
+                        "containerPort": 443
+                    }
+                ]
+            },
             "netCore": {
                 "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj"
             }
