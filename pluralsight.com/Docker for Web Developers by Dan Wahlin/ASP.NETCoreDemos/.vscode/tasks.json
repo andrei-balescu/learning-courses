@@ -40,7 +40,6 @@
             "problemMatcher": "$msCompile"
         },
         {
-            // build client project
             "label": "buildClient",
             "command": "npm",
             "type": "shell",
@@ -50,5 +49,73 @@
                 "--prefix=${workspaceFolder}/Client"
             ]
         },
+        {
+            "type": "docker-build",
+            "label": "docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "aspnetcoredemos:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/vscode.dockerfile",
+                "context": "${workspaceFolder}"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj"
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "aspnetcoredemos:latest",
+                "dockerfile": "${workspaceFolder}/vscode.dockerfile",
+                "context": "${workspaceFolder}"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build: debug"
+            ],
+            "dockerRun": {
+                "ports": [
+                    {
+                        "hostPort": 5001,
+                        "containerPort": 443
+                    }
+                ]
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build: release"
+            ],
+            "dockerRun": {
+                "ports": [
+                    {
+                        "hostPort": 5001,
+                        "containerPort": 443
+                    }
+                ]
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ASP.NETCoreDemos.csproj"
+            }
+        }
     ]
 }
