@@ -1,0 +1,24 @@
+{
+  "name": "odetofood",
+  "version": "1.0.0",
+  "description": "OdeToFood NPM configuration",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery-validation": "^1.19.1",
+    "jquery-validation-unobtrusive": "^3.2.11"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.3.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "terser-webpack-plugin": "^2.3.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "dev": "webpack",
+    "prod": "NODE_ENV=production webpack"
+  }
+}

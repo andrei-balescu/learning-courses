@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildDevClient"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildProdClient"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildDevClient"
+        },
+        {
+            "label": "buildDevClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "dev",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
+        },
+        {
+            "label": "buildProdClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "prod",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
+        }
+    ]
+}
