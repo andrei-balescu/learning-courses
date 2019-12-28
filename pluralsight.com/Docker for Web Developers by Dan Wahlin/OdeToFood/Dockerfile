@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["OdeToFood/OdeToFood.csproj", "OdeToFood/"]
 RUN dotnet restore "OdeToFood/OdeToFood.csproj"
 COPY . .
-WORKDIR "/src/OdeToFood"
+WORKDIR /src/OdeToFood
 RUN dotnet build "OdeToFood.csproj" -c Release -o /app/build
 
 FROM build AS publish
