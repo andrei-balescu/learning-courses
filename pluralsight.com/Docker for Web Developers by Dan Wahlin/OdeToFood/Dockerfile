@@ -13,7 +13,22 @@ RUN dotnet build "OdeToFood.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "OdeToFood.csproj" -c Release -o /app/publish
 
-FROM base AS final
+FROM base AS release
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OdeToFood.dll"]
+
+# add self signed SSL certificate for HTTPS communication
+FROM build AS https
+WORKDIR /app/https
+RUN dotnet dev-certs https -ep odetofood.pfx -p password
+
+# create autonomous image
+FROM release as final
+LABEL author="Andrei Balescu"
+WORKDIR /root/.aspnet/https
+COPY --from=https /app/https .
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/root/.aspnet/https/odetofood.pfx"
+ENV ASPNETCORE_URLS="https://+:443"
+WORKDIR /app

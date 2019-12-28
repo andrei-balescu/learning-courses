@@ -85,6 +85,7 @@
             ],
             "dockerBuild": {
                 "tag": "odetofood:latest",
+                "target": "release",
                 "dockerfile": "${workspaceFolder}/Dockerfile",
                 "context": "${workspaceFolder}"
             },

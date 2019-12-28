@@ -7,6 +7,12 @@
     * `--net` specifies which network to run in
     * `--name` name assigned to container inside network; other containers can access it via the name
     * no ports exposed
+### VS Code images
 * Debug application inside network: `F5`
     * Make sure correct launch target is selected: `Docker .NET Core Launch`
 * Run application inside network: `F1` > `Tasks: Run Task` > `docker-run:release`
+* Go to `https://localhost:5001` in browser
+### Autonomous images
+* Build image: `docker build -t andrei.balescu/odetofood .`
+* Run container `docker run -d -p 5002:443 --net odetofood --name otf andrei.balescu/odetofood`
+* Go to `https://localhost:5002` in browser
