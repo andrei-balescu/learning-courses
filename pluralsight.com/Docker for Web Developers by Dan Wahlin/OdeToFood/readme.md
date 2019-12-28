@@ -7,6 +7,7 @@
     * `--net` specifies which network to run in
     * `--name` name assigned to container inside network; other containers can access it via the name
     * no ports exposed
+* Restart container once stopped: `docker start postgresql`
 ### VS Code images
 * Debug application inside network: `F5`
     * Make sure correct launch target is selected: `Docker .NET Core Launch`
