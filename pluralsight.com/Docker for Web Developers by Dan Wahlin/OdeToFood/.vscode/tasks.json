@@ -118,7 +118,15 @@
             "dependsOn": [
                 "docker-build: release"
             ],
-            "dockerRun": {},
+            "dockerRun": {
+                "ports": [
+                    {
+                        "containerPort": 443,
+                        "hostPort": 5001
+                    }
+                ],
+                "network": "odetofood"
+            },
             "netCore": {
                 "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj"
             }

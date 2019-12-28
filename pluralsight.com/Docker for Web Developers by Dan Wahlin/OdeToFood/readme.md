@@ -8,4 +8,5 @@
     * `--name` name assigned to container inside network; other containers can access it via the name
     * no ports exposed
 * Debug application inside network: `F5`
-    * Make sure to run docker launch target
+    * Make sure correct launch target is selected: `Docker .NET Core Launch`
+* Run application inside network: `F1` > `Tasks: Run Task` > `docker-run:release`
