@@ -4,6 +4,7 @@ services:
         build:
             context: .
             dockerfile: docker-compose-multi-service/nginx/Dockerfile
+        image: odetofood:nginx
         ports: 
             - 5005:80
         networks: 

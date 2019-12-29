@@ -8,6 +8,8 @@ COPY ["OdeToFood/OdeToFood.csproj", "OdeToFood/"]
 RUN dotnet restore "OdeToFood/OdeToFood.csproj"
 COPY . .
 WORKDIR /src/OdeToFood
+# remove client files - will be served by nginx
+RUN rm -r wwwroot
 RUN dotnet build "OdeToFood.csproj" -c Release -o /app/build
 
 FROM build AS publish
