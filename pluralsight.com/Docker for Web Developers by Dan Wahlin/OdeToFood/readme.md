@@ -11,6 +11,7 @@
 ## VS Code images
 * Debug application inside network: `F5`
     * Make sure correct launch target is selected: `Docker .NET Core Launch`
+* Go to `http://localhost:5000` or `http://localhost:5001` in browser
 * Run application inside network: `F1` > `Tasks: Run Task` > `docker-run:release`
 * Go to `https://localhost:5002` in browser
 ## Manual images
@@ -27,7 +28,5 @@
 * Stop and remove services: `docker-compose down`
 ### Multi-service compose file
 * Run services: `docker-compose -f docker-compose-multi-service.yml up -d`
-* Go to `https://localhost:5001` in browser to access first service
-* Go to `https://localhost:5002` in browser to access second service
-* Go to `https://localhost:5002` in browser to access third service
+* Go to `http://localhost:5005` in browser to access first service
 * Stop services: `docker-compose -f docker-compose-multi-service.yml stop`

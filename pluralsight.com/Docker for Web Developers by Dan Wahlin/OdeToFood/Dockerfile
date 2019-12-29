@@ -30,5 +30,5 @@ WORKDIR /root/.aspnet/https
 COPY --from=https /app/https .
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/root/.aspnet/https/odetofood.pfx"
-ENV ASPNETCORE_URLS="http://+80;https://+:443"
+ENV ASPNETCORE_URLS="https://+:443"
 WORKDIR /app
