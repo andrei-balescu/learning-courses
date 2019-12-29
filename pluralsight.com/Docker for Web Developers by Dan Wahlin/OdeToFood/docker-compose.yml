@@ -1,0 +1,27 @@
+version: "3.5"
+services:
+    postgres:
+        image: postgres:12
+        environment:
+            POSTGRES_PASSWORD: password
+        networks:
+            - odetofood-network
+        container_name: postgresql
+    odetofood:
+        build:
+            context: .
+            # dockerfile: Dockerfile # default
+        # specify build name:tag
+        image: "odetofood:compose"
+        ports:
+            # dash used when multiple items can be specified (YAML)
+            - "5004:443"
+        networks:
+            - odetofood-network
+        # specify service dependencies
+        depends_on: 
+            - "postgres"
+            
+networks:
+    odetofood-network:
+        # driver: bridge # default

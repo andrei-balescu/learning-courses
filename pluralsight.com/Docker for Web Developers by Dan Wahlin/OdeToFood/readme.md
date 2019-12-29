@@ -8,12 +8,19 @@
     * `--name` name assigned to container inside network; other containers can access it via the name
     * no ports exposed
 * Restart container once stopped: `docker start postgresql`
-### VS Code images
+## VS Code images
 * Debug application inside network: `F5`
     * Make sure correct launch target is selected: `Docker .NET Core Launch`
 * Run application inside network: `F1` > `Tasks: Run Task` > `docker-run:release`
 * Go to `https://localhost:5002` in browser
-### Manual images
+## Manual images
 * Build image: `docker build -t odetofood:manual .`
 * Run container `docker run -d -p 5003:443 --net odetofood --name odetofood-manual odetofood:manual`
 * Go to `https://localhost:5003` in browser
+## Using docker compose
+* Build & run services: `docker-compose up -d`
+    * `-d` run in background
+* Build only: `docker-compose build`
+* Stop running services: `docker-compose stop`
+* Restart stopped services: `docker-compose start`
+* Stop and remove services: `docker-compose down`
