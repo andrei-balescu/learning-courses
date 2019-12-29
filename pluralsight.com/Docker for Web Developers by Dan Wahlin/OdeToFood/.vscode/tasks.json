@@ -100,6 +100,7 @@
                 "docker-build: debug"
             ],
             "dockerRun": {
+                "containerName": "odetofood-dev",
                 "ports": [
                     {
                         "containerPort": 443,
@@ -120,10 +121,11 @@
                 "docker-build: release"
             ],
             "dockerRun": {
+                "containerName": "odetofood-release",
                 "ports": [
                     {
                         "containerPort": 443,
-                        "hostPort": 5001
+                        "hostPort": 5002
                     }
                 ],
                 "network": "odetofood"
