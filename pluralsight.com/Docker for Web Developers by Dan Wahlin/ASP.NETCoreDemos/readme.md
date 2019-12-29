@@ -23,7 +23,7 @@
 ## Creating custom image for website
 * Install `docker` extension for VS code
 * Create docker file in VS code: `F1` > `Docker: Add Docker Files to Workspace...`
-    * Specify ports `5000,5001`
+    * Use default ports
     * See `vscode.dockerfile`
     * Also adds VS code launch options / tasks
     * Change host port bindings in `tasks.json` in order to run targets - does not work with defaults (80/443)
