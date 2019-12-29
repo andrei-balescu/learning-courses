@@ -1,0 +1,41 @@
+version: "3.5"
+services:
+    odetofood-multiservice:
+        build: 
+            context: .
+        image: odetofood:multi
+        ports: 
+            - 5001:443
+        networks: 
+            - multi-service-network
+        container_name: service1
+        depends_on: 
+            - postgres
+    # create second container from image built in previous step
+    odetofood-service-2:
+        image: odetofood:multi
+        ports: 
+            - 5002:443
+        networks: 
+            - multi-service-network
+        container_name: service2
+        depends_on: 
+            - odetofood-multiservice
+    odetofood-service-3:
+        image: odetofood:multi
+        ports: 
+            - 5003:443
+        networks: 
+            - multi-service-network
+        container_name: service3
+        depends_on: 
+            - odetofood-multiservice
+    postgres:
+        image: postgres:12
+        networks: 
+            - multi-service-network
+        environment: 
+            POSTGRES_PASSWORD: password
+        container_name: postgresql
+networks:
+    multi-service-network:

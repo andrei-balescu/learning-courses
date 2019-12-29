@@ -20,7 +20,14 @@
 ## Using docker compose
 * Build & run services: `docker-compose up -d`
     * `-d` run in background
+* Go to `https://localhost:5004` in browser
 * Build only: `docker-compose build`
 * Stop running services: `docker-compose stop`
 * Restart stopped services: `docker-compose start`
 * Stop and remove services: `docker-compose down`
+### Multi-service compose file
+* Run services: `docker-compose -f docker-compose-multi-service.yml up -d`
+* Go to `https://localhost:5001` in browser to access first service
+* Go to `https://localhost:5002` in browser to access second service
+* Go to `https://localhost:5002` in browser to access third service
+* Stop services: `docker-compose -f docker-compose-multi-service.yml stop`
