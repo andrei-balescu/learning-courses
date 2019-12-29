@@ -13,7 +13,7 @@
     * Make sure correct launch target is selected: `Docker .NET Core Launch`
 * Run application inside network: `F1` > `Tasks: Run Task` > `docker-run:release`
 * Go to `https://localhost:5002` in browser
-### Autonomous images
-* Build image: `docker build -t andrei.balescu/odetofood .`
-* Run container `docker run -d -p 5003:443 --net odetofood --name otf andrei.balescu/odetofood`
+### Manual images
+* Build image: `docker build -t odetofood:manual .`
+* Run container `docker run -d -p 5003:443 --net odetofood --name odetofood-manual odetofood:manual`
 * Go to `https://localhost:5003` in browser
