@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin= require('terser-webpack-plugin');
 
 var isProdEnv = process.env.NODE_ENV === 'production';
-
+var outputDir = process.env.OUTPUT_DIR || "../OdeToFood/wwwroot";
 
 module.exports = {
     entry: {
@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         filename: "js/[name].bundle.js",
-        path: path.resolve(__dirname, "../OdeToFood/wwwroot")
+        path: path.resolve(__dirname, outputDir)
     },
     plugins: [
         new CleanWebpackPlugin(),
