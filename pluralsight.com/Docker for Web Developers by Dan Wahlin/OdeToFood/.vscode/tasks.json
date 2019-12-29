@@ -103,6 +103,10 @@
                 "containerName": "odetofood-dev",
                 "ports": [
                     {
+                        "containerPort": 80,
+                        "hostPort": 5000
+                    },
+                    {
                         "containerPort": 443,
                         "hostPort": 5001
                     }

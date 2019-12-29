@@ -49,7 +49,8 @@ namespace OdeToFood
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // allow communication over plain HTTP
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
