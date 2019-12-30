@@ -18,7 +18,7 @@
 
 Run `npm install` to restore packages once configured in packages.json.
 ### Adding client side libraries
-* jQuery plugins: `npm install jquery jquery-validation jquery-validation-unobtrusive`
-* Bootstrap: `npm install bootstrap`
+* jQuery plugins: `npm install --save jquery jquery-validation jquery-validation-unobtrusive`
+* Bootstrap: `npm install --save bootstrap`
 * DataTables library with Bootstrap 4 support from https://datatables.net/: `npm install --save datatables.net-bs4`
 
