@@ -22,6 +22,8 @@ services:
             - postgres-network
             - nginx-network
         container_name: odetofood1
+        environment: 
+            ODETOFOOD_SERVERID: odetofood1
         depends_on: 
             - postgres
     # create second container from image built in previous step
@@ -31,6 +33,8 @@ services:
             - postgres-network
             - nginx-network
         container_name: odetofood2
+        environment: 
+            ODETOFOOD_SERVERID: odetofood2
         depends_on: 
             - odetofood-multiservice
     odetofood-service-3:
@@ -39,6 +43,8 @@ services:
             - postgres-network
             - nginx-network
         container_name: odetofood3
+        environment: 
+            ODETOFOOD_SERVERID: odetofood3
         depends_on: 
             - odetofood-multiservice
     postgres:

@@ -111,7 +111,10 @@
                         "hostPort": 5001
                     }
                 ],
-                "network": "odetofood"
+                "network": "odetofood",
+                "env": {
+                    "ODETOFOOD_SERVERID": "dev server"
+                }
             },
             "netCore": {
                 "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
