@@ -18,6 +18,7 @@ namespace OdeToFood.Pages.Restaurants
         private readonly IRestaurantData _restaurantData;
         private readonly ILogger<ListModel> _logger;
 
+        [TempData]
         public string Message { get; set; }
 
         public IEnumerable<Restaurant> Restaurants { get; set; }
@@ -37,7 +38,10 @@ namespace OdeToFood.Pages.Restaurants
         {
             _logger.LogInformation($"Retrieving restaurants. Search term: '{SearchTerm}'");
             
-            Message = _configuration["Message"];
+            if (string.IsNullOrEmpty(Message))
+            {
+                Message = _configuration["Message"];
+            }
             Restaurants = _restaurantData.GetRestaurantsByName(SearchTerm);
         }
     }

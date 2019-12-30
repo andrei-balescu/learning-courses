@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "OdeToFood NPM configuration",
   "dependencies": {
-    "datatables.net-bs4": "^1.10.20"
+    "bootstrap": "^4.4.1",
+    "datatables.net-bs4": "^1.10.20",
+    "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.1",
+    "jquery-validation-unobtrusive": "^3.2.11"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
