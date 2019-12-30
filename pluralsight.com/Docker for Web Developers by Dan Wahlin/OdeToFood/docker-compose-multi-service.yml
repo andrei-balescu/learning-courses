@@ -45,8 +45,7 @@ services:
         image: postgres:12
         networks: 
             - postgres-network
-        environment: 
-            POSTGRES_PASSWORD: password
+        env_file: docker-compose-multi-service/postgres/development.env
         container_name: postgresql
 networks:
     postgres-network:
