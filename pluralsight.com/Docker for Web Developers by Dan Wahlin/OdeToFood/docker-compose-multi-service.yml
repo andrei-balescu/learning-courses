@@ -1,0 +1,58 @@
+version: "3.5"
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: docker-compose-multi-service/nginx/Dockerfile
+        image: odetofood:nginx
+        ports: 
+            - 5005:80
+        networks: 
+            - nginx-network
+        depends_on: 
+            - odetofood-multiservice
+            - odetofood-service-2
+            - odetofood-service-3
+    odetofood-multiservice:
+        build: 
+            context: .
+            dockerfile: docker-compose-multi-service/odetofood.dockerfile
+        image: odetofood:multi
+        networks: 
+            - postgres-network
+            - nginx-network
+        container_name: odetofood1
+        environment: 
+            ODETOFOOD_SERVERID: odetofood1
+        depends_on: 
+            - postgres
+    # create second container from image built in previous step
+    odetofood-service-2:
+        image: odetofood:multi
+        networks: 
+            - postgres-network
+            - nginx-network
+        container_name: odetofood2
+        environment: 
+            ODETOFOOD_SERVERID: odetofood2
+        depends_on: 
+            - odetofood-multiservice
+    odetofood-service-3:
+        image: odetofood:multi
+        networks: 
+            - postgres-network
+            - nginx-network
+        container_name: odetofood3
+        environment: 
+            ODETOFOOD_SERVERID: odetofood3
+        depends_on: 
+            - odetofood-multiservice
+    postgres:
+        image: postgres:12
+        networks: 
+            - postgres-network
+        env_file: docker-compose-multi-service/postgres/development.env
+        container_name: postgresql
+networks:
+    postgres-network:
+    nginx-network:

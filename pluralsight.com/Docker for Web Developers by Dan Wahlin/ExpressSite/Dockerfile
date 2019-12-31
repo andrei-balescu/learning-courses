@@ -1,5 +1,5 @@
 # image[:version] to use as a base for creating custom image
-FROM node:latest
+FROM node:13-alpine
 
 # can be name / email
 # field depdecated in facor of LABEL

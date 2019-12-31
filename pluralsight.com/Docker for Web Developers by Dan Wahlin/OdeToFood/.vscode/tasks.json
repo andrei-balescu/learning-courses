@@ -1,0 +1,145 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildDevClient"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildProdClient"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "buildDevClient"
+        },
+        {
+            "label": "buildDevClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "dev",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
+        },
+        {
+            "label": "buildProdClient",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "run",
+                "prod",
+                "--prefix=${workspaceFolder}/OdeToFood.Client"
+            ]
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "odetofood:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "context": "${workspaceFolder}"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj"
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "odetofood:latest",
+                "target": "release",
+                "dockerfile": "${workspaceFolder}/Dockerfile",
+                "context": "${workspaceFolder}"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build: debug"
+            ],
+            "dockerRun": {
+                "containerName": "odetofood-dev",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "hostPort": 5000
+                    },
+                    {
+                        "containerPort": 443,
+                        "hostPort": 5001
+                    }
+                ],
+                "network": "odetofood",
+                "env": {
+                    "ODETOFOOD_SERVERID": "dev server"
+                }
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build: release"
+            ],
+            "dockerRun": {
+                "containerName": "odetofood-release",
+                "ports": [
+                    {
+                        "containerPort": 443,
+                        "hostPort": 5002
+                    }
+                ],
+                "network": "odetofood"
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/OdeToFood/OdeToFood.csproj"
+            }
+        }
+    ]
+}

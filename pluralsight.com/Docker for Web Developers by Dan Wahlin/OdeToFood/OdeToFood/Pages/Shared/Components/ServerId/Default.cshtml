@@ -1,0 +1,8 @@
+@model string
+
+@if (!string.IsNullOrWhiteSpace(Model))
+{
+    <div>
+        Request serviced by server: @Model
+    </div>
+}
