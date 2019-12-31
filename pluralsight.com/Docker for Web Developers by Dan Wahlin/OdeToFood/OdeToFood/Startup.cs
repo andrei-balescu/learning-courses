@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OdeToFood.Data;
+using OdeToFood.Middleware;
 
 namespace OdeToFood
 {
@@ -33,7 +35,12 @@ namespace OdeToFood
 
             services.AddScoped<IRestaurantData, PostgreSqlRestaurantData>();
 
-            services.AddRazorPages();
+            services.AddRazorPages(o =>
+            {
+                // does not work with nginx load balancer
+                var ignoreAntiforgeryToken = new IgnoreAntiforgeryTokenAttribute();
+                o.Conventions.ConfigureFilter(ignoreAntiforgeryToken);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,9 +56,11 @@ namespace OdeToFood
                 app.UseHsts();
             }
 
-            // allow communication over plain HTTP
+            // allow communication over plain HTTP to use with nginx
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseRouting();
 
