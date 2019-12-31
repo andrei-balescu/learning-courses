@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OdeToFood.Data;
+using OdeToFood.Middleware;
 
 namespace OdeToFood
 {
@@ -52,6 +53,8 @@ namespace OdeToFood
             // allow communication over plain HTTP
             // app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseRouting();
 
