@@ -26,7 +26,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (request, response) => {
-    response.render('index', { title: 'Globomantics' })
+    response.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] })
 });
 
 app.listen(PORT, () => {
