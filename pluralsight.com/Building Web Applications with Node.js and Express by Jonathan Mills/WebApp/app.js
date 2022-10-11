@@ -13,6 +13,7 @@ const morgan = require('morgan');
 // part of Node.js package
 const path = require('path');
 
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // app.use(morgan('combined'));
@@ -25,7 +26,7 @@ app.get('/', (request, response) => {
     response.send('Hello from my application!')
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     // using template strings (ES6)
-    debug(`listening to port ${chalk.green('3000')}`);
+    debug(`listening on port ${chalk.green(PORT)}`);
 });
