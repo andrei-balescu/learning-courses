@@ -9,14 +9,20 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 // provides debugging info for web traffic
 const morgan = require('morgan');
+// manage local file paths
+// part of Node.js package
+const path = require('path');
 
 const app = express();
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
+// serve static files from root/public
+// NOTE: index.html matches the `/` url by convention
+app.use(express.static(path.join(__dirname, '/public/')));
 
 app.get('/', (request, response) => {
-    response.send('Hello world!')
+    response.send('Hello from my application!')
 });
 
 app.listen(3000, () => {
