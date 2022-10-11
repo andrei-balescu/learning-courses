@@ -27,5 +27,5 @@ app.get('/', (request, response) => {
 
 app.listen(3000, () => {
     // using template strings (ES6)
-    debug(`listening on port ${chalk.green('3000')}`);
+    debug(`listening to port ${chalk.green('3000')}`);
 });
