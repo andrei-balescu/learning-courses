@@ -22,8 +22,11 @@ app.use(morgan('tiny'));
 // NOTE: index.html matches the `/` url by convention
 app.use(express.static(path.join(__dirname, '/public/')));
 
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+
 app.get('/', (request, response) => {
-    response.send('Hello from my application!')
+    response.render('index', { title: 'Globomantics' })
 });
 
 app.listen(PORT, () => {
