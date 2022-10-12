@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Session 1",
+        "description": "Secure Programming for the Enterprise"
+    },
+    {
+        "title": "Session 2",
+        "description": "Automation: A Deep Dive into Jenkins"
+    },
+    {
+        "title": "Session 3",
+        "description": "Build a DevOps Pipeline for .NET Apps"
+    },
+    {
+        "title": "Session 4",
+        "description": "A.I. powered robots"
+    }
+]

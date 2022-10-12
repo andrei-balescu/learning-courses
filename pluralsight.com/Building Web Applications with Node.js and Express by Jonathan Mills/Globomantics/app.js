@@ -12,10 +12,11 @@ const morgan = require('morgan');
 // manage local file paths
 // part of Node.js package
 const path = require('path');
+const app = express();
+const sessionRouter = express.Router();
 
 const PORT = process.env.PORT || 3000;
-const app = express();
-const sessionsRouter = express.Router();
+const sessionData = require('./src/data/sessions.json');
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
@@ -26,24 +27,19 @@ app.use(express.static(path.join(__dirname, '/public/')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-sessionsRouter.route('/')
+sessionRouter.route('/')
     .get((request, response) => {
         response.render('sessions', {
-            sessions: [
-                { title: 'Session 1', description: 'This is session 1' },
-                { title: 'Session 2', description: 'This is session 2' },
-                { title: 'Session 3', description: 'This is session 3' },
-                { title: 'Session 4', description: 'This is session 4' }
-            ]
+            sessions: sessionData
         });
     });
 
-sessionsRouter.route('/1')
+sessionRouter.route('/1')
     .get((request, response) => {
         response.send('hello session 1');
     });
 
-app.use('/sessions', sessionsRouter);
+app.use('/sessions', sessionRouter);
 
 app.get('/', (request, response) => {
     response.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] })
