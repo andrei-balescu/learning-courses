@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Sessions</title>
+    </head>
+    <body>
+        <h1>Sessions</h1>
+
+        <% sessions.map((session) => { %>
+            <div>
+                <h3><%= session.title %></h3>
+                <p><%= session.description %></p>
+            </div>
+        <% }) %>
+    </body>
+</html>
