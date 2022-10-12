@@ -34,9 +34,13 @@ sessionRouter.route('/')
         });
     });
 
-sessionRouter.route('/1')
+sessionRouter.route('/:id')
     .get((request, response) => {
-        response.send('hello session 1');
+        const id = request.params.id;
+
+        response.render('session', {
+            session: sessionData[id]
+        });
     });
 
 app.use('/sessions', sessionRouter);
