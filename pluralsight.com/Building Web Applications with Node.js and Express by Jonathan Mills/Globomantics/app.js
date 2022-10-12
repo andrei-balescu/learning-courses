@@ -15,6 +15,7 @@ const path = require('path');
 const app = express();
 
 const sessionRouter = require('./src/routers/sessionRouter');
+const adminRouter = require('./src/routers/adminRouter');
 
 const PORT = process.env.PORT || 3000;
 
@@ -28,6 +29,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/sessions', sessionRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', (request, response) => {
     response.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] })
