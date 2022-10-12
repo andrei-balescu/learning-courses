@@ -13,10 +13,10 @@ const morgan = require('morgan');
 // part of Node.js package
 const path = require('path');
 const app = express();
-const sessionRouter = express.Router();
+
+const sessionRouter = require('./src/routers/sessionRouter');
 
 const PORT = process.env.PORT || 3000;
-const sessionData = require('./src/data/sessions.json');
 
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
@@ -26,22 +26,6 @@ app.use(express.static(path.join(__dirname, '/public/')));
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-
-sessionRouter.route('/')
-    .get((request, response) => {
-        response.render('sessions', {
-            sessions: sessionData
-        });
-    });
-
-sessionRouter.route('/:id')
-    .get((request, response) => {
-        const id = request.params.id;
-
-        response.render('session', {
-            session: sessionData[id]
-        });
-    });
 
 app.use('/sessions', sessionRouter);
 
