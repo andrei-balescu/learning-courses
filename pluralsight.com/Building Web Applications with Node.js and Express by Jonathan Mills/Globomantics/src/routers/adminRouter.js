@@ -15,19 +15,17 @@ adminRouter.route('/')
             
             try {
                 client = await MongoClient.connect(url);
-                debug('connected to the MongoDB');
+                debug('connected to MongoDB');
 
                 const db = client.db();
 
-                const dbResponse = db.collection('sessions').insertMany(sessionData);
+                const dbResponse = await db.collection('sessions').insertMany(sessionData);
                 response.json(dbResponse);
             } catch (error) {
                 debug(error.stack);
                 response.status(500).json({ error: "Data could not be saved" });
             }
         }());
-
-        // response.send('cannot connect');
     })
 
 module.exports = adminRouter;

@@ -3,6 +3,7 @@
 
 ### Initial setup
 * Run `npm install` to set up dependencies.
+* Create DB `Globomantics` in MongoDb and assign permissions to `ozzie:pluralsight`
 
 ### Running
 * Run `docker start mongodb` to start MongoDB server.
