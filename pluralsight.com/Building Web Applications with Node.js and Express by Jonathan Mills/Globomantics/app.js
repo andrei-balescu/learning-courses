@@ -20,11 +20,16 @@ const authenticationRouter = require('./src/routers/authenticationRouter');
 
 const PORT = process.env.PORT || 3000;
 
+// --- middleware ---
 // app.use(morgan('combined'));
 app.use(morgan('tiny'));
 // serve static files from root/public
 // NOTE: index.html matches the `/` url by convention
 app.use(express.static(path.join(__dirname, '/public/')));
+// provides request.body
+// used to be bodyparser.json
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
