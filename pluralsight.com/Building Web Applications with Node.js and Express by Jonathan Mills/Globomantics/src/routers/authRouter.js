@@ -10,7 +10,15 @@ authRouter.route('/signup')
         response.render('signup');
     })
     .post((request, response) => {
-        response.json(request.body);
+        // TODO: create user
+        request.logIn(request.body, () => {
+            response.redirect('/auth/profile');
+        });
+    });
+
+authRouter.route('/profile')
+    .get((request, response) => {
+        response.json(request.user);
     });
 
 module.exports = authRouter;
