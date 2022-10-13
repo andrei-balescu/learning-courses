@@ -12,13 +12,19 @@ const morgan = require('morgan');
 // manage local file paths
 // part of Node.js package
 const path = require('path');
+// handles user management
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+
+// environment variables
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 const sessionRouter = require('./src/routers/sessionRouter');
 const adminRouter = require('./src/routers/adminRouter');
-const authenticationRouter = require('./src/routers/authenticationRouter');
-
-const PORT = process.env.PORT || 3000;
+const authRouter = require('./src/routers/authRouter');
 
 // --- middleware ---
 // app.use(morgan('combined'));
@@ -30,13 +36,19 @@ app.use(express.static(path.join(__dirname, '/public/')));
 // used to be bodyparser.json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(expressSession({ secret: 'globomantics' }));
+
+// execute passport configuration
+// NOTE: all middleware needs to be executed in order before configuring passport
+require('./src/config/passport.js')(app);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/sessions', sessionRouter);
 app.use('/admin', adminRouter);
-app.use('/auth', authenticationRouter);
+app.use('/auth', authRouter);
 
 app.get('/', (request, response) => {
     response.render('index', { title: 'Globomantics' })
