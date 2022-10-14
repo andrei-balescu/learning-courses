@@ -1,15 +1,17 @@
+const { response } = require('express');
 const express = require('express');
+const passport = require('passport');
 const debug = require('debug')('app:authRouter');
 const mongoClient = require('../data/mongoClient');
 
 const authRouter = express.Router();
 
-authRouter.route('/signup')
+authRouter
+    .route('/signup')
     .get((request, response) => {
         response.render('signup');
     })
     .post((request, response) => {
-
         (async function(){
             try {
                 await addUser(request.body);
@@ -25,6 +27,16 @@ authRouter.route('/signup')
             }
         })();
     });
+
+authRouter
+    .route('/signin')
+    .get((request, response) => {
+        response.render('signin');
+    })
+    .post(passport.authenticate('local', {
+        successRedirect: '/auth/profile',
+        failureRedirect: '/auth/signin'
+    }));
 
 authRouter.route('/profile')
     .get((request, response) => {

@@ -1,6 +1,5 @@
 const debug = require('debug')('app:mongoClient');
 const { MongoClient } = require('mongodb');
-const { connect } = require('../routers/sessionRouter');
 
 let client;
 

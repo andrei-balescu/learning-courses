@@ -1,6 +1,7 @@
 const passport = require('passport');
 // use a local login strategy (as opposed to Google/Facebook - social login)
 const { Strategy } = require('passport-local');
+const mongoClient = require('../data/mongoClient');
 
 // see https://www.npmjs.com/package/passport
 
@@ -11,8 +12,23 @@ function configLocalStrategy(){
         passwordField: 'password'
     }, 
     (username, password, doneCallback) => {
-        const user = { username, password, name: 'Ozzie' };
-        doneCallback(null, user);
+        (async function validateUser(){
+            try {
+                const db = await mongoClient.connect();
+                const user = await db.collection('users').findOne({ username });
+
+                if (user && user.password === password){
+                    doneCallback(null, user);
+                } else {
+                    doneCallback(null, false);
+                }
+            } catch (error) {
+                // bad practice: will propagate error to thr page
+                doneCallback(error, false)
+            } finally {
+                await mongoClient.close();
+            }
+        })()
     }));
 }
 

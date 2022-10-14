@@ -5,6 +5,15 @@ const mongoClient = require('../data/mongoClient');
 
 const sessionRouter = express.Router();
 
+// middleware for sessions router
+sessionRouter.use((request, response, next) => {
+    if (request.user){
+        next();
+    } else {
+        response.redirect('/auth/signin');
+    }
+})
+
 sessionRouter.route('/')
     .get((request, response) => {
         (async function(){
