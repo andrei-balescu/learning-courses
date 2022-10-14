@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Sessions | Glovomatics</title>
+    </head>
+    <body>
+        <h1>Sessions</h1>
+
+        <% sessions.map((session, index) => { %>
+            <div>
+                <h3><%= session.title %></h3>
+                <p><%= session.description %></p>
+                <a href="sessions/<%= session._id %>">Learn more</a>
+            </div>
+        <% }) %>
+    </body>
+</html>

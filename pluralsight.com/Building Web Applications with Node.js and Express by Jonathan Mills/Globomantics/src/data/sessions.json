@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Session 1",
+        "description": "Secure Programming for the Enterprise",
+        "speaker": "Jean Ryan"
+    },
+    {
+        "title": "Session 2",
+        "description": "Automation: A Deep Dive into Jenkins",
+        "speaker": "Brandy Terry"
+    },
+    {
+        "title": "Session 3",
+        "description": "Build a DevOps Pipeline for .NET Apps",
+        "speaker": "Erik Peters"
+    },
+    {
+        "title": "Session 4",
+        "description": "A.I. powered robots",
+        "speaker": "Bowie Graves"
+    }
+]
