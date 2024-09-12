@@ -1,0 +1,8 @@
+services:
+
+  # Nginx server as 'web' service
+  web:
+    image: nginx:1.27.1
+    ports:
+      # map localhost port 8000 to 80 inside container
+      - "8000:80"
