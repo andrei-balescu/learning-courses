@@ -6,9 +6,15 @@ services:
     ports:
       # map localhost port 8000 to 80 inside container
       - "8000:80"
+    volumes:
+      # overwrite nginx default.conf inside container with thoe one in our project
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
   # PHP app - configured in external docker file
   app:
     build:
       context: ./php
       dockerfile: ./Dockerfile
+    volumes:
+      # map app folder inside PHP container
+      - ./app:/app
