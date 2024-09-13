@@ -18,3 +18,17 @@ services:
     volumes:
       # map app folder inside PHP container - for dev. In production they need to be copied into the container.
       - ./app:/app
+
+  # MySQL DB
+  db:
+    image: mysql:8.0
+    volumes:
+      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: training_docker_php
