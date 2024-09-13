@@ -6,3 +6,9 @@ services:
     ports:
       # map localhost port 8000 to 80 inside container
       - "8000:80"
+
+  # PHP app - configured in external docker file
+  app:
+    build:
+      context: ./php
+      dockerfile: ./Dockerfile
