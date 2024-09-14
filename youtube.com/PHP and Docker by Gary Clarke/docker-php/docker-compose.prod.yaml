@@ -4,7 +4,8 @@ services:
   web:
     build: 
       context: .
-      dockerfile: ./nginx/prod.Dockerfile
+      dockerfile: ./nginx/Dockerfile
+      target: app_prod
     ports:
       # map localhost port 8000 to 80 inside container
       - "8000:80"
@@ -13,7 +14,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./php/prod.Dockerfile
+      dockerfile: ./php/Dockerfile
+      target: app_prod
 
   # MySQL DB
   db:

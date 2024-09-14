@@ -15,9 +15,10 @@ services:
     build:
       context: .
       dockerfile: ./php/Dockerfile
+      target: app_base
     volumes:
       # map app folder inside PHP container - for dev. In production they need to be copied into the container.
-      - ./app:/var/www/html
+      - ./app:/var/www
 
   # MySQL DB
   db:
