@@ -2,30 +2,24 @@ services:
 
   # Nginx server as 'web' service
   web:
-    image: nginx:1.27.1
+    build: 
+      context: .
+      dockerfile: ./nginx/prod.Dockerfile
     ports:
       # map localhost port 8000 to 80 inside container
       - "8000:80"
-    volumes:
-      # map nginx default.conf inside container to the one in our project
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
   # PHP app - configured in external docker file
   app:
     build:
       context: .
-      dockerfile: ./php/Dockerfile
-    volumes:
-      # map app folder inside PHP container - for dev. In production they need to be copied into the container.
-      - ./app:/var/www/html
+      dockerfile: ./php/prod.Dockerfile
 
   # MySQL DB
   db:
     image: mysql:8.0
     volumes:
       - /home/ozzie/Development/db/mysql8:/var/lib/mysql
-    ports:
-      - "3306:3306"
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: secret
