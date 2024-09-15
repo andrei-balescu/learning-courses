@@ -15,12 +15,14 @@ Run `docker exec -it docker-php_web_1 bash` to run bash inside nginx container
 Make sure you have installed PHP Extention pack in VS code to use XDebug
 Run -> Add Configuration -> PHP to add debugging configuration to the project
 Add following configuration to `.vscode/launch.json` to use XDebug with Docker:
->   {
->       "name": "Listen on Docker for Xdebug",
->       "type": "php",
->       "request": "launch",
->       "port": 9003,
->       "pathMappings": {
->           "/var/www/app": "${workspaceFolder}/app"
->       }
->   },
+>   { \
+>       "name": "Listen on Docker for Xdebug", \
+>       "type": "php", \
+>       "request": "launch", \
+>       "port": 9003, \
+>       "pathMappings": { \
+>           "/var/www/app": "${workspaceFolder}/app" \
+>       } \
+>   }, 
+
+Start xdebug session when first accessing site: `http://localhost:8000/?XDEBUG_SESSION_START=1`;
