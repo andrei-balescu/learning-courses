@@ -1,4 +1,15 @@
-<?php ?>
+<?php 
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+use App\Controller\IndexController;
+$controller = new IndexController();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $translation = $controller->getTranslation();
+}
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -75,7 +86,7 @@
         <h1 class="display-5 fw-bold text-white">Translate This</h1>
         <div class="col-lg-6 mx-auto">
             <?php if ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-                <p class="fs-5 mb-4"><?php echo 'Your translation goes here'; ?></p>
+                <p class="fs-5 mb-4"><?php echo $translation?></p>
                 <a href="/">Translate another</a>
             <?php else: ?>
 
