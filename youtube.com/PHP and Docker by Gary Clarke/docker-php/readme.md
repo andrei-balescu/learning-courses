@@ -1,4 +1,7 @@
 # Global
+Run `composer update -d app` to set up package dependencies.
+Commit `app/composer.lock` to git
+
 Start project: `docker-compose up` or `docker-compose up -d` (detach)
 Start project (production environment): ` docker-compose -f docker-compose.prod.yaml up --build -d`
 Go to `http://localhost:8000`
