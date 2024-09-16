@@ -1,23 +1,27 @@
 services:
 
-  # Nginx server as 'web' service
   web:
     build: 
       context: .
       dockerfile: ./nginx/Dockerfile
+      # target app_prod
       target: app_prod
     ports:
-      # map localhost port 8000 to 80 inside container
       - "8000:80"
 
-  # PHP app - configured in external docker file
   app:
     build:
       context: .
       dockerfile: ./php/Dockerfile
+      # target app_prod
       target: app_prod
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: training_docker_php
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret   
 
-  # MySQL DB
   db:
     image: mysql:8.0
     volumes:

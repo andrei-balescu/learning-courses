@@ -9,6 +9,8 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN set -eux; \
 	install-php-extensions pdo pdo_mysql
 
+
+
 # ---
 # Configuration for production environment
 # ---

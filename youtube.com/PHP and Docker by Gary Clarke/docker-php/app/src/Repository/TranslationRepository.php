@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 /**
- * Fetches translations from database;
+ * Manages translations from database;
  */
 class TranslationRepository extends Repository
 {

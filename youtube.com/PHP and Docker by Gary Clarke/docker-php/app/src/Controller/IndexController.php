@@ -2,7 +2,7 @@
     namespace App\Controller;
 
     use App\Repository\TranslationRepository;
-    use \Exception;
+    use App\Repository\LanguageRepository;
 
     /**
      * Manages actions on the index page.
@@ -10,7 +10,18 @@
     class IndexController
     {
         /**
-         * [POST] Retrieve translation for the current request.
+         * Fetch all languages.
+         */
+        public function getLanguages(): array
+        {
+            $repository = new LanguageRepository();
+            $languages = $repository->findAll();
+
+            return $languages;
+        }
+
+        /**
+         * Retrieve translation for the current request.
          */
         public function getTranslation() : string
         {

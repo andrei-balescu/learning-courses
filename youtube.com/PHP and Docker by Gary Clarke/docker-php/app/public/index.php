@@ -7,6 +7,8 @@ $controller = new IndexController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $translation = $controller->getTranslation();
+} else {
+    $languages = $controller->getLanguages();
 }
 
 ?>
@@ -97,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="col">
                             <select name="language" class="form-select" aria-label="Default select example">
                                 <option selected>Select a language</option>
-                                <option value="1">French</option>
-                                <option value="1">German</option>
-                                <option value="1">Spanish</option>
+                                <?php foreach ($languages as $language): ?>
+                                    <option value="<?php echo $language->getId(); ?>"><?php echo $language->getName() ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <div class="col">
