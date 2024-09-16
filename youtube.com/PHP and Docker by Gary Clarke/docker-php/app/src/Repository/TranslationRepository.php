@@ -10,7 +10,7 @@ class TranslationRepository extends Repository
     /**
      * Translates a phrase based on the given language.
      */
-    public function getForLanguage($languageId, $phrase)
+    public function getForLanguage(int $languageId, string $phrase): ?string
     {
         $sql = "SELECT translation FROM translation WHERE language_id = :language AND phrase = :phrase";
         $statement = $this->connection->prepare($sql);

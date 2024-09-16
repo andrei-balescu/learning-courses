@@ -1,11 +1,13 @@
 <?php
     namespace App\Controller;
 
+    use App\Cache\TranslationCache;
     use App\Repository\TranslationRepository;
     use App\Repository\LanguageRepository;
 
     /**
      * Manages actions on the index page.
+     * NOTE: not using any framework.
      */
     class IndexController
     {
@@ -25,7 +27,7 @@
          */
         public function getTranslation() : string
         {
-            $languageId = $_POST['language'];
+            $languageId = (int)$_POST['language'];
             if (empty($languageId))
             {
                 return "Language not available.";
@@ -38,7 +40,8 @@
             }
 
             $repository = new TranslationRepository();
-            $translation = $repository->getForLanguage($languageId, $phrase) ?: "No translation found...";
+            $cache = new TranslationCache($repository);
+            $translation = $cache->findForLanguage($languageId, $phrase) ?: "No translation found...";
 
             return $translation;
         }

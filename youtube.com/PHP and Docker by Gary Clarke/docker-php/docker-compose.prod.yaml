@@ -20,7 +20,9 @@ services:
       MYSQL_PORT: 3306
       MYSQL_DATABASE: training_docker_php
       MYSQL_USER: user
-      MYSQL_PASSWORD: secret   
+      MYSQL_PASSWORD: secret 
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
 
   db:
     image: mysql:8.0
@@ -32,3 +34,5 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
       MYSQL_DATABASE: training_docker_php
+  cache:
+    image: redis:7.4
