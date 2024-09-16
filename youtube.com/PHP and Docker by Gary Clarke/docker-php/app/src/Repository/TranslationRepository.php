@@ -7,6 +7,9 @@ namespace App\Repository;
  */
 class TranslationRepository
 {
+    /**
+     * Translates a phrase based on the given language.
+     */
     public function getForLanguage($languageId, $phrase)
     {
         return "No translation found for: " . $phrase;

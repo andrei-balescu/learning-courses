@@ -1,0 +1,1 @@
+Docker file for Nginx HTTP server and Nginx server debug
