@@ -32,7 +32,7 @@ services:
       REDIS_PORT: 6379
     volumes:
       # map app folder inside PHP container - for dev. In production they need to be copied into the container.
-      - ./app:/var/www/app
+      - ./app:/var/www/html/app
     extra_hosts:
       # map docker network to host network for XDebug
       - host.docker.internal:host-gateway
