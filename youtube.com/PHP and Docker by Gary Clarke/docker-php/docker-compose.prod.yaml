@@ -1,0 +1,32 @@
+services:
+
+  web:
+    build: 
+      context: .
+      dockerfile: ./environment/nginx/Dockerfile
+      # target app_prod
+      target: app_prod
+    ports:
+      - "8000:80"
+
+  app:
+    build:
+      context: .
+      dockerfile: ./environment/php/Dockerfile
+      # target app_prod
+      target: app_prod
+    env_file: 
+      - ./environment/mysql/mysql.env
+      - ./environment/redis/redis.env
+    environment:
+      MYSQL_HOST: db
+      REDIS_HOST: cache
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+    restart: unless-stopped
+    env_file: ./environment/mysql/mysql.env
+  cache:
+    image: redis:7.4

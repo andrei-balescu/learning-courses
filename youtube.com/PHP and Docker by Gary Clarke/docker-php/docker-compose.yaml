@@ -1,0 +1,46 @@
+services:
+
+  # Nginx server as 'web' service
+  web:
+    image: nginx:1.27.1
+    ports:
+      # map localhost port 8000 to 80 inside container
+      - "8000:80"
+    volumes:
+      # map nginx default.conf inside container to the one in our project
+      - ./environment/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+
+  # PHP server container + app - configured in external docker file
+  app:
+    build:
+      context: .
+      dockerfile: ./environment/php/Dockerfile
+      target: app_debug
+    env_file: 
+      # pass environment values in `.env` file and `environment` section
+      - ./environment/mysql/mysql.env
+      - ./environment/redis/redis.env
+    environment:
+      # use MySQL `db` service defined below
+      MYSQL_HOST: db
+      # use redis `cache` service defined below
+      REDIS_HOST: cache
+    volumes:
+      # map app folder inside PHP container - for dev. In production they need to be copied into the container.
+      - ./app:/var/www/html/app
+    extra_hosts:
+      # map docker network to host network for XDebug
+      - host.docker.internal:host-gateway
+
+  # MySQL DB
+  # Make sure to grant DBManager role to user in DB
+  db:
+    image: mysql:8.0
+    volumes:
+      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    env_file: ./environment/mysql/mysql.env
+  cache:
+    image: redis:7.4
