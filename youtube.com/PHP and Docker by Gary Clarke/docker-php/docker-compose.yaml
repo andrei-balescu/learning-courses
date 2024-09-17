@@ -16,20 +16,17 @@ services:
       context: .
       dockerfile: ./environment/php/Dockerfile
       target: app_debug
+    env_file: 
+      # pass extra files in .env file
+      - ./environment/mysql/mysql.env
+      - ./environment/redis/redis.env
     environment:
       # pass DB details to app via environment variables
       # use MySQL `db` service defined below
       MYSQL_HOST: db
-      # default MySQL port
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: training_docker_php
-      MYSQL_USER: user
-      MYSQL_PASSWORD: secret
       # pass redis (cache) details via environment variables
       # use redis `cache` service defined below
       REDIS_HOST: cache
-      # default redis port
-      REDIS_PORT: 6379
     volumes:
       # map app folder inside PHP container - for dev. In production they need to be copied into the container.
       - ./app:/var/www/html/app
@@ -46,10 +43,6 @@ services:
     ports:
       - "3306:3306"
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: user
-      MYSQL_PASSWORD: secret
-      MYSQL_DATABASE: training_docker_php
+    env_file: ./environment/mysql/mysql.env
   cache:
     image: redis:7.4

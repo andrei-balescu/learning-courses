@@ -15,24 +15,19 @@ services:
       dockerfile: ./environment/php/Dockerfile
       # target app_prod
       target: app_prod
+    env_file: 
+      # pass extra files in .env file
+      - ./environment/mysql/mysql.env
+      - ./environment/redis/redis.env
     environment:
       MYSQL_HOST: db
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: training_docker_php
-      MYSQL_USER: user
-      MYSQL_PASSWORD: secret 
       REDIS_HOST: cache
-      REDIS_PORT: 6379
 
   db:
     image: mysql:8.0
     volumes:
       - /home/ozzie/Development/db/mysql8:/var/lib/mysql
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: user
-      MYSQL_PASSWORD: secret
-      MYSQL_DATABASE: training_docker_php
+    env_file: ./environment/mysql/mysql.env
   cache:
     image: redis:7.4
