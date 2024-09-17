@@ -16,7 +16,6 @@ services:
       # target app_prod
       target: app_prod
     env_file: 
-      # pass extra files in .env file
       - ./environment/mysql/mysql.env
       - ./environment/redis/redis.env
     environment:

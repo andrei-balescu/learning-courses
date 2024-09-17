@@ -17,14 +17,12 @@ services:
       dockerfile: ./environment/php/Dockerfile
       target: app_debug
     env_file: 
-      # pass extra files in .env file
+      # pass environment values in `.env` file and `environment` section
       - ./environment/mysql/mysql.env
       - ./environment/redis/redis.env
     environment:
-      # pass DB details to app via environment variables
       # use MySQL `db` service defined below
       MYSQL_HOST: db
-      # pass redis (cache) details via environment variables
       # use redis `cache` service defined below
       REDIS_HOST: cache
     volumes:
