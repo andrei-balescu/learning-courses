@@ -27,7 +27,7 @@ COPY ./app /var/www/app
 FROM app_base AS app_debug
 
 # Copy xdebug config file into container
-COPY ./php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ./environment/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # Install xdebug
 RUN set -eux; \

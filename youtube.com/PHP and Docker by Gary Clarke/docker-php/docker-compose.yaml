@@ -8,13 +8,13 @@ services:
       - "8000:80"
     volumes:
       # map nginx default.conf inside container to the one in our project
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./environment/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
   # PHP server container + app - configured in external docker file
   app:
     build:
       context: .
-      dockerfile: ./php/Dockerfile
+      dockerfile: ./environment/php/Dockerfile
       target: app_debug
     environment:
       # pass DB details to app via environment variables

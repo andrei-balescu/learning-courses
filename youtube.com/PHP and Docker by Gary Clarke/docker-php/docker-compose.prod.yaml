@@ -3,7 +3,7 @@ services:
   web:
     build: 
       context: .
-      dockerfile: ./nginx/Dockerfile
+      dockerfile: ./environment/nginx/Dockerfile
       # target app_prod
       target: app_prod
     ports:
@@ -12,7 +12,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./php/Dockerfile
+      dockerfile: ./environment/php/Dockerfile
       # target app_prod
       target: app_prod
     environment:
