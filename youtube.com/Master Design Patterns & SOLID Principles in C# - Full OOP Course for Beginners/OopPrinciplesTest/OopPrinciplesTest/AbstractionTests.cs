@@ -1,11 +1,10 @@
 using System;
-using System.Runtime.CompilerServices;
-using DesignPatternsLibrary.OopPrinciples.Abstraction;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using OopPrinciples.Abstraction;
 
-namespace DesignPatternsTest.OopPrinciples;
+namespace OopPrinciplesTest;
 
 [TestClass]
 public class AbstractionTests

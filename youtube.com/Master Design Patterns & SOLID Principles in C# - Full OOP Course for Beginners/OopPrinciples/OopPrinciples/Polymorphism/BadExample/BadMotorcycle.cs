@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Polymorphism.BadExample;
+namespace OopPrinciples.Polymorphism.BadExample;
 
 public class BadMotorcycle
 {    public void Start()

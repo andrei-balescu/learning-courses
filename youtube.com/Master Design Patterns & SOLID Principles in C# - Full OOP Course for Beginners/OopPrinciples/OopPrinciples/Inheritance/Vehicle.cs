@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatternsLibrary.OopPrinciples.Inheritance;
+namespace OopPrinciples.Inheritance;
 
 public abstract class Vehicle
 {

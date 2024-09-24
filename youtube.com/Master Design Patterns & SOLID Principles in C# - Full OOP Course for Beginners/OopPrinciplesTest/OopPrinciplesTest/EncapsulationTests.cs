@@ -1,9 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using DesignPatternsLibrary.OopPrinciples.Encapsulation;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OopPrinciples.Encapsulation;
 
-namespace DesignPatternsTest.OopPrinciples;
+namespace OopPrinciplesTest;
 
 [TestClass]
 public class EncapsulationTests

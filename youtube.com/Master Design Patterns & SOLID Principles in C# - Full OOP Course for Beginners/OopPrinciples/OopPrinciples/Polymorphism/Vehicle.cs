@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatternsLibrary.OopPrinciples.Polymorphism;
+namespace OopPrinciples.Polymorphism;
 
 public abstract class Vehicle
 {

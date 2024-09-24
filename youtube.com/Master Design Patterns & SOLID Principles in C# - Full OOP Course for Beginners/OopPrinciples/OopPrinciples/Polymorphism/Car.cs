@@ -1,7 +1,6 @@
-using DesignPatternsLibrary.OopPrinciples.Polymorphism;
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatternsLibrary.OopPrinciples.Polymorphism;
+namespace OopPrinciples.Polymorphism;
 
 public class Car : Vehicle
 {

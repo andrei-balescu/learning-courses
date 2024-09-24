@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Encapsulation;
+namespace OopPrinciples.Encapsulation;
 
 public class BankAccount
 {

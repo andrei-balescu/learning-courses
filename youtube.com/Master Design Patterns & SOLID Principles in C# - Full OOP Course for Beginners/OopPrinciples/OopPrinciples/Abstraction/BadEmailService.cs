@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Abstraction;
+namespace OopPrinciples.Abstraction;
 
 /**
  * Bad example: all workflow methods need to be called by calling service in order to send an email.

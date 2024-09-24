@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatternsLibrary.OopPrinciples.Abstraction;
+namespace OopPrinciples.Abstraction;
 
 public class EmailService
 {

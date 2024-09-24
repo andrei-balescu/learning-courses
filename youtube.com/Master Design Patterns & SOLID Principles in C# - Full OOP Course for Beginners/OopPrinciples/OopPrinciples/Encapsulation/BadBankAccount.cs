@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Encapsulation;
+namespace OopPrinciples.Encapsulation;
 
 /**
  * Bad example: anybody can access and change the state of the object.

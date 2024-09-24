@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using DesignPatternsLibrary.OopPrinciples.Polymorphism;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using OopPrinciples.Polymorphism;
 
-namespace DesignPatternsTest.OopPrinciples;
+namespace OopPrinciplesTest;
 
 [TestClass]
 public class PolymorphismTests

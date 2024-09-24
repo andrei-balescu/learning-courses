@@ -1,10 +1,10 @@
 using System;
-using DesignPatternsLibrary.OopPrinciples.Inheritance;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using OopPrinciples.Inheritance;
 
-namespace DesignPatternsTest.OopPrinciples;
+namespace OopPrinciplesTest;
 
 [TestClass]
 public class InheritanceTests

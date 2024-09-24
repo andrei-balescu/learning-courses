@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Polymorphism;
+namespace OopPrinciples.Polymorphism;
 
 public class VehicleInspection
 {

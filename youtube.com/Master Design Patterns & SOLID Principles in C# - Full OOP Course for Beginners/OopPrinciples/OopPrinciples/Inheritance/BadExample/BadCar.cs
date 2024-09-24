@@ -1,4 +1,4 @@
-namespace DesignPatternsLibrary.OopPrinciples.Inheritance.BadExample;
+namespace OopPrinciples.Inheritance.BadExample;
 
 public class BadCar
 {
