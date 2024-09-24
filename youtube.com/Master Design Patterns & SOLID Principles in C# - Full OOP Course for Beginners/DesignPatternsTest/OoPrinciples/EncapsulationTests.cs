@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DesignPatternsLibrary.OopPrinciples.Encapsulation;
 using System;
 
-namespace DesignPatternsTest.OopPrinciples.Encapsulation;
+namespace DesignPatternsTest.OopPrinciples;
 
 [TestClass]
 public class BankAccountTest
