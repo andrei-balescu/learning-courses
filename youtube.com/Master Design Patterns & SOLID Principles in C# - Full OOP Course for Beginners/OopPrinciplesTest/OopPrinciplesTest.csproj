@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesignPatternsLibrary\DesignPatternsLibrary.csproj" />
+    <ProjectReference Include="..\OopPrinciples\OopPrinciples.csproj" />
   </ItemGroup>
 
 </Project>
