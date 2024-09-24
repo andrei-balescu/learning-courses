@@ -10,12 +10,10 @@ namespace DesignPatternsTest.OopPrinciples;
 [TestClass]
 public class AbstractionTests
 {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     private Mock<ILogger> _loggerMock;
 
 
     private EmailService _emailService;
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     [TestInitialize]
     public void TestInitialize()
@@ -24,18 +22,21 @@ public class AbstractionTests
         _emailService = new EmailService(_loggerMock.Object);
     }
 
+    /**
+     * See following for mocking ILogger: https://stackoverflow.com/posts/58697253/revisions
+     */
     [TestMethod]
     public void AbstractionTests_SendEmail_PassesCorrectStages()
     {
         // Arrange
-        int sequence = 0;
+        int callSequence = 0;
         _loggerMock.Setup(m => m.Log(
             LogLevel.Information,
             It.IsAny<EventId>(),
             It.Is<It.IsAnyType>((o, t) => string.Equals(EmailService.MSC_CONNECTING, o.ToString(), System.StringComparison.InvariantCulture)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-        )).Callback(() => Assert.AreEqual(++sequence, 1));
+        )).Callback(() => Assert.AreEqual(++callSequence, 1));
 
         _loggerMock.Setup(m => m.Log(
             LogLevel.Information,
@@ -43,7 +44,7 @@ public class AbstractionTests
             It.Is<It.IsAnyType>((o, t) => string.Equals(EmailService.MSG_AUTHENTICATING, o.ToString(), System.StringComparison.InvariantCulture)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-        )).Callback(() => Assert.AreEqual(++sequence, 2));
+        )).Callback(() => Assert.AreEqual(++callSequence, 2));
 
         _loggerMock.Setup(m => m.Log(
             LogLevel.Information,
@@ -51,7 +52,7 @@ public class AbstractionTests
             It.Is<It.IsAnyType>((o, t) => string.Equals(EmailService.MSG_SENDING, o.ToString(), System.StringComparison.InvariantCulture)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-        )).Callback(() => Assert.AreEqual(++sequence, 3));
+        )).Callback(() => Assert.AreEqual(++callSequence, 3));
 
         _loggerMock.Setup(m => m.Log(
             LogLevel.Information,
@@ -59,7 +60,7 @@ public class AbstractionTests
             It.Is<It.IsAnyType>((o, t) => string.Equals(EmailService.MSG_DISCONNECTING, o.ToString(), System.StringComparison.InvariantCulture)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-        )).Callback(() => Assert.AreEqual(++sequence, 4));
+        )).Callback(() => Assert.AreEqual(++callSequence, 4));
 
         // Act & Assert
         _emailService.SendEmail();
