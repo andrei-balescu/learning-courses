@@ -6,7 +6,7 @@ using System;
 namespace DesignPatternsTest.OopPrinciples;
 
 [TestClass]
-public class BankAccountTest
+public class EncapsulationTests
 {
     private BankAccount? _bankAccount;
 

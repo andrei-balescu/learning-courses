@@ -33,8 +33,7 @@ public class InheritanceTests
             It.Is<It.IsAnyType>((o, t) => o.ToString().Contains("starting", System.StringComparison.InvariantCultureIgnoreCase)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-            ));
-
+        ), Times.Once);
     }
 
     [TestMethod]
@@ -53,7 +52,7 @@ public class InheritanceTests
             It.Is<It.IsAnyType>((o, t) => o.ToString().Contains("stopping", System.StringComparison.InvariantCultureIgnoreCase)),
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
-            ));
+        ), Times.Once);
 
     }
 
