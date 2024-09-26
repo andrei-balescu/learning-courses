@@ -4,7 +4,7 @@ namespace OopPrinciples.Polymorphism;
 
 public abstract class Vehicle
 {
-    protected ILogger<Vehicle> _logger;
+    protected readonly ILogger<Vehicle> _logger;
 
     public Vehicle(ILogger<Vehicle> logger)
     {

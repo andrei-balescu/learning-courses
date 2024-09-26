@@ -9,3 +9,6 @@ Create new classes (subclasses or derived classes) based on existing classes (su
 
 # Polumorphism
 The ability of an object to take many forms.
+
+# Coupling
+Degree of dependency between classes. High coupling means that classes are interdependent making it hard to modify one without the other.

@@ -4,7 +4,7 @@ namespace OopPrinciples.Abstraction;
 
 public class EmailService
 {
-    private ILogger _logger;
+    private readonly ILogger _logger;
 
     /**
      * Capture messages for unit testing.
