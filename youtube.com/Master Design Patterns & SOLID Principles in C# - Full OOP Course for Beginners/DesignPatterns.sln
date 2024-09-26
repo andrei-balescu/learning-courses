@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OopPrinciples", "OopPrincip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OopPrinciplesTest", "OopPrinciplesTest\OopPrinciplesTest.csproj", "{A6C41F8D-744A-4290-8BC4-8932FBE9F130}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidPrinciples", "SolidPrinciples\SolidPrinciples.csproj", "{95FCE9E7-423E-463F-99BE-678A3D165E43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidPrinciplesTest", "SolidPrinciplesTest\SolidPrinciplesTest.csproj", "{7E608960-87CF-4317-BECB-367DDD336434}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +32,13 @@ Global
 		{18E55976-A1D5-41BE-991D-B406E4308F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18E55976-A1D5-41BE-991D-B406E4308F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18E55976-A1D5-41BE-991D-B406E4308F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FCE9E7-423E-463F-99BE-678A3D165E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FCE9E7-423E-463F-99BE-678A3D165E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FCE9E7-423E-463F-99BE-678A3D165E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FCE9E7-423E-463F-99BE-678A3D165E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E608960-87CF-4317-BECB-367DDD336434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E608960-87CF-4317-BECB-367DDD336434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E608960-87CF-4317-BECB-367DDD336434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E608960-87CF-4317-BECB-367DDD336434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

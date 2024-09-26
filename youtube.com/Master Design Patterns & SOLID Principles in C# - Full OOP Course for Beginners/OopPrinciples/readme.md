@@ -39,3 +39,7 @@ The fragile base class problem is a software design issue that arises in object 
 2. Limited Extensibility: The fragile base class problem limits the extensibility of software systems, as modifications to the base class become increasingly risky and costly over time. Developers may avoid making necessary changes due to fear of breaking existing functionality -- brittle software.
 
 Mitigation strategies: to mitigate the fragile base class problem, software developers can use design principles such as Open/Closed Principle (OCP) And Dependency Inversion Principle (DIP) as well as design patterns like Composition over Inheritance. These approaches promote loose coupling, encapsulation and modular design, reducing the impact of changes in base classes.
+
+# Association vs. Composition
+- Association: A Person has a Car but is not composed of a Car. A Person holds a reference to a Car so that it can interact with it, but a Person can exist without a Car.
+- Composition: When a child object won't be able to exist without it's parent object, e.g. a hotel is composed of its rooms, and HotelBathroom cannot exist without a Hotel. Also if a Customer is destroyed, theis ShoppingCart and Orders are destroyed too - therefore Customer is composed of ShoppingCart and Orders. And if Orders are lost,  OrderDetails and ShippingInfo are lost, so Orders are composed of ShippingInfo and OrderDetails.
