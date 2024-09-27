@@ -11,13 +11,7 @@ public abstract class Vehicle
         _logger = logger;
     }
 
-    public virtual void Start()
-    {
-        _logger.LogInformation("Vehicle is starting.");
-    }
+    public abstract void Start();
 
-    public virtual void Stop()
-    {
-        _logger.LogInformation("Vehicle is stopping.");
-    }
+    public abstract void Stop();
 }
