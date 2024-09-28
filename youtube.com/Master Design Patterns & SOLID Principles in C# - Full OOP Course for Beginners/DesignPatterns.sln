@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidPrinciples", "SolidPri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidPrinciplesTest", "SolidPrinciplesTest\SolidPrinciplesTest.csproj", "{7E608960-87CF-4317-BECB-367DDD336434}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{C5E007C1-9441-48C0-A2CA-6496F267FBAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternsTest", "DesignPatternsTest\DesignPatternsTest.csproj", "{45B03990-9901-4250-8655-1BF9BED3788A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,5 +44,13 @@ Global
 		{7E608960-87CF-4317-BECB-367DDD336434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E608960-87CF-4317-BECB-367DDD336434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E608960-87CF-4317-BECB-367DDD336434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E007C1-9441-48C0-A2CA-6496F267FBAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E007C1-9441-48C0-A2CA-6496F267FBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E007C1-9441-48C0-A2CA-6496F267FBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E007C1-9441-48C0-A2CA-6496F267FBAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B03990-9901-4250-8655-1BF9BED3788A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B03990-9901-4250-8655-1BF9BED3788A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B03990-9901-4250-8655-1BF9BED3788A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B03990-9901-4250-8655-1BF9BED3788A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
