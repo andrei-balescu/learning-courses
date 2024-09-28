@@ -10,3 +10,6 @@ A class should only have one reason to change, meaning that it should have one r
 
 # Open / Closed Principle
 Software entities (classes, modules, functions etc.) should be open for extension but closed for modification.
+
+# Liskov Substitution Principle
+Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
