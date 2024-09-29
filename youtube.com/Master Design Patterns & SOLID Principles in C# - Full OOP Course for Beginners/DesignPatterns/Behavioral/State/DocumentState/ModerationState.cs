@@ -1,17 +1,14 @@
 namespace DesignPatterns.Behavioral.State.DocumentState;
 
-public class ModerationState : DocumentState
+public class ModerationState : IDocumentState
 {
-    public ModerationState(Document document) : base (document)
+    public IDocumentState Publish(UserRoles userRole)
     {
-
-    }
-
-    public override void Publish()
-    {
-        if (_document.CurrentUserRole == UserRoles.Admin)
+        IDocumentState currentState = this;
+        if (userRole == UserRoles.Admin)
         {
-            _document.State = new PublishedState(_document);
+            currentState = new PublishedState();
         }
+        return currentState;
     }
 }

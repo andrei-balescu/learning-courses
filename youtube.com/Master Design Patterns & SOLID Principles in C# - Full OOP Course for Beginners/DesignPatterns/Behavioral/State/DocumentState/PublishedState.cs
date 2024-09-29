@@ -1,14 +1,10 @@
 namespace DesignPatterns.Behavioral.State.DocumentState;
 
-public class PublishedState : DocumentState
+public class PublishedState : IDocumentState
 {
-    public PublishedState(Document document) : base (document)
-    {
-
-    }
-
-    public override void Publish()
+    public IDocumentState Publish(UserRoles userRole)
     {
         // do nothing if already in published state
+        return this;
     }
 }

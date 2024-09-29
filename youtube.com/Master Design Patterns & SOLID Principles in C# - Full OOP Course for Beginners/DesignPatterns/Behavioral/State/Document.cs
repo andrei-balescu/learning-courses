@@ -7,18 +7,18 @@ namespace DesignPatterns.Behavioral.State;
  */
 public class Document
 {
-    public IDocumentState State { get; set; }
+    public IDocumentState State { get; private set; }
 
     public UserRoles CurrentUserRole { get; private set; }
 
     public Document(UserRoles currentUserRole)
     {
         CurrentUserRole = currentUserRole;
-        State = new DraftState(this);
+        State = new DraftState();
     }
 
     public void Publish()
     {
-        State.Publish();
+        State = State.Publish(CurrentUserRole);
     }
 }
