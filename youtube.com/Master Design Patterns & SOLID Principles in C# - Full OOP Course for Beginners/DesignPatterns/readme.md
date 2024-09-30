@@ -47,6 +47,7 @@ When you have a class that behaves differently depending on state and you have a
 - satisfies the Single Responsability principle by delegating state logic
 - satisfies the Open / Closed principle as new states can be added without modifying existing ones
 - (con) can be overkill for simple state logic or if the logic rarely changes
+- (con) _WARNING_: risk of exposing aspects of the internal logic of the context class publicly: use dependency inversion
 
 ## Strategy Pattern
 The strategy pattern is used to pass different apgorythms or behaviors to an object.
@@ -55,7 +56,7 @@ The strategy pattern is used to pass different apgorythms or behaviors to an obj
 
 **State Pattern vs. Strategy Pattern**
 The two patterns are similar in practice. Differences are:
-- states store a reference to the context object that contains them (<span style="color:orange">!? - WARNING: use dependency inversion</span>).
+- states store a reference to the context object that contains them.
 - states are allowed to replace themselves
 - strategies only handle a single specific task while states provide the underlying implementation for everything the context object does.
 
@@ -66,4 +67,18 @@ A good rule of thumb is when you have a class with a large number of conditional
 - satisfies the Open / Closed principle: Add new strategies without modifying the context.
 - can swap algorythms used inside an object at runtime;
 - (con) clients have to be aware of the different algorythms and use them appropriately
-- (con) if you only have a few algorythms that rarely change, then using the Strategy Pattern can be over-engineering.
+
+## Iterator Pattern
+The Iterator Pattern provides a way of iterating over an object without having to expose the object's internal structure., which may change in the future. Changing the internals of an object should not affect its consumers.
+
+**Example**: Let's create a shoppiing list where we can add and remove items.
+
+**When to use the Iterator Pattern**
+Employ the iterator when your collection posseses a complex data structure or when the data structure is likely to change, so the clients can iterate over the collection without knowledge of the data structure.
+
+_NOTE_: The .net `IEnumerable` implements the iterator pattern
+
+**Pros and cons**
+- satisfies the Single Responsability Principle: traversal logic is separated into external classes
+- satisfies the Open / Closed Principle: You can create new collections and new iterators without breaking the code that uses them
+- (con) can me over-engineering if the app only works with simple collections.
