@@ -1,6 +1,7 @@
 using DesignPatterns.Behavioral.State;
 using DesignPatterns.Behavioral.State.DocumentState;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace DesignPatternsTest.Behavioral;
 
@@ -11,81 +12,92 @@ public class StateTests
     public void DraftState_Publish_NothingIfUserIsReader()
     {
         // Arrange
-        var document = new Document(UserRoles.Reader);
+        var documentContextMock = new Mock<IDocumentContext>();
+        documentContextMock.SetupGet(m => m.CurrentUserRole).Returns(UserRoles.Reader);
+
+        var draftState = new DraftState(documentContextMock.Object);
 
         // Act
-        document.Publish();
+        draftState.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(DraftState));
+        documentContextMock.VerifySet(m=> m.State = It.IsAny<DraftState>());
     }
 
     [TestMethod]
     public void DraftState_Publish_ModerationStateIfUserIsEditor()
     {
         // Arrange
-        var document = new Document(UserRoles.Editor);
+        var documentContextMock = new Mock<IDocumentContext>();
+        documentContextMock.SetupGet(m => m.CurrentUserRole).Returns(UserRoles.Editor);
+
+        var draftState = new DraftState(documentContextMock.Object);
 
         // Act
-        document.Publish();
+        draftState.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(ModerationState));
+        documentContextMock.VerifySet(m=> m.State = It.IsAny<ModerationState>());
     }
 
     [TestMethod]
     public void DraftState_Publish_ModerationStateIfUserIsAdmin()
     {
         // Arrange
-        var document = new Document(UserRoles.Admin);
+        var documentContextMock = new Mock<IDocumentContext>();
+        documentContextMock.SetupGet(m => m.CurrentUserRole).Returns(UserRoles.Admin);
+
+        var draftState = new DraftState(documentContextMock.Object);
 
         // Act
-        document.Publish();
+        draftState.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(ModerationState));
+        documentContextMock.VerifySet(m=> m.State = It.IsAny<ModerationState>());
     }
 
     [TestMethod]
-    public void ModerationState_Publish_NothingIfUserIsEditor()
+    public void ModerationState_Publish_NothingIfUserIsNotAdmin()
     {
         // Arrange
-        var document = new Document(UserRoles.Editor);
+        var documentContextMock = new Mock<IDocumentContext>();
+        documentContextMock.SetupGet(m => m.CurrentUserRole).Returns(UserRoles.Editor);
+
+        var moderationState = new ModerationState(documentContextMock.Object);
 
         // Act
-        document.Publish();
-        document.Publish();
+        moderationState.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(ModerationState));
+        documentContextMock.VerifySet(m=> m.State = It.IsAny<ModerationState>());
     }
 
     [TestMethod]
     public void ModerationState_Publish_PublishedStateIfUserIsAdmin()
     {
         // Arrange
-        var document = new Document(UserRoles.Admin);
+        var documentContextMock = new Mock<IDocumentContext>();
+        documentContextMock.SetupGet(m => m.CurrentUserRole).Returns(UserRoles.Admin);
+
+        var moderationState = new ModerationState(documentContextMock.Object);
 
         // Act
-        document.Publish();
-        document.Publish();
+        moderationState.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(PublishedState));
+        documentContextMock.VerifySet(m=> m.State = It.IsAny<PublishedState>());
     }
 
     [TestMethod]
-    public void PublishedState_Publish_DoesNothing()
+    public void Document_Publish_ExecutesStateLogic()
     {
         // Arrange
-        var document = new Document(UserRoles.Admin);
+        var document = new Document(UserRoles.Editor);
 
         // Act
         document.Publish();
-        document.Publish();
-        document.Publish();
 
         // Assert
-        Assert.IsInstanceOfType(document.State, typeof(PublishedState));
+        Assert.IsInstanceOfType(document.State, typeof(ModerationState));
     }
 }

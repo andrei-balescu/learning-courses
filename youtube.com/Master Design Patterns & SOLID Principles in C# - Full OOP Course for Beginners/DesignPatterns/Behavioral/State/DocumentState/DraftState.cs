@@ -2,13 +2,20 @@ namespace DesignPatterns.Behavioral.State.DocumentState;
 
 public class DraftState : IDocumentState
 {
-    public IDocumentState Publish(UserRoles userRole)
+    private IDocumentContext _documentContext;
+
+    public DraftState(IDocumentContext documentContext)
+    {
+        _documentContext = documentContext;
+    }
+
+    public void Publish()
     {
         IDocumentState currentState = this;
-        if (userRole == UserRoles.Editor || userRole == UserRoles.Admin)
+        if (_documentContext.CurrentUserRole == UserRoles.Editor || _documentContext.CurrentUserRole == UserRoles.Admin)
         {
-            currentState = new ModerationState();
+            currentState = new ModerationState(_documentContext);
         }
-        return currentState;
+        _documentContext.State = currentState;
     }
 }

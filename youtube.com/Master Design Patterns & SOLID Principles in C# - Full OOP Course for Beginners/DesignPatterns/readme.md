@@ -55,7 +55,7 @@ The strategy pattern is used to pass different apgorythms or behaviors to an obj
 
 **State Pattern vs. Strategy Pattern**
 The two patterns are similar in practice. Differences are:
-- states store a reference to the context object that contains them (<span style="color:red">!?</span>).
+- states store a reference to the context object that contains them (<span style="color:orange">!? - WARNING: use dependency inversion</span>).
 - states are allowed to replace themselves
 - strategies only handle a single specific task while states provide the underlying implementation for everything the context object does.
 
