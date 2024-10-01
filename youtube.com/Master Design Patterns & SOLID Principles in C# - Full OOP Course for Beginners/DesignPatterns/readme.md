@@ -81,4 +81,16 @@ _NOTE_: The .net `IEnumerable` implements the iterator pattern
 **Pros and cons**
 - satisfies the Single Responsability Principle: traversal logic is separated into external classes
 - satisfies the Open / Closed Principle: You can create new collections and new iterators without breaking the code that uses them
-- (con) can me over-engineering if the app only works with simple collections.
+- (con) can be over-engineering if the app only works with simple collections.
+
+## Command Pattern
+The Command Pattern is a behavioral pattern that encapsulates the request as an object, allowing you to paramaterize clients with queues. It enables you to decouple the sender from the receiver, providing flexibility in the executing of commands and supporting undoable operations.
+
+The Command Pattern is also commonly used in UI frameworks, especially for handling user interactions with buttons or menu items. Each button or menu item can be associated with a specific command object, allowing the framework to execute the appropriate action when the user interacts with the UI element. This decouples the UI components from the actual operations they perform, providing flexibility and maintainability in UI development. Additionally the Command Pattern facilitates features such as undo/redo functionality and event logging in UI applications.
+
+The framework would be code that you couldn't edit, i.e. some UI package, and the app is the part that you create. You would create concrete commands that extend the `Command` interface found in the UI package. Your concrete commands keep reference to a class that contains the business logic, such as `UserService` which can perform operations such as adding, updating, deleting users etc.
+
+We could also add an `IUndoableCommand` with the additional `Unexecute()` method which can provide undo / redo functionality, i.e. with an `ItalicsTextCommand` class.
+
+**Undo operations with Command vs. Memento Patterns**
+The differenca between Memento and Command patterns is that the Memento stores snapshots of an objects' state which can get expensive over time. With the Command Pattern each command knows how to undo itself.
