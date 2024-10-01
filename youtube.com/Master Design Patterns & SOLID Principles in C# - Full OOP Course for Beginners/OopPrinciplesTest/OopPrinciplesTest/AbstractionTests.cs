@@ -61,7 +61,9 @@ public class AbstractionTests
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
         )).Callback(() => Assert.AreEqual(++callSequence, 4));
 
-        // Act & Assert
+        // Act
         _emailService.SendEmail();
+
+        Assert.AreEqual(callSequence, 4);
     }
 }
