@@ -1,4 +1,4 @@
-namespace DesignPatterns.Behavioral.Strategy.Compressor;
+namespace DesignPatterns.Behavioral.Strategy;
 
 public interface ICompressor
 {

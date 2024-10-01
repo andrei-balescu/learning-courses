@@ -1,5 +1,3 @@
-using DesignPatterns.Behavioral.Strategy.Compressor;
-using DesignPatterns.Behavioral.Strategy.Overlay;
 using Microsoft.Extensions.Logging;
 
 namespace DesignPatterns.Behavioral.Strategy;
