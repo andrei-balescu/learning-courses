@@ -2,9 +2,9 @@ namespace DesignPatterns.Behavioral.Command;
 
 public class RemoteControl
 {
-    public IRemoteCommand RemoteCommand { private get; set; }
+    public ICommand RemoteCommand { private get; set; }
 
-    public RemoteControl(IRemoteCommand remoteCommand)
+    public RemoteControl(ICommand remoteCommand)
     {
         RemoteCommand = remoteCommand;
     }

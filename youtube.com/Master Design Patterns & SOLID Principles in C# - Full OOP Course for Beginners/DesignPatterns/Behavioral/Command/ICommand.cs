@@ -1,6 +1,6 @@
 namespace DesignPatterns.Behavioral.Command;
 
-public interface IRemoteCommand
+public interface ICommand
 {
     void Execute();
 }

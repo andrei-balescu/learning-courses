@@ -1,6 +1,6 @@
 namespace DesignPatterns.Behavioral.Command.RemoteCommand;
 
-public class TurnLightOffCommand
+public class TurnLightOffCommand : ICommand
 {
     private Light _light;
 

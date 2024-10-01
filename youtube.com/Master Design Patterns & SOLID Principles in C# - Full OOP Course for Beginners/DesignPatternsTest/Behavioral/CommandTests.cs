@@ -1,5 +1,6 @@
 using System;
 using DesignPatterns.Behavioral.Command;
+using DesignPatterns.Behavioral.Command.HtmlCommand;
 using DesignPatterns.Behavioral.Command.RemoteCommand;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,7 +25,7 @@ public class CommandTests
     public void RemoteControl_PressButton_ExecutesCommand()
     {
         // Arrange
-        var remoteCommandMock = new Mock<IRemoteCommand>();
+        var remoteCommandMock = new Mock<ICommand>();
         var remoteControl = new RemoteControl(remoteCommandMock.Object);
 
         // Act
@@ -91,5 +92,73 @@ public class CommandTests
             It.IsAny<Exception>(),
             It.IsAny<Func<It.IsAnyType, Exception?, string>>()
         ), Times.Once);
+    }
+
+    // ---------------------------
+    // IUndoableCommand tests
+    // ---------------------------
+
+    [TestMethod]
+    public void EmphasizeCommand_MakesHtmlBold()
+    {
+        // Arrange
+        var htmlDocument = new HtmlDocument("This is a test");
+        var emphasizeCommand = new EmphasizeCommand(htmlDocument);
+        
+        // Act
+        emphasizeCommand.Execute();
+
+        // Assert
+        Assert.IsTrue(htmlDocument.Content.Contains("<em>", StringComparison.InvariantCultureIgnoreCase));
+        Assert.IsTrue(htmlDocument.Content.Contains("</em>", StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    [TestMethod]
+    public void MakeStrongCommand_MakesHtmlBold()
+    {
+        // Arrange
+        var htmlDocument = new HtmlDocument("This is a test");
+        var makeStrongCommand = new MakeStrongCommand(htmlDocument);
+        
+        // Act
+        makeStrongCommand.Execute();
+
+        // Assert
+        Assert.IsTrue(htmlDocument.Content.Contains("<strong>", StringComparison.InvariantCultureIgnoreCase));
+        Assert.IsTrue(htmlDocument.Content.Contains("</strong>", StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    [TestMethod]
+    public void HtmlUndoCommand_RestoresContent()
+    {
+        // Arrange
+        string expectedContent = "This is a test";
+        var htmlDocument = new HtmlDocument(expectedContent);
+        var emphasizeCommand = new EmphasizeCommand(htmlDocument);
+        
+        // Act
+        emphasizeCommand.Execute();
+        emphasizeCommand.Unexecute();
+
+        // Assert
+        Assert.AreEqual(expectedContent, htmlDocument.Content);
+    }
+
+    [TestMethod]
+    public void CommandHistory_Execute_UndoesAllCommands()
+    {
+        // Arrange
+        var commandMock = new Mock<IUndoableCommand>();
+        var commandHistory = new CommandHistory();
+
+        commandHistory.Execute(commandMock.Object);
+        commandHistory.Execute(commandMock.Object);
+        
+        // Act
+        commandHistory.UndoAll();
+
+        // Assert
+        commandMock.Verify(m => m.Execute(), Times.Exactly(2));
+        commandMock.Verify(m => m.Unexecute(), Times.Exactly(2));
     }
 }
