@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DesignPatterns.Behavioral.Observer;
 
-public class Spreadsheet : IObserver<IEnumerable<int>>
+public class Spreadsheet : IDataSourceObserver<IEnumerable<int>>
 {
     private ILogger _logger;
 

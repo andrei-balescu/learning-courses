@@ -17,7 +17,7 @@ public class ObserverTests
         // Arrange
         int expectedValue = 5;
 
-        var observerMock = new Mock<DesignPatterns.Behavioral.Observer.IObserver<IEnumerable<int>>>();
+        var observerMock = new Mock<IDataSourceObserver<IEnumerable<int>>>();
         var dataSource = new DataSource();
 
         // Act
@@ -34,7 +34,8 @@ public class ObserverTests
         // Arrange
         int expectedValue = 5;
 
-        var observerMock = new Mock<DesignPatterns.Behavioral.Observer.IObserver<IEnumerable<int>>>();
+        // note: C# already has an IObserver interface in the System namespace
+        var observerMock = new Mock<IDataSourceObserver<IEnumerable<int>>>();
         var dataSource = new DataSource();
 
         // Act

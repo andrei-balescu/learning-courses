@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DesignPatterns.Behavioral.Observer;
 
-public class BarChart : IObserver<IEnumerable<int>>
+public class BarChart : IDataSourceObserver<IEnumerable<int>>
 {
     private ILogger _logger;
 
