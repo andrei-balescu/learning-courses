@@ -1,6 +1,6 @@
 namespace DesignPatterns.Behavioral.Observer;
 
-public class DataSource : DataSourceSubject<IEnumerable<int>>
+public class DataSource : DataSourceObservable<IEnumerable<int>>
 {
     private IEnumerable<int> _values;
     public IEnumerable<int> Values

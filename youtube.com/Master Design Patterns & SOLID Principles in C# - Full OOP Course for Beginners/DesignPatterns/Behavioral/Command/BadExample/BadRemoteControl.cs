@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.Command.BadExample;
 
-/**
- * Bad example: RemoteControl is tightly coupled to Light
- */
+/// <summary>
+/// Bad example: RemoteControl is tightly coupled to Light
+/// </summary>
 public class BadRemoteControl
 {
     private BadLight _light;

@@ -34,7 +34,6 @@ public class ObserverTests
         // Arrange
         int expectedValue = 5;
 
-        // note: C# already has an IObserver interface in the System namespace
         var observerMock = new Mock<IDataSourceObserver<IEnumerable<int>>>();
         var dataSource = new DataSource();
 

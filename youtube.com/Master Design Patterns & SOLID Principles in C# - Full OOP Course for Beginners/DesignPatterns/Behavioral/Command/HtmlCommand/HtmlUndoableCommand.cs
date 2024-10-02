@@ -4,9 +4,9 @@ public abstract class HtmlUndoableCommand : IUndoableCommand
 {
     protected HtmlDocument _htmlDocument;
 
-    /**
-     * Using Memento Pattern to store snapshot of previous state.
-     */
+    /// <summary>
+    /// Using Memento Pattern to store snapshot of previous state.
+    /// </summary>
     protected string _previousState;
 
     public HtmlUndoableCommand(HtmlDocument htmlDocument)

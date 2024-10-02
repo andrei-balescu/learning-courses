@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.Memento;
 
-/**
- * Memento Pattern - Memento component
- */
+/// <summary>
+/// Memento Pattern - Memento component
+/// </summary>
 public class EditorState
 {
     public string Title { get; private set; }

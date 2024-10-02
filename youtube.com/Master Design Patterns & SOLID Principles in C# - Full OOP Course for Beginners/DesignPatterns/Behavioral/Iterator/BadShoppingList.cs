@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.Iterator;
 
-/**
- * Bad example: the class cannot be iterated over unless the client has access to the internal Items property which is subject to change (i.e to an array).
- */
+/// <summary>
+/// Bad example: the class cannot be iterated over unless the client has access to the internal Items property which is subject to change (i.e to an array).
+/// </summary>
 public class BadShoppingList
 {
     public List<string> Items { get; private set; }

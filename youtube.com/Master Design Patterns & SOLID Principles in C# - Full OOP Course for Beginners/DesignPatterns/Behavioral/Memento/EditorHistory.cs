@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.Memento;
 
-/**
- * Memento pattern - Caretaker component
- */
+/// <summary>
+/// Memento pattern - Caretaker component
+/// </summary>
 public class EditorHistory
 {
     private readonly IList<EditorState> _states;

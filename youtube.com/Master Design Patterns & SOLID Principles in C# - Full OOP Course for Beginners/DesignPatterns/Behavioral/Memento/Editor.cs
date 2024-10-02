@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.Memento;
 
-/**
- * Memento Pattern - Originator component
- */
+/// <summary>
+/// Memento Pattern - Originator component
+/// </summary>
 public class Editor : IEditor
 {
     public string Title { get; set; }

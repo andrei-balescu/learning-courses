@@ -1,8 +1,8 @@
 namespace DesignPatterns.Behavioral.State.BadExample;
 
-/**
- * Bad example: Violates  the Single Responsibility Principle and the Open / Closed Principle
- */
+/// <summary>
+/// Bad example: Violates  the Single Responsibility Principle and the Open / Closed Principle
+/// </summary>
 public class BadDocument
 {
     public BadDocumentStates State { get; set; }

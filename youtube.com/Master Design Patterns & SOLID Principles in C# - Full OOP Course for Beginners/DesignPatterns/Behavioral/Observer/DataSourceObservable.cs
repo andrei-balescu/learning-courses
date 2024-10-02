@@ -1,13 +1,15 @@
 namespace DesignPatterns.Behavioral.Observer;
 
-/**
- * Observer Pattern - Subject component
- */
-public class DataSourceSubject<TPayload>
+/// <summary>
+/// Observer Pattern - Subject component
+/// .NET also provides it's own <c>IObservable</c> interface
+/// </summary>
+/// <typeparam name="TPayload">The type of message being sent.</typeparam>
+public class DataSourceObservable<TPayload>
 {
     private List<IDataSourceObserver<TPayload>> _observers;
 
-    public DataSourceSubject()
+    public DataSourceObservable()
     {
         _observers = new List<IDataSourceObserver<TPayload>>();
     }

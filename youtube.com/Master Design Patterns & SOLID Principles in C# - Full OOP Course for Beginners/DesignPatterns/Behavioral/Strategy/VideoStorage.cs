@@ -2,9 +2,9 @@ using Microsoft.Extensions.Logging;
 
 namespace DesignPatterns.Behavioral.Strategy;
 
-/**
- * Strategy Pattern: Context component
- */
+/// <summary>
+/// Strategy Pattern: Context component
+/// </summary>
 public class VideoStorage
 {
     private ILogger _logger;
