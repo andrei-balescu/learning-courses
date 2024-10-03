@@ -127,3 +127,8 @@ Use the Template Method Pattern when you want to allow clients to implement only
 The Observer Pattern involves an object, known as the subject maintaining a list of its dependent objects, called observers and notifying them automatically of any state changes.
 
 The Observer pattern is also know as a publPublish and Subscribe (pub and sub). It publishes changes in its states and it's subscribers (observers) subscribe to those events.
+
+## Mediator Pattern
+The Mediator Pattern defined an object (the Mediator) that describes how a set of objects interact with each other, therefore reducing lots of chaotic dependencies between those objects.
+
+**Example**: Let's say we have a blog that lists all of your posts and you can select a post and then edit that post's title.
