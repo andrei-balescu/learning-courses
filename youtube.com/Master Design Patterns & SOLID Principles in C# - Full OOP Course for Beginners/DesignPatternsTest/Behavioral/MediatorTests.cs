@@ -3,7 +3,7 @@ using DesignPatterns.Behavioral.Mediator.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace DesignPatternsTest;
+namespace DesignPatternsTest.Behavioral;
 
 [TestClass]
 public class MediatorTests

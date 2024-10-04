@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace DesignPatternsTest;
+namespace DesignPatternsTest.Behavioral;
 
 [TestClass]
 public class ObserverTests
