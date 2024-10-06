@@ -5,6 +5,9 @@ using Moq;
 
 namespace DesignPatternsTest.Behavioral;
 
+/// <summary>
+/// More info on unit testing events: https://github.com/devlooped/moq/wiki/Quickstart#events
+/// </summary>
 [TestClass]
 public class MediatorTests
 {
