@@ -7,3 +7,5 @@ Structural design patterns help to achieve several important goals in software d
 - Improve performance and resource utilization by optimizing the way objects interact and collaborate with the system, thereby enhancing the overall system efficiency.
 
 Overall these patterns contribute to building robust, adaptable and well-organized software systems that are easier to understand, maintain, and extend over time
+
+_See more info about each pattern in its own subdirectory._

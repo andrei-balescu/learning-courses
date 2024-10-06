@@ -8,5 +8,6 @@ What you will learn:
 - All five SOLID Principles.
 - All 23 "Gang of Four" software design patterns.
 
-Video tutorial: https://www.youtube.com/watch?v=rylaiB2uH2A
-Source code: https://github.com/DoableDanny/Design-Patterns-in-C-Sharp
+## Resources
+- Video tutorial: https://www.youtube.com/watch?v=rylaiB2uH2A
+- Source code: https://github.com/DoableDanny/Design-Patterns-in-C-Sharp
