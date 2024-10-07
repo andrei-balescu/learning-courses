@@ -9,3 +9,5 @@ The memento pattern can be used when you want to produce snapshots of an object'
 **Pros and cons of the Memento Pattern**
 - You can simplify the originator's code by letting the caretaker maintain the history of the originator's state. satisfying the Single Responsibility Principle
 - The app might consume a lot of memory if lots of mementos are created.
+
+![Memento - UML](memento_uml.svg)
