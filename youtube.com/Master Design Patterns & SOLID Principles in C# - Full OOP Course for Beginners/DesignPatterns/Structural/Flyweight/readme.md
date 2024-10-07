@@ -6,3 +6,5 @@ The Flyweight pattern is a structural design pattern that aims to memorize memor
 While the item's position (x, y) - (extrinsic state -> can change within the object's lifecycle - dynamic) is specific to every object, the crop type and icon (intrinsic state - constant values) can be shared among objects. Also, the icons can take up a lot of memory if duplicated within each object.
 
 An object that only contains an intrinsic state is called a _Flyweight_
+
+![Flyweight - UML](flyweight_uml.svg)
