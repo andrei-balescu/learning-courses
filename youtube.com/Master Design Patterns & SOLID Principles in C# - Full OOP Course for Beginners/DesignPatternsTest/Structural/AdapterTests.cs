@@ -1,7 +1,7 @@
 using System;
 using DesignPatterns.Structural.Adapter;
+using DesignPatterns.Structural.Adapter.ColorFilters;
 using DesignPatterns.Structural.Adapter.Lib3rdParty;
-using DesignPatterns.Structural.Adapter.VideoFilters;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -23,7 +23,7 @@ public class AdapterTests
     public void VideoEditor_AppllyFilter_AppliesFilter()
     {
         // Arrange
-        var filterMock = new Mock<IVideoFilter>();
+        var filterMock = new Mock<IColorFilter>();
         var expectedVideo = new Video();
         var videoEditor = new VideoEditor(expectedVideo);
 

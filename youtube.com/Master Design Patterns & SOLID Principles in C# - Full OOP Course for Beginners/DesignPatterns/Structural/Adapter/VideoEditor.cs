@@ -9,7 +9,7 @@ public class VideoEditor
         _video = video;
     }
 
-    public void ApplyFilter(IVideoFilter filter)
+    public void ApplyFilter(IColorFilter filter)
     {
         filter.Apply(_video);
     }

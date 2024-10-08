@@ -1,8 +1,8 @@
 using DesignPatterns.Structural.Adapter.Lib3rdParty;
 
-namespace DesignPatterns.Structural.Adapter;
+namespace DesignPatterns.Structural.Adapter.ColorFilters;
 
-public class RainbowFilter : IVideoFilter
+public class RainbowFilter : IColorFilter
 {
     private Rainbow _rainbow;
 

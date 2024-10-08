@@ -1,12 +1,7 @@
 namespace DesignPatterns.Structural.Bridge.BadExample.Sony;
 
-public class AdvancedSonyRemote : AdvancedRemoteControl
+public class BadSonyRemote : BadRemoteControl
 {
-    public override void SetChannel(int channel)
-    {
-        Console.WriteLine($"Setting Sony channel to {channel}");
-    }
-
     public override void TurnOff()
     {
         Console.WriteLine("Turning Sony radio off");

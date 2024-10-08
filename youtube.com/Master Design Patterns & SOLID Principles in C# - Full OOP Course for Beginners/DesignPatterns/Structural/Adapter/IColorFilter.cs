@@ -1,6 +1,6 @@
 namespace DesignPatterns.Structural.Adapter;
 
-public interface IVideoFilter
+public interface IColorFilter
 {
     void Apply(Video video);
 }

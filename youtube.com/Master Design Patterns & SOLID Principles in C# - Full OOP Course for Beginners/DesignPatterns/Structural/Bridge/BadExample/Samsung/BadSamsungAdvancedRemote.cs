@@ -1,7 +1,12 @@
 namespace DesignPatterns.Structural.Bridge.BadExample.Samsung;
 
-public class SamsungRemote : RemoteControl
+public class BadSamsungAdvancedRemote : BadAdvancedRemoteControl
 {
+    public override void SetChannel(int channel)
+    {
+        Console.WriteLine($"Setting Samsung channel to {channel}");
+    }
+
     public override void TurnOff()
     {
         Console.WriteLine("Turning Samsung radio off");

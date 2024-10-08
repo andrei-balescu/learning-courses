@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatterns.Structural.Adapter.VideoFilters;
+namespace DesignPatterns.Structural.Adapter.ColorFilters;
 
-public class MidnightPurpleFilter : IVideoFilter
+public class MidnightPurpleFilter : IColorFilter
 {
     private ILogger _logger;
 

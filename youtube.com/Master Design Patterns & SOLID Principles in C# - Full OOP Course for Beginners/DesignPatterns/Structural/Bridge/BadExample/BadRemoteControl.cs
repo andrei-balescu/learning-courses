@@ -1,6 +1,6 @@
 namespace DesignPatterns.Structural.Bridge.BadExample;
 
-public abstract class RemoteControl
+public abstract class BadRemoteControl
 {
     public abstract void TurnOn();
     public abstract void TurnOff();

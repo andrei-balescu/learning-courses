@@ -1,6 +1,6 @@
 namespace DesignPatterns.Structural.Bridge.BadExample.Samsung;
 
-public class SamsungRadioAndTvRemote : RadioAndTvRemote
+public class BadSamsungRadioAndTvRemote : BadRadioAndTvRemote
 {
     public override void ControlRadio()
     {

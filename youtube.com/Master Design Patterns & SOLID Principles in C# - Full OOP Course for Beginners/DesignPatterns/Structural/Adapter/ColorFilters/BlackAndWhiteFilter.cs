@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
 
-namespace DesignPatterns.Structural.Adapter.VideoFilters;
+namespace DesignPatterns.Structural.Adapter.ColorFilters;
 
-public class BlackAndWhiteFilter : IVideoFilter
+public class BlackAndWhiteFilter : IColorFilter
 {
     public ILogger _logger;
 

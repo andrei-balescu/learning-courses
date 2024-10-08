@@ -1,7 +1,17 @@
 namespace DesignPatterns.Structural.Bridge.BadExample.Sony;
 
-public class SonyRemote : RemoteControl
+public class BadSonyRadioAndTvRemote : BadRadioAndTvRemote
 {
+    public override void ControlRadio()
+    {
+        Console.WriteLine("Now controlling Sony radio");
+    }
+
+    public override void ControlTv()
+    {
+        Console.WriteLine("Now controlling Sony TV");
+    }
+
     public override void TurnOff()
     {
         Console.WriteLine("Turning Sony radio off");
