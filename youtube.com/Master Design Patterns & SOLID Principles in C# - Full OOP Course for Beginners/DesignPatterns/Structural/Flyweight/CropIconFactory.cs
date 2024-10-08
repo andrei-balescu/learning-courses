@@ -1,6 +1,6 @@
 namespace DesignPatterns.Structural.Flyweight;
 
-public class CropIconFactory
+public class CropIconFactory : ICropIconFactory
 {
     private IDictionary<CropType, CropIcon> _cropIcons = new Dictionary<CropType, CropIcon>();
 
