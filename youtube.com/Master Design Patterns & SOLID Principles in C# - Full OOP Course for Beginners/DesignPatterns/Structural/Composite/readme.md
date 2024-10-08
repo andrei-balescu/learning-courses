@@ -7,3 +7,5 @@ The Composite pattern is a design pattern that enables creation of tree-like sru
 The composite pattern is useful for representing tree structures, i.e.
 - Files and folders
 - A graphical editor that allows you to group shapes together and apply modifications on entire groups as well as individual shapes
+
+![Composite Pattern - UML](composite_uml.svg)
