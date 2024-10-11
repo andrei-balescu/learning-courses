@@ -16,3 +16,5 @@ A good rule of thumb is when you have a class with a large number of conditional
 - satisfies the Open / Closed principle: Add new strategies without modifying the context.
 - can swap algorithms used inside an object at runtime;
 - (con) clients have to be aware of the different algorithms and use them appropriately
+
+![Strategy - UML](strategy_uml.svg)

@@ -24,7 +24,7 @@ public class DataSourceObservable<TPayload>
         _observers.Remove(observer);
     }
 
-    public void NotifyObservers(TPayload payload)
+    protected void NotifyObservers(TPayload payload)
     {
         foreach (IDataSourceObserver<TPayload> observer in _observers)
         {

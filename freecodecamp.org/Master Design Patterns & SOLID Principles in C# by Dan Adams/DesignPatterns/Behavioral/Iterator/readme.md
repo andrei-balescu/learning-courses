@@ -12,3 +12,5 @@ _NOTE_: The .net `IEnumerable` implements the iterator pattern
 - satisfies the Single Responsability Principle: traversal logic is separated into external classes
 - satisfies the Open / Closed Principle: You can create new collections and new iterators without breaking the code that uses them
 - (con) can be over-engineering if the app only works with simple collections.
+
+![Iterator Pattern - UML](iterator_uml.svg)

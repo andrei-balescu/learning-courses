@@ -24,3 +24,5 @@ When you have a class that behaves differently depending on state and you have a
 - satisfies the Open / Closed principle as new states can be added without modifying existing ones
 - (con) can be overkill for simple state logic or if the logic rarely changes
 - (con) _WARNING_: risk of exposing aspects of the internal logic of the context class publicly: use dependency inversion
+
+![State Pattern - UML](state_uml.svg)

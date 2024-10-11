@@ -11,4 +11,15 @@ public abstract class Builder : IBuilder
     public Dashboard Dashboard { protected get; set; }
     public Wheels Wheels { protected get; set; }
     public GPSNavigator GPSNavigator { protected get; set; }
+
+    public void Reset()
+    {
+        CarType = default;
+        Seats = default;
+        IsConvertible = default;
+        Engine = default;
+        Dashboard = default;
+        Wheels = default;
+        GPSNavigator = default;
+    }
 }

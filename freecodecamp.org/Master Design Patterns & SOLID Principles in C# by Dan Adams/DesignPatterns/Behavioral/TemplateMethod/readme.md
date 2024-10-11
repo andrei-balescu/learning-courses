@@ -22,3 +22,5 @@ Use the Template Method Pattern when you want to allow clients to implement only
 - clients only allowed to modify certain steps in an algorithm, reducing the risk of breaking clients if the algorithm changes.
 - (con) some clients may be limited by the provided template
 - (con) template methods can be hard to maintain if they have a lot of steps
+
+![Template Method - UML](template_method_uml.svg)

@@ -1,8 +1,6 @@
 namespace DesignPatterns.Behavioral.Iterator;
 
-/// <summary>
-/// Iterator Pattern - Collection component
-/// </summary>
+/// <summary>Iterator Pattern - Collection (aggregate) component</summary>
 public class ShoppingList
 {
     public IList<string> Items { get; private set; }

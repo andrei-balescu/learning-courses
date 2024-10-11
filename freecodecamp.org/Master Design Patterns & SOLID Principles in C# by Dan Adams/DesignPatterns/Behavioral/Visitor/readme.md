@@ -5,3 +5,5 @@ The visitor Pattern separates the algorithms or behaviors from the objects on wh
 - Restaurants
 - Law firms
 - Retailers
+
+![Visitor Pattern - UML](visitor_uml.svg)

@@ -4,68 +4,85 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>160</y>
-      <w>210</w>
-      <h>50</h>
+      <x>70</x>
+      <y>70</y>
+      <w>160</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>Memento
+    <panel_attributes>&lt;&lt;Originator&gt;&gt;
+Editor
 --
--Content:String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>460</x>
-      <y>270</y>
-      <w>210</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Caretaker
---
--States:List&lt;Memento&gt;
---
-+Push(state)
-+Pop()</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>120</x>
-      <y>150</y>
-      <w>200</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Originator
---
+-Title:String
 -Content:String
 --
-+CreateState()
-+Restore(state)</panel_attributes>
+SaveState();
+RestoreState(state)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>230</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Caretaker&gt;&gt;
+StateHistory
+--
+-States:EditorState[]
+-Editor:Editor
+--
+Backup()
+Undo()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>70</y>
+      <w>140</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Memento&gt;&gt;
+EditorState
+--
++Title:String
++Content:String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>550</x>
-      <y>200</y>
+      <x>370</x>
+      <y>140</y>
       <w>30</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>130</x>
       <y>180</y>
-      <w>170</w>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>100</y>
+      <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;.</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -1,4 +1,5 @@
 # Master Design Patterns & SOLID Principles in C# - Full OOP Course for Beginners
+## by Dan Adams
 
 In this comprehensive and beginner-friendly course, you will learn all of the tools that you need to become an advanced OOP programmer, writing clean and maintainable software.
 

@@ -2,9 +2,7 @@ using DesignPatterns.Behavioral.State.DocumentState;
 
 namespace DesignPatterns.Behavioral.State;
 
-/// <summary>
-/// State Pattern - Context component
-/// </summary>
+/// <summary>State Pattern - Context component</summary>
 public class Document : IDocumentContext
 {
     public IDocumentState State { get; set; }

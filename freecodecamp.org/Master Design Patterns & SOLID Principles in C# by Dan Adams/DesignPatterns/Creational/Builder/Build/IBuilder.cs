@@ -4,11 +4,13 @@ namespace DesignPatterns.Creational.Builder.Build;
 
 public interface IBuilder
 {
-    public CarType CarType { set; }
-    public int Seats { set; }
-    public bool IsConvertible { set; }
-    public Engine Engine { set; }
-    public Dashboard Dashboard { set; }
+    CarType CarType { set; }
+    int Seats { set; }
+    bool IsConvertible { set; }
+    Engine Engine { set; }
+    Dashboard Dashboard { set; }
     public Wheels Wheels { set; }
-    public GPSNavigator GPSNavigator { set; }
+    GPSNavigator GPSNavigator { set; }
+
+    void Reset();
 }

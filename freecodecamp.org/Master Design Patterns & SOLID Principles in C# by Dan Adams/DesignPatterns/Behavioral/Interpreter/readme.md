@@ -13,3 +13,5 @@ So let's say that we need to build a calculator app that takes some user input s
 - Terminal expression: Represents the fundamental components of the language, such as numbers or variables.
 - Non-terminal Expression: Represents more complex expressions that are composed of other expressions using operators or functions.
 - Interpreter: Implements the logic for interpretation and determines how to evaluate different types of expressions.
+
+![Interpreter Pattern - UML](interpreter_uml.svg)
