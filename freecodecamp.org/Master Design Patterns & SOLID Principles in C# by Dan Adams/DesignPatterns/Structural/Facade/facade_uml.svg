@@ -27,22 +27,22 @@
       ><path d="M0 0 L0 30 L100 30 L100 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath8"
-      ><path d="M0 0 L0 180 L110 180 L110 0 Z"
+      ><path d="M0 0 L0 160 L110 160 L110 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath9"
-      ><path d="M0 0 L0 70 L110 70 L110 0 Z"
+      ><path d="M0 0 L0 90 L110 90 L110 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath10"
       ><path d="M0 0 L0 30 L80 30 L80 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath11"
-      ><path d="M0 0 L0 110 L120 110 L120 0 Z"
+      ><path d="M0 0 L0 90 L120 90 L120 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath12"
-      ><path d="M0 0 L0 60 L300 60 L300 0 Z"
+      ><path d="M0 0 L0 30 L300 30 L300 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
-      ><path d="M0 0 L0 160 L90 160 L90 0 Z"
+      ><path d="M0 0 L0 170 L90 170 L90 0 Z"
       /></clipPath
     ></defs
     ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(410,220)" stroke-opacity="0" stroke="rgb(255,255,255)"
@@ -54,7 +54,7 @@
       >OrderFulfillment</text
       ><path fill="none" d="M1 24.1094 L129 24.1094" clip-path="url(#clipPath2)"
       /><text x="5" font-size="14px" y="39.2188" clip-path="url(#clipPath2)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >+Fulfill()</text
+      >+Fulfill(order)</text
     ></g
     ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(410,30)" stroke-opacity="0" stroke="rgb(255,255,255)"
     ><rect x="0.5" width="148.5" height="48.5" y="0.5" clip-path="url(#clipPath3)" stroke="none"
@@ -67,10 +67,10 @@
       /><text x="5" font-size="14px" y="39.2188" clip-path="url(#clipPath3)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >Authenticate(user)</text
     ></g
-    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(600,90)" stroke-opacity="0" stroke="rgb(255,255,255)"
+    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(600,80)" stroke-opacity="0" stroke="rgb(255,255,255)"
     ><rect x="0.5" width="198.5" height="58.5" y="0.5" clip-path="url(#clipPath4)" stroke="none"
     /></g
-    ><g transform="translate(600,90)"
+    ><g transform="translate(600,80)"
     ><rect fill="none" x="0.5" width="198.5" height="58.5" y="0.5" clip-path="url(#clipPath4)"
       /><text x="66" font-size="14px" y="18.1094" clip-path="url(#clipPath4)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >Inventory	</text
@@ -91,50 +91,52 @@
       /><text x="5" font-size="14px" y="39.2188" clip-path="url(#clipPath5)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >+Pay(amount)</text
     ></g
-    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(160,60)" stroke-opacity="0" stroke="rgb(255,255,255)"
+    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(160,80)" stroke-opacity="0" stroke="rgb(255,255,255)"
     ><rect x="0.5" width="168.5" height="58.5" y="0.5" clip-path="url(#clipPath6)" stroke="none"
     /></g
-    ><g transform="translate(160,60)"
+    ><g transform="translate(160,80)"
     ><rect fill="none" x="0.5" width="168.5" height="58.5" y="0.5" clip-path="url(#clipPath6)"
-      /><text x="39" font-size="14px" y="18.1094" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none" xml:space="preserve"
+      /><text x="51" font-size="14px" y="18.1094" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none" xml:space="preserve"
+      >«Façade»</text
+      ><text x="39" font-size="14px" y="34.2188" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >OrderService</text
-      ><text x="54" font-size="14px" y="34.2188" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none" xml:space="preserve"
-      >(Façade)</text
       ><path fill="none" d="M1 40.2188 L169 40.2188" clip-path="url(#clipPath6)"
       /><text x="5" font-size="14px" y="55.3281" clip-path="url(#clipPath6)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >+Order(orderRequest)</text
     ></g
-    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(10,70)" stroke-opacity="0" stroke="rgb(255,255,255)"
+    ><g fill="rgb(255,255,255)" fill-opacity="0" transform="translate(10,90)" stroke-opacity="0" stroke="rgb(255,255,255)"
     ><rect x="0.5" width="98.5" height="28.5" y="0.5" clip-path="url(#clipPath7)" stroke="none"
     /></g
-    ><g transform="translate(10,70)"
+    ><g transform="translate(10,90)"
     ><rect fill="none" x="0.5" width="98.5" height="28.5" y="0.5" clip-path="url(#clipPath7)"
       /><text x="29" font-size="14px" y="18.1094" clip-path="url(#clipPath7)" font-family="sans-serif" stroke="none" xml:space="preserve"
       >Client</text
     ></g
-    ><g transform="translate(320,80)"
-    ><path fill="none" d="M90.0294 159.6176 L10.5 10.5" clip-path="url(#clipPath8)"
-      /><path fill="none" d="M90.702 147.0662 L90.2647 160.0588 L79.2314 153.1838" clip-path="url(#clipPath8)"
+    ><g transform="translate(320,100)"
+    ><path fill="none" d="M89.9759 139.6483 L10.5 10.5" clip-path="url(#clipPath8)"
+      /><path fill="none" d="M89.8733 127.0793 L90.238 140.0742 L78.8017 133.8925" clip-path="url(#clipPath8)"
     /></g
     ><g transform="translate(320,40)"
-    ><path fill="none" d="M89.6056 10.9472 L10.5 50.5" clip-path="url(#clipPath9)"
-      /><path fill="none" d="M77.0761 9.9447 L90.0528 10.7236 L82.8899 21.5723" clip-path="url(#clipPath9)"
+    ><path fill="none" d="M89.7 11.1 L10.5 70.5" clip-path="url(#clipPath9)"
+      /><path fill="none" d="M77.1933 12.355 L90.1 10.8 L84.9933 22.755" clip-path="url(#clipPath9)"
     /></g
-    ><g transform="translate(100,70)"
+    ><g transform="translate(100,90)"
     ><path fill="none" d="M59.5 10.5 L10.5 10.5" clip-path="url(#clipPath10)"
       /><path fill="none" d="M48.7417 4 L60 10.5 L48.7417 17" clip-path="url(#clipPath10)"
     /></g
-    ><g transform="translate(320,80)"
-    ><path fill="none" d="M99.7526 89.8356 L10.5 10.5" clip-path="url(#clipPath11)"
-      /><path fill="none" d="M96.0301 77.83 L100.1263 90.1678 L87.3933 87.5463" clip-path="url(#clipPath11)"
+    ><g transform="translate(320,100)"
+    ><path fill="none" d="M99.668 69.9453 L10.5 10.5" clip-path="url(#clipPath11)"
+      /><path fill="none" d="M94.322 58.5693 L100.084 70.2226 L87.1109 69.386" clip-path="url(#clipPath11)"
     /></g
-    ><g transform="translate(320,80)"
-    ><path fill="none" d="M279.5061 40.3896 L10.5 10.5" clip-path="url(#clipPath12)"
-      /><path fill="none" d="M269.5314 32.7413 L280.0031 40.4448 L268.0958 45.6618" clip-path="url(#clipPath12)"
+    ><g transform="translate(320,100)"
+    ><path fill="none" d="M279.5 10.5 L10.5 10.5" clip-path="url(#clipPath12)"
+      /><path fill="none" d="M268.7417 4 L280 10.5 L268.7417 17" clip-path="url(#clipPath12)"
     /></g
-    ><g transform="translate(530,110)"
-    ><path fill="none" d="M70.0809 11.408 L10.5 140.5" clip-path="url(#clipPath13)"
-      /><path fill="none" d="M59.6708 18.4522 L70.2905 10.954 L71.4743 23.9" clip-path="url(#clipPath13)"
+    ><g transform="translate(530,100)"
+    ><path fill="none" d="M69.5 10.5 L40.5 10.5" clip-path="url(#clipPath13)"
+      /><path fill="none" d="M40.5 10.5 L40.5 150.5" clip-path="url(#clipPath13)"
+      /><path fill="none" d="M40.5 150.5 L10.5 150.5" clip-path="url(#clipPath13)"
+      /><path fill="none" d="M58.7417 4 L70 10.5 L58.7417 17" clip-path="url(#clipPath13)"
     /></g
   ></g
 ></svg

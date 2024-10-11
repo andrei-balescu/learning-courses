@@ -7,9 +7,10 @@
       <x>70</x>
       <y>80</y>
       <w>120</w>
-      <h>70</h>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>RemoteControl
+    <panel_attributes>&lt;&lt;Abstraction&gt;&gt;
+RemoteControl
 --
 +TurnOn
 +TurnOff</panel_attributes>
@@ -32,12 +33,12 @@
     <id>Relation</id>
     <coordinates>
       <x>110</x>
-      <y>140</y>
+      <y>150</y>
       <w>30</w>
-      <h>100</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -47,7 +48,7 @@
       <w>170</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+    <panel_attributes>&lt;&lt;Implementor&gt;&gt;
 IDevice
 --
 +TurnOn

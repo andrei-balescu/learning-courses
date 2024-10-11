@@ -7,9 +7,10 @@
       <x>80</x>
       <y>100</y>
       <w>140</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>VideoEditor
+    <panel_attributes>&lt;&lt;Client&gt;&gt;
+VideoEditor
 --
 +ApplyFilter(filter)
 </panel_attributes>
@@ -23,7 +24,7 @@
       <w>120</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+    <panel_attributes>&lt;&lt;Target&gt;&gt;
 IColorFilter
 --
 +Apply(video)</panel_attributes>
@@ -48,9 +49,10 @@ IColorFilter
       <x>410</x>
       <y>200</y>
       <w>120</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>RainbowFilter
+    <panel_attributes>&lt;&lt;Adapter&gt;&gt;
+RainbowFilter
 --
 +Apply(video)</panel_attributes>
     <additional_attributes/>
@@ -94,9 +96,10 @@ IColorFilter
       <x>590</x>
       <y>200</y>
       <w>130</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>Rainbow
+    <panel_attributes>&lt;&lt;Adaptee&gt;&gt;
+Rainbow
 --
 +Update(video)</panel_attributes>
     <additional_attributes/>

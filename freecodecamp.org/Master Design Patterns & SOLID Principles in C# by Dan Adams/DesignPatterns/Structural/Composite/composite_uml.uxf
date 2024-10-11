@@ -4,12 +4,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>190</x>
+      <x>170</x>
       <y>50</y>
-      <w>100</w>
+      <w>120</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+    <panel_attributes>&lt;&lt;Component&gt;&gt;
 IItem
 --
 +Price</panel_attributes>
@@ -21,9 +21,10 @@ IItem
       <x>90</x>
       <y>180</y>
       <w>110</w>
-      <h>60</h>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Box
+    <panel_attributes>&lt;&lt;Composite&gt;&gt;
+Box
 --
 -items:Item[]
 +Price
@@ -36,9 +37,10 @@ IItem
       <x>260</x>
       <y>180</y>
       <w>100</w>
-      <h>50</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>Item
+    <panel_attributes>&lt;&lt;Leaf&gt;&gt;
+Item
 --
 +Price</panel_attributes>
     <additional_attributes/>
@@ -70,10 +72,10 @@ IItem
     <coordinates>
       <x>110</x>
       <y>70</y>
-      <w>100</w>
+      <w>80</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0;80.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>

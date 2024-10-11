@@ -21,4 +21,5 @@ The Command pattern is great when you want to queue operations or schedule their
 - (con) code may become more complex when you're adding a new layer between senders and receivers.
 
 ![Command Pattern - UML](command_uml.svg)
+---
 ![Command Pattern - UML](command_uml2.svg)
