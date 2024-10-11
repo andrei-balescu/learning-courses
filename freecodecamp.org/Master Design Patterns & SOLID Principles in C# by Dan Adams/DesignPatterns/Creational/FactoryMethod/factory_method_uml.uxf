@@ -6,13 +6,14 @@
     <coordinates>
       <x>190</x>
       <y>50</y>
-      <w>140</w>
-      <h>60</h>
+      <w>170</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Creator
+    <panel_attributes>&lt;&lt;Creator&gt;&gt;
+Controller
 --
-+Operation
-+FactoryMethod()</panel_attributes>
++Render()
++CreateViewEngine()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -20,24 +21,25 @@
     <coordinates>
       <x>190</x>
       <y>160</y>
-      <w>140</w>
-      <h>50</h>
+      <w>170</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>ConcreteCreator
+    <panel_attributes>&lt;&lt;ConcreteCreator&gt;&gt;
+TwigController
 --
-+FactoryMethod()</panel_attributes>
++CreateViewEngine()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>100</y>
+      <y>120</y>
       <w>30</w>
-      <h>80</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -60,5 +62,49 @@
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>90</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>BladeViewEngine</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>90</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>200</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>TwigViewEngine</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>200</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

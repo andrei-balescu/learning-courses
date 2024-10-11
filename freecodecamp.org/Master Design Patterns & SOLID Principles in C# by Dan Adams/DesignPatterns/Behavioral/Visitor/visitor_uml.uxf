@@ -99,12 +99,12 @@ IVisitor
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
+      <x>190</x>
       <y>200</y>
-      <w>140</w>
+      <w>160</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>LawCompany
+    <panel_attributes>RestaurantCompany
 --
 +Accept(visitor)</panel_attributes>
     <additional_attributes/>
