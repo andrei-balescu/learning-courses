@@ -4,8 +4,8 @@ ENV ACCEPT_EULA=y
 ENV SA_PASSWORD=Pwd12345!
 
 WORKDIR /tmp
-COPY AdventureWorksDB/AdventureWorksLT2022.bak .
-COPY AdventureWorksDB/DB_AW_RESTORE.sql .
+COPY backup/AdventureWorksLT2022.bak .
+COPY backup/DB_AW_RESTORE.sql .
 
 # sleep 10 sec to allow installation to finish - adjust for PC latency
 # execute SQL restore script (-C = trust server certificate)
