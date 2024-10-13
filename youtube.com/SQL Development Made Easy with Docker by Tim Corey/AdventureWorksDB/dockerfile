@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/mssql/server:2022-latest AS build
+
+ENV ACCEPT_EULA=y
+ENV SA_PASSWORD=Pwd12345!
+
+WORKDIR /tmp
+COPY backup/AdventureWorksLT2022.bak .
+COPY backup/DB_AW_RESTORE_SANITIZE.sql .
+
+# sleep 10 sec to allow installation to finish - adjust for PC latency
+# execute SQL restore script (-C = trust server certificate)
+# stop SQL Server
+RUN /opt/mssql/bin/sqlservr --accept-eula & sleep 20 \
+    # && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Pwd12345!" -C -i DB_AW_RESTORE_SANITIZE.sql \ (deprecated)
+    && /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "Pwd12345!" -C -i DB_AW_RESTORE_SANITIZE.sql \
+    && pkill sqlservr
+
+
+# copy restored data to new build (without .bak, .sql) files
+FROM mcr.microsoft.com/mssql/server:2022-latest AS release
+
+ENV ACCEPT_EULA=y
+ENV SA_PASSWORD=Pwd12345!
+
+COPY --from=build /var/opt/mssql/data /var/opt/mssql/data
