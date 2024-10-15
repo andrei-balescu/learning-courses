@@ -83,6 +83,7 @@ Document (JSON, BLOB, XML etc)
 ```
 
 Graph (relational nodes)
+
 ![noSQL - Graph](nosql_graph.svg)
 
 Key-value Hash (Keys are mapped to values - strings, json, blob etc)
@@ -104,3 +105,122 @@ Key-value Hash (Keys are mapped to values - strings, json, blob etc)
 Queries are requests made to the database management system for specific information.  
 As the database's structure become more and more complex, it becomes more difficult to get the specific pieces of information we want.  
 A google search is a query.  
+
+## Tables and keys
+|student_id |name   |major      |
+|:--:       |:--:   |:--:       |
+|1          |Kate   |Sociology  |
+|2          |Jack   |Biology    |
+|3          |Claire |English    |
+|4          |Jack   |Biology    |
+|5          |Mike   |Comp. sci  |
+`student_id` = primary key  
+Notice that rows #2 and #4 have the same data - distinguished by primary key.  
+
+|email                  |password   |date_created   |Type       |
+|:--:                   |:--:       |:--:           |:--:       |
+|fakemail@fake.co       |shivers1   |1999-05.11     |Admin      |
+|fakemail112@fake.co    |wordpass   |2001-03-15     |Free       |
+|rsmith@fake.co         |redRoad23  |2010-09-05     |Free       |
+|jdoe@fake.co           |passw0rd   |2008-06-05     |Premium    |
+|jhalpert@fake.co       |557df32d   |2003-07-22     |Free       |
+`email` = primary key  
+
+Employee
+|emp_id |first_name |last_name  |birth_date |sex    |salary     |
+|:--:   |:--:       |:--:       |:--:       |:--:   |:--:       |
+|100    |Jan        |Levinson   |1961-05-11 |F      |110,000    |
+|101    |Michael    |Scott      |1964-03-15 |M      |75,000     |
+|102    |Josh       |Porter     |1969-09-05 |M      |78,000     |
+|103    |Angela     |Martin     |1971-06-25 |F      |63,000     |
+|104    |Andy       |Bernard    |1973-07-22 |M      |65,000     |
+- `emp_id` = primary key  
+- `emp_id` = surrogate key - has no mapping to anything in the real world  
+
+Employee
+|emp_ssn    |first_name |last_name  |birth_date |sex    |salary     |
+|:--:       |:--:       |:--:       |:--:       |:--:   |:--:       |
+|123456789  |Jan        |Levinson   |1961-05-11 |F      |110,000    |
+|555667777  |Michael    |Scott      |1964-03-15 |M      |75,000     |
+|8886665555 |Josh       |Porter     |1969-09-05 |M      |78,000     |
+|111332467  |Angela     |Martin     |1971-06-25 |F      |63,000     |
+|99857463   |Andy       |Bernard    |1973-07-22 |M      |65,000     |
+- `emp_ssn` = primary key  
+- `emp_ssn` = natural key - has a purpose in the real world  
+
+---
+
+Employee
+|emp_id |first_name |last_name  |birth_date |sex    |salary     |branch_id  |super_id   |
+|:--:   |:--:       |:--:       |:--:       |:--:   |:--:       |:--:       |:--:       |
+|100    |Jan        |Levinson   |1961-05-11 |F      |110,000    |1          |NULL       |
+|101    |Michael    |Scott      |1964-03-15 |M      |75,000     |2          |100        |
+|102    |Josh       |Porter     |1969-09-05 |M      |78,000     |3          |100        |
+|103    |Angela     |Martin     |1971-06-25 |F      |63,000     |2          |101        |
+|104    |Andy       |Bernard    |1973-07-22 |M      |65,000     |3          |101        |
+
+Branch
+|branch_id  |branch_name    |mgr_id |
+|:--:       |:--:           |:--:   |
+|2          |Scranton       |101    |
+|3          |Stamford       |102    |
+|1          |Corporate      |108    |
+- `Employee.branch_id` = foreign key referencing `Branch.branch_id`  
+- `Employee.super_id` = foreign key referencing `Employee.emp_id`  
+- `Branch.mgr_id` = foreign key referencing `Employee.emp_id`  
+A foreign key stores the primary key from another table.  
+Foreign keys define relationships between tables.  
+
+Branch Supplier
+|branch_id  |supplier_name          |supply_type        |
+|:--:       |:--:                   |:--:               |
+|2          |Hammer Mill            |Paper              |
+|2          |Uni-ball               |Writing Ustensils  |
+|3          |Patriot Paper          |Paper              |
+|2          |J.T. Forms & Labels    |Custom Forms       |
+|3          |Uni-Ball               |Writing Ustensils  |
+|3          |Hammer Mill            |Paper              |
+|3          |Stamford Labels        |Custom Forms       |
+`branch_id` + `supplier_name` = primary key (composite key)
+
+---
+
+Employee
+|emp_id |first_name |last_name  |birth_date |sex    |salary     |branch_id  |super_id   |
+|:--:   |:--:       |:--:       |:--:       |:--:   |:--:       |:--:       |:--:       |
+|100    |Jan        |Levinson   |1961-05-11 |F      |110,000    |1          |NULL       |
+|101    |Michael    |Scott      |1964-03-15 |M      |75,000     |2          |100        |
+|102    |Josh       |Porter     |1969-09-05 |M      |78,000     |3          |100        |
+|103    |Angela     |Martin     |1971-06-25 |F      |63,000     |2          |101        |
+|104    |Andy       |Bernard    |1973-07-22 |M      |65,000     |3          |101        |
+
+Branch
+|branch_id  |branch_name    |mgr_id |
+|:--:       |:--:           |:--:   |
+|2          |Scranton       |101    |
+|3          |Stamford       |102    |
+|1          |Corporate      |108    |
+
+Client
+|client_id  |client_name            |branch_id  |
+|:--:       |:--:                   |:--:       |
+|400        |Dunmore Highschool     |2          |
+|401        |Lackawana Country      |2          |
+|402        |FedEx                  |3          |
+|403        |John Daly Law, LLC     |3          |
+|404        |Scranton Whitepages    |2          |
+- `client_id` = primary key
+- `branch_id` = foreign key referencing `Branch.branch_id`
+
+Works_With
+|emp_id |client_id  |total_sales    |
+|:--:   |:--:       |:--:           |
+|107    |400        |55,000         |
+|101    |401        |267,000        |
+|105    |402        |22,500         |
+|104    |403        |5,000          |
+|105    |403        |12,000         |
+|107    |404        |33,000         |
+- `emp_id` + `client_id` = primary (composite) key
+- `emp_id` = foreign key referencing `Employee.emp_id`
+- `client_id` = foreign key referencing `Client.client_id`
