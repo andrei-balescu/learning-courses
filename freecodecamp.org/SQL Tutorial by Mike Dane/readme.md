@@ -8,6 +8,11 @@ Throughout the course we'll be looking at various topics including schema design
 - Video tutorial: https://www.youtube.com/watch?v=HXV3zeQKqGY&t=17s
 - Sample Company Database: https://www.giraffeacademy.com/databases/sql/creating-company-database/
 
+## Summary
+- [What is a database?](#database-management-systems)
+- [Tables and keys](#tables-and-keys)
+- [SQL basics](#structured-query-language-sql)
+
 ## Database Management Systems
 DBMS - a special software program that helps users create and maintain a database
 - Makes it easy to manage large amounts of information
@@ -114,7 +119,7 @@ A google search is a query.
 |3          |Claire |English    |
 |4          |Jack   |Biology    |
 |5          |Mike   |Comp. sci  |
-`student_id` = primary key  
+- `student_id` = primary key  
 Notice that rows #2 and #4 have the same data - distinguished by primary key.  
 
 |email                  |password   |date_created   |Type       |
@@ -124,7 +129,7 @@ Notice that rows #2 and #4 have the same data - distinguished by primary key.
 |rsmith@fake.co         |redRoad23  |2010-09-05     |Free       |
 |jdoe@fake.co           |passw0rd   |2008-06-05     |Premium    |
 |jhalpert@fake.co       |557df32d   |2003-07-22     |Free       |
-`email` = primary key  
+- `email` = primary key  
 
 Employee
 |emp_id |first_name |last_name  |birth_date |sex    |salary     |
@@ -181,7 +186,7 @@ Branch Supplier
 |3          |Uni-Ball               |Writing Ustensils  |
 |3          |Hammer Mill            |Paper              |
 |3          |Stamford Labels        |Custom Forms       |
-`branch_id` + `supplier_name` = primary key (composite key)
+- `branch_id` + `supplier_name` = primary key (composite key)
 
 ---
 
@@ -224,3 +229,34 @@ Works_With
 - `emp_id` + `client_id` = primary (composite) key
 - `emp_id` = foreign key referencing `Employee.emp_id`
 - `client_id` = foreign key referencing `Client.client_id`
+
+## Structured Query Language (SQL)
+- SQL is a language used for interacting with Relational Database Managemant Systems (RDBMS)
+    - you can use SQL to get the RDBMS do things for you
+        - Create, retrieve, update & delete data
+        - Create & manage databases
+        - Design & create database tables
+        - Perform administration tasks (security, user management, import/export, etc.)
+- SQL implementations vary between systems
+    - Not all RDBMS' follow the SQL standard to a 'T'
+    - The concepts are the same bu the implementations may vary
+- SQL is actually a hybrid language, so it's 4 types of languages in one
+    - Data Query Language (DQL)
+        - Used to query the database for information
+        - Get information that is already stored there
+    - Data Definition Language (DDL)
+        - Used for defining database schemas
+    - Data Control Language (DCL)
+        - Used for controllong access to the data in the database
+        - User & permission management
+    - Data Manipulation Language (DML)
+        - Used for inserting, updating and deleting data from the database
+- A query is a set of instructions given to the RDBMS (written as SQL) that tell the RDBMS what information you want it to retrieve for you
+    - TONS of data in a DB
+    - Often hidden in a complex schema
+    - Goal is to only get the data you need
+```sql
+SELECT employee.name, employee.age
+    FROM employee
+    WHERE employee.salary > 30000;
+```
