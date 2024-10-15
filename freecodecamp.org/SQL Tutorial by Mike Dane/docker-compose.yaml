@@ -1,0 +1,24 @@
+services:
+  mssql:
+   image: mcr.microsoft.com/mssql/server:2022-latest
+   environment:
+     ACCEPT_EULA: Y
+     # root user: sa
+     SA_PASSWORD: Pwd12345!
+   volumes:
+     - /home/ozzie/Development/db/mssql2022:/var/opt/mssql
+   ports:
+     # VS code connect to: localhost,1433
+     - 1433:1433
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_PORT=3306
+      - MYSQL_USER="user"
+      # root user: root
+      - MYSQL_PASSWORD="secret"
+    volumes:
+      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
