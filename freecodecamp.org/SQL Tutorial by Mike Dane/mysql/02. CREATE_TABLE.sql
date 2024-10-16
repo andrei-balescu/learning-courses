@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS student;
 
 CREATE TABLE student(
 	student_id	INT PRIMARY KEY,
-    name		VARCHAR(20),
-    major		VARCHAR(20)
+    name		VARCHAR(20) NOT NULL,
+    major		VARCHAR(20) DEFAULT 'undecided'
 --    ,PRIMARY KEY (student_id) -- alternative syntax
 );
 

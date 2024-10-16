@@ -4,9 +4,9 @@ IF (object_id('Student', 'U')) IS NOT NULL
     DROP TABLE Student;
 
 CREATE TABLE Student(
-    StudentId   INT PRIMARY KEY,
-    Name        NVARCHAR(20),
-    Major       NVARCHAR(20)
+    StudentId   INT PRIMARY KEY IDENTITY,
+    Name        NVARCHAR(20) NOT NULL,
+    Major       NVARCHAR(20) DEFAULT 'undecided'
 );
 
 IF NOT EXISTS (

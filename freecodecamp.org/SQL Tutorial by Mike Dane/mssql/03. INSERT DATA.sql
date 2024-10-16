@@ -2,18 +2,22 @@ USE FreecodecampSqlTutorial;
 
 CREATE TABLE #Student
 (
-    StudentId   INT,
-    Name        NVARCHAR(20),
-    Major       NVARCHAR(20)
+    StudentId   INT IDENTITY,
+    Name        NVARCHAR(20) NOT NULL,
+    Major       NVARCHAR(20) DEFAULT 'undecided'
 )
 
 INSERT INTO #Student
 VALUES
-    (1, 'Jack', 'Biology'),
-    (2, 'Kate', 'Sociology'),
-    (3, 'Claire', 'English'),
-    (4, 'Jack', 'Biology'),
-    (5, 'Mike', 'Computer Science');
+    ('Jack', 'Biology'),
+    ('Kate', 'Sociology');
+INSERT INTO #Student (Name)
+VALUES 
+    ('Claire');
+INSERT INTO #Student
+VALUES
+    ('Jack', 'Biology'),
+    ('Mike', 'Computer Science');
 
 MERGE INTO Student AS s
 USING #Student AS ts
@@ -23,8 +27,11 @@ WHEN MATCHED THEN
         SET Name = ts.Name, 
             Major = ts.Major
 WHEN NOT MATCHED THEN
-    INSERT (StudentId, Name, Major) 
-    VALUES (ts.StudentId, ts.Name, ts.Major);
+    INSERT (Name, Major) 
+    VALUES (ts.Name, ts.Major)
+WHEN NOT MATCHED BY SOURCE THEN
+    DELETE
+OUTPUT $action, INSERTED.Name;
 
 SELECT * FROM Student;
 
