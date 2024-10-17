@@ -216,6 +216,19 @@ Branch
 - `branch_id` = primary key
 - `Branch.mgr_id` = foreign key referencing `Employee.emp_id` 
 
+Branch Supplier
+|branch_id  |supplier_name          |supply_type        |
+|:--:       |:--:                   |:--:               |
+|2          |Hammer Mill            |Paper              |
+|2          |Uni-ball               |Writing Ustensils  |
+|3          |Patriot Paper          |Paper              |
+|2          |J.T. Forms & Labels    |Custom Forms       |
+|3          |Uni-Ball               |Writing Ustensils  |
+|3          |Hammer Mill            |Paper              |
+|3          |Stamford Labels        |Custom Forms       |
+- `branch_id` + `supplier_name` = primary key (composite key)
+- `branch_id` = foreign key referencing `Branch.branch_id`
+
 Client
 |client_id  |client_name            |branch_id  |
 |:--:       |:--:                   |:--:       |
@@ -239,18 +252,6 @@ Works_With
 - `emp_id` + `client_id` = primary (composite) key
 - `emp_id` = foreign key referencing `Employee.emp_id`
 - `client_id` = foreign key referencing `Client.client_id`
-
-Branch Supplier
-|branch_id  |supplier_name          |supply_type        |
-|:--:       |:--:                   |:--:               |
-|2          |Hammer Mill            |Paper              |
-|2          |Uni-ball               |Writing Ustensils  |
-|3          |Patriot Paper          |Paper              |
-|2          |J.T. Forms & Labels    |Custom Forms       |
-|3          |Uni-Ball               |Writing Ustensils  |
-|3          |Hammer Mill            |Paper              |
-|3          |Stamford Labels        |Custom Forms       |
-- `branch_id` + `supplier_name` = primary key (composite key)
 
 ## Structured Query Language (SQL)
 - SQL is a language used for interacting with Relational Database Managemant Systems (RDBMS)
