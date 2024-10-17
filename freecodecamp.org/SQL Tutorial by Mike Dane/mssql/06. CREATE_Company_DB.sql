@@ -52,15 +52,14 @@ ADD CONSTRAINT FK_Employee_Branch
 FOREIGN KEY (BranchID)
 REFERENCES Branch(BranchID)
 ON DELETE SET NULL;
-
+GO
 
 -- Introducing FOREIGN KEY constraint 'FK_Employee_Employee_SuperID' on table 'Employee' may cause cycles or multiple cascade paths. Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
-ALTER TABLE Employee
-ADD CONSTRAINT FK_Employee_Employee_SuperID
-FOREIGN KEY (SuperID)
-REFERENCES Employee(EmpID)
-ON DELETE NO ACTION; 
-GO
+-- ALTER TABLE Employee
+-- ADD CONSTRAINT FK_Employee_Employee_SuperID
+-- FOREIGN KEY (SuperID)
+-- REFERENCES Employee(EmpID)
+-- ON DELETE NO ACTION; -- blocks deletion of row that is referenced
 
 CREATE TRIGGER TR_Employee_Delete
 ON Employee
@@ -68,7 +67,7 @@ AFTER DELETE
 AS
     UPDATE Employee
         SET SuperID = NULL
-    WHERE SuperID IN (SELECT deleted.EmpID FROM deleted)
+    WHERE SuperID IN (SELECT deleted.EmpID FROM deleted) -- workaround for ON DELETE SET NULL
 GO
 
 IF OBJECT_ID('Client', 'U') IS NOT NULL
