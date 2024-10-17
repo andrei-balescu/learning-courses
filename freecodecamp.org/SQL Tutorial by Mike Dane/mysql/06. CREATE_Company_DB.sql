@@ -130,6 +130,9 @@ INSERT INTO employee VALUES
 	(107, 'Andy', 'Bernard', '1973-07-22', 'M', 65000, 106, 3),
     (108, 'Jim', 'Halpert', '1978-10-01', 'M', 71000, 106, 3);
     
+-- Buffalo branch
+INSERT INTO branch VALUES (4, 'Buffalo', NULL, NULL);
+    
 -- Branch supplier
 INSERT INTO branch_supplier VALUES
 	(2, 'Hammer Mill', 'Paper'),
