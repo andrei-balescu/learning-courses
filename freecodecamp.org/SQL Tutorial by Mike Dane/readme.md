@@ -11,6 +11,7 @@ Throughout the course we'll be looking at various topics including schema design
 ## Summary
 - [What is a database?](#database-management-systems)
 - [Tables and keys](#tables-and-keys)
+- [Company database](#company-database)
 - [SQL basics](#structured-query-language-sql)
 
 ## Database Management Systems
@@ -112,6 +113,9 @@ As the database's structure become more and more complex, it becomes more diffic
 A google search is a query.  
 
 ## Tables and keys
+
+### Primary keys
+
 |student_id |name   |major      |
 |:--:       |:--:   |:--:       |
 |1          |Kate   |Sociology  |
@@ -153,7 +157,19 @@ Employee
 - `emp_ssn` = primary key  
 - `emp_ssn` = natural key - has a purpose in the real world  
 
----
+Branch Supplier
+|branch_id  |supplier_name          |supply_type        |
+|:--:       |:--:                   |:--:               |
+|2          |Hammer Mill            |Paper              |
+|2          |Uni-ball               |Writing Ustensils  |
+|3          |Patriot Paper          |Paper              |
+|2          |J.T. Forms & Labels    |Custom Forms       |
+|3          |Uni-Ball               |Writing Ustensils  |
+|3          |Hammer Mill            |Paper              |
+|3          |Stamford Labels        |Custom Forms       |
+- `branch_id` + `supplier_name` = primary key (composite key)
+
+### Foreign keys
 
 Employee
 |emp_id |first_name |last_name  |birth_date |sex    |salary     |branch_id  |super_id   |
@@ -176,19 +192,8 @@ Branch
 A foreign key stores the primary key from another table.  
 Foreign keys define relationships between tables.  
 
-Branch Supplier
-|branch_id  |supplier_name          |supply_type        |
-|:--:       |:--:                   |:--:               |
-|2          |Hammer Mill            |Paper              |
-|2          |Uni-ball               |Writing Ustensils  |
-|3          |Patriot Paper          |Paper              |
-|2          |J.T. Forms & Labels    |Custom Forms       |
-|3          |Uni-Ball               |Writing Ustensils  |
-|3          |Hammer Mill            |Paper              |
-|3          |Stamford Labels        |Custom Forms       |
-- `branch_id` + `supplier_name` = primary key (composite key)
-
----
+## Company Database
+This database schema is used to showcase more advanced SQL statements in the second part of the course.
 
 Employee
 |emp_id |first_name |last_name  |birth_date |sex    |salary     |branch_id  |super_id   |
@@ -198,6 +203,9 @@ Employee
 |102    |Josh       |Porter     |1969-09-05 |M      |78,000     |3          |100        |
 |103    |Angela     |Martin     |1971-06-25 |F      |63,000     |2          |101        |
 |104    |Andy       |Bernard    |1973-07-22 |M      |65,000     |3          |101        |
+- `emp_id` = primary key
+- `Employee.super_id` = foreign key referencing `Employee.emp_id` 
+- `Employee.branch_id` = foreign key referencing `Branch.branch_id`  
 
 Branch
 |branch_id  |branch_name    |mgr_id |
@@ -205,6 +213,8 @@ Branch
 |2          |Scranton       |101    |
 |3          |Stamford       |102    |
 |1          |Corporate      |108    |
+- `branch_id` = primary key
+- `Branch.mgr_id` = foreign key referencing `Employee.emp_id` 
 
 Client
 |client_id  |client_name            |branch_id  |
@@ -229,6 +239,18 @@ Works_With
 - `emp_id` + `client_id` = primary (composite) key
 - `emp_id` = foreign key referencing `Employee.emp_id`
 - `client_id` = foreign key referencing `Client.client_id`
+
+Branch Supplier
+|branch_id  |supplier_name          |supply_type        |
+|:--:       |:--:                   |:--:               |
+|2          |Hammer Mill            |Paper              |
+|2          |Uni-ball               |Writing Ustensils  |
+|3          |Patriot Paper          |Paper              |
+|2          |J.T. Forms & Labels    |Custom Forms       |
+|3          |Uni-Ball               |Writing Ustensils  |
+|3          |Hammer Mill            |Paper              |
+|3          |Stamford Labels        |Custom Forms       |
+- `branch_id` + `supplier_name` = primary key (composite key)
 
 ## Structured Query Language (SQL)
 - SQL is a language used for interacting with Relational Database Managemant Systems (RDBMS)
