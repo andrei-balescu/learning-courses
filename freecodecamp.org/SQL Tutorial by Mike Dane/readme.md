@@ -13,6 +13,8 @@ Throughout the course we'll be looking at various topics including schema design
 - [Tables and keys](#tables-and-keys)
 - [Company database](#company-database)
 - [SQL basics](#structured-query-language-sql)
+- [ER Diagrams](#er-diagrams)
+    - [Designing an ER diagram](#designing-an-er-diagram)
 
 ## Database Management Systems
 DBMS - a special software program that helps users create and maintain a database
@@ -307,3 +309,23 @@ SELECT employee.name, employee.age
 - **Weak entity** an entity that cannot be defined by it's attributes alone -> `Exam`
 - **Identifying relationship** - a relationship that is used to uniquely identify a weak entity -> `Has`
     - weak entity always has total participation in the relationship
+
+### Designing an ER diagram
+**Company data requirements**
+The company is organized into branches. Each branch has a unique number, a name, and a particular employee who manages it.
+
+The company makes its money by selling to clients. Each client has a name and a unique number to identify it.
+
+The foundation of the company is its employees. Each employee has a name, birthday, sex, salary and a unique number.
+
+An employee can work for one branch at a time, and each branch will be managed by one of the employees that work there. We'll also want to keep track of when the current manager started as a manager.
+
+An employee can act as a supervisor for other employees at the branch, an employee may also act as the supervisor for employees at other branches. An employee can have at most one supervisor.
+
+A branch may handle a number of clients, with each client having a name and a unique number to identify it. A single client may only be handled by one branch at a time.
+
+Employees can work with clients controlled by their branch to sell them products. If necessary multiple employees can work with the same client. We'll want to keep track of how many dollars worth of products each employee sells to each client they work with.
+
+Many branches will need to work with suppliers to buy inventory. For each supplier we'll keep track o their name and the type of product they're selling their branch. A single supplier may supply products to multiple branches.
+
+![ER diagram - company](er_company.svg)

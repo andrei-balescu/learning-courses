@@ -303,6 +303,7 @@ bg=green</panel_attributes>
       <h>30</h>
     </coordinates>
     <panel_attributes>bg=gray
+lt=.
 Exam</panel_attributes>
     <additional_attributes/>
   </element>
@@ -328,7 +329,7 @@ Has</panel_attributes>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=.
-m2=N</panel_attributes>
+m2=1</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -340,7 +341,7 @@ m2=N</panel_attributes>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=-
-m1=1</panel_attributes>
+m1=N</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
