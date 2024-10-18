@@ -11,10 +11,16 @@ Throughout the course we'll be looking at various topics including schema design
 ## Summary
 - [What is a database?](#database-management-systems)
 - [Tables and keys](#tables-and-keys)
-- [Company database](#company-database)
+    - [Primary keys](#primary-keys)
+    - [Foreign keys](#foreign-keys)
 - [SQL basics](#structured-query-language-sql)
 - [ER Diagrams](#er-diagrams)
     - [Designing an ER diagram](#designing-an-er-diagram)
+- [Company database](#company-database)
+    - [Company data requirements](#company-data-requirements)
+    - [Company ER diagram](#company-er-diagram)
+    - [Company Schema](#company-schema)
+    - [Company tables](#company-tables)
 
 ## Database Management Systems
 DBMS - a special software program that helps users create and maintain a database
@@ -194,9 +200,94 @@ Branch
 A foreign key stores the primary key from another table.  
 Foreign keys define relationships between tables.  
 
-## Company Database
+## Structured Query Language (SQL)
+- SQL is a language used for interacting with Relational Database Managemant Systems (RDBMS)
+    - you can use SQL to get the RDBMS do things for you
+        - Create, retrieve, update & delete data
+        - Create & manage databases
+        - Design & create database tables
+        - Perform administration tasks (security, user management, import/export, etc.)
+- SQL implementations vary between systems
+    - Not all RDBMS' follow the SQL standard to a 'T'
+    - The concepts are the same bu the implementations may vary
+- SQL is actually a hybrid language, so it's 4 types of languages in one
+    - Data Query Language (DQL)
+        - Used to query the database for information
+        - Get information that is already stored there
+    - Data Definition Language (DDL)
+        - Used for defining database schemas
+    - Data Control Language (DCL)
+        - Used for controllong access to the data in the database
+        - User & permission management
+    - Data Manipulation Language (DML)
+        - Used for inserting, updating and deleting data from the database
+- A query is a set of instructions given to the RDBMS (written as SQL) that tell the RDBMS what information you want it to retrieve for you
+    - TONS of data in a DB
+    - Often hidden in a complex schema
+    - Goal is to only get the data you need
+```sql
+SELECT employee.name, employee.age
+    FROM employee
+    WHERE employee.salary > 30000;
+```
+
+## ER Diagrams
+- ER = entity relationship
+
+![ER Diagram - Student](er_student.svg)
+- **Entity** - an object we want to model and store information about -> `Student`, `Class`, `Exam`
+- **Attributes** - specific pieces of information about an entity -> `student_id`, `gpa`
+- **Primary Key** - an attribute(s) that uniquely identify an entity in the database table -> `student_id`
+- **Composite attribute** - an attribute that can be broken up into sub-attributes -> `name`
+- **Multi-valued attribute** - an attribute that can have more than one value -> `clubs`
+- **Derived attribute** - an attribute that can be derived from the other attributes -> `has_honors`
+- **Multiple entities** - you can derive more than one entity in a ER diagram
+- **Relationships** - defines a relationship between two entities -> `Takes`
+- **Total participation** - all members must participate in the relationship
+    - a student may or may not take a class (**partial participation**)
+    - all classes must have students
+- **Relationship attribute** - an attribute about a relationship -> `grade`
+- **Relationship cardinality** - the number of instances of an entity that can be associated with a relationship
+    - 1:1
+    - 1:N
+    - N:M
+- **Weak entity** an entity that cannot be defined by it's attributes alone -> `Exam`
+- **Identifying relationship** - a relationship that is used to uniquely identify a weak entity -> `Has`
+    - weak entity always has total participation in the relationship
+
+## Company database
 This database schema is used to showcase more advanced SQL statements in the second part of the course.
 
+### Company data requirements
+The company is organized into branches. Each branch has a unique number, a name, and a particular employee who manages it.
+
+The company makes its money by selling to clients. Each client has a name and a unique number to identify it.
+
+The foundation of the company is its employees. Each employee has a name, birthday, sex, salary and a unique number.
+
+An employee can work for one branch at a time, and each branch will be managed by one of the employees that work there. We'll also want to keep track of when the current manager started as a manager.
+
+An employee can act as a supervisor for other employees at the branch, an employee may also act as the supervisor for employees at other branches. An employee can have at most one supervisor.
+
+A branch may handle a number of clients, with each client having a name and a unique number to identify it. A single client may only be handled by one branch at a time.
+
+Employees can work with clients controlled by their branch to sell them products. If necessary multiple employees can work with the same client. We'll want to keep track of how many dollars worth of products each employee sells to each client they work with.
+
+Many branches will need to work with suppliers to buy inventory. For each supplier we'll keep track o their name and the type of product they're selling their branch. A single supplier may supply products to multiple branches.
+
+### Company ER diagram
+![ER diagram - Company](er_company.svg)
+
+### Company Schema
+**Step 1: Mapping of regular entity types.** For each regular entity type create a relation (table) that includes all the simple attributes of that table.  
+**Step 2: Mapping of weak entity types.** For each weak entity type create a relation (table) that includes all simple attributes of the weak entity. The primary key of the new relation should be the partial key of the weak entity plus the primary key of it's owner.  
+**Step 3: Mapping the Binary 1:1 relationships.** Include one side of the relationship as a foreign key in the other. Favor total participation.  
+**Step 4: Mapping of Binary 1:N relationships.** Include the 1 side's primary key as a foreign key to the N side relation (table).  
+**Step 5: Mapping of Binary M:N relationships.** Create a new relation (table) who's primary key is a combination of both entitirs' primary keys. Also include any relationship attributes.
+**Step 6: ...** Work with more complex relationships (e.g. non-binary)
+![Schema diagram - Company](schema_company.svg)
+
+### Company tables
 Employee
 |emp_id |first_name |last_name  |birth_date |sex    |salary     |branch_id  |super_id   |
 |:--:   |:--:       |:--:       |:--:       |:--:   |:--:       |:--:       |:--:       |
@@ -254,78 +345,3 @@ Works_With
 - `emp_id` + `client_id` = primary (composite) key
 - `emp_id` = foreign key referencing `Employee.emp_id`
 - `client_id` = foreign key referencing `Client.client_id`
-
-## Structured Query Language (SQL)
-- SQL is a language used for interacting with Relational Database Managemant Systems (RDBMS)
-    - you can use SQL to get the RDBMS do things for you
-        - Create, retrieve, update & delete data
-        - Create & manage databases
-        - Design & create database tables
-        - Perform administration tasks (security, user management, import/export, etc.)
-- SQL implementations vary between systems
-    - Not all RDBMS' follow the SQL standard to a 'T'
-    - The concepts are the same bu the implementations may vary
-- SQL is actually a hybrid language, so it's 4 types of languages in one
-    - Data Query Language (DQL)
-        - Used to query the database for information
-        - Get information that is already stored there
-    - Data Definition Language (DDL)
-        - Used for defining database schemas
-    - Data Control Language (DCL)
-        - Used for controllong access to the data in the database
-        - User & permission management
-    - Data Manipulation Language (DML)
-        - Used for inserting, updating and deleting data from the database
-- A query is a set of instructions given to the RDBMS (written as SQL) that tell the RDBMS what information you want it to retrieve for you
-    - TONS of data in a DB
-    - Often hidden in a complex schema
-    - Goal is to only get the data you need
-```sql
-SELECT employee.name, employee.age
-    FROM employee
-    WHERE employee.salary > 30000;
-```
-
-## ER Diagrams
-- ER = entity relationship
-
-![ER Diagram - Student](er_student.svg)
-- **Entity** - an object we want to model and store information about -> `Student`, `Class`, `Exam`
-- **Attributes** - specific pieces of information about an entity -> `student_id`, `gpa`
-- **Primary Key** - an attribute(s) that uniquely identify an entity in the database table -> `student_id`
-- **Composite attribute** - an attribute that can be broken up into sub-attributes -> `name`
-- **Multi-valued attribute** - an attribute that can have more than one value -> `clubs`
-- **Derived attribute** - an attribute that can be derived from the other attributes -> `has_honors`
-- **Multiple entities** - you can derive more than one entity in a ER diagram
-- **Relationships** - defines a relationship between two entities -> `Takes`
-- **Total participation** - all members must participate in the relationship
-    - a student may or may not take a class (partial participation)
-    - all classes must have students
-- **Relationship attribute** - an attribute about a relationship -> `grade`
-- **Relationship cardinality** - the number of instances of an entity that can be associated with a relationship
-    - 1:1
-    - 1:N
-    - N:M
-- **Weak entity** an entity that cannot be defined by it's attributes alone -> `Exam`
-- **Identifying relationship** - a relationship that is used to uniquely identify a weak entity -> `Has`
-    - weak entity always has total participation in the relationship
-
-### Designing an ER diagram
-**Company data requirements**
-The company is organized into branches. Each branch has a unique number, a name, and a particular employee who manages it.
-
-The company makes its money by selling to clients. Each client has a name and a unique number to identify it.
-
-The foundation of the company is its employees. Each employee has a name, birthday, sex, salary and a unique number.
-
-An employee can work for one branch at a time, and each branch will be managed by one of the employees that work there. We'll also want to keep track of when the current manager started as a manager.
-
-An employee can act as a supervisor for other employees at the branch, an employee may also act as the supervisor for employees at other branches. An employee can have at most one supervisor.
-
-A branch may handle a number of clients, with each client having a name and a unique number to identify it. A single client may only be handled by one branch at a time.
-
-Employees can work with clients controlled by their branch to sell them products. If necessary multiple employees can work with the same client. We'll want to keep track of how many dollars worth of products each employee sells to each client they work with.
-
-Many branches will need to work with suppliers to buy inventory. For each supplier we'll keep track o their name and the type of product they're selling their branch. A single supplier may supply products to multiple branches.
-
-![ER diagram - company](er_company.svg)

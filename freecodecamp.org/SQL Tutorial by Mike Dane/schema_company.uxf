@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>70</y>
+      <w>110</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Employee
+--
+_emp_id_
+first_name
+last_name
+birth_date
+sex
+salary
+super_id (fk)
+branch_id (fk)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>70</y>
+      <w>110</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Branch
+--
+_branch_id_
+mgr_id (fk)
+branch_name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>70</y>
+      <w>110</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Client
+--
+_client_id_
+client_name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>290</y>
+      <w>110</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Works With
+--
+_emp_id (fk)_
+_client_id (fk)_
+total_sales</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>30</x>
+      <y>40</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1:N</panel_attributes>
+    <additional_attributes>50.0;50.0;30.0;50.0;30.0;10.0;100.0;10.0;100.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>30</x>
+      <y>30</y>
+      <w>290</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1:1</panel_attributes>
+    <additional_attributes>50.0;100.0;20.0;100.0;20.0;10.0;270.0;10.0;270.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>140</y>
+      <w>180</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1:N</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;100.0;10.0;100.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>130</y>
+      <w>110</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1:N</panel_attributes>
+    <additional_attributes>10.0;20.0;10.0;50.0;90.0;50.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>240</y>
+      <w>130</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Branch Supplier
+--
+_branch_id (fk)_
+_supplier_name_
+supply_type</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>20</x>
+      <y>150</y>
+      <w>80</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=M:N</panel_attributes>
+    <additional_attributes>60.0;10.0;30.0;10.0;30.0;190.0;50.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>130</y>
+      <w>310</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=M:N</panel_attributes>
+    <additional_attributes>290.0;10.0;290.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>140</y>
+      <w>250</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=M:N</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0;230.0;150.0</additional_attributes>
+  </element>
+</diagram>
