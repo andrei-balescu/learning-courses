@@ -22,3 +22,6 @@ services:
     ports:
       - "3306:3306"
     restart: unless-stopped
+    # execute SQL commands inside container:
+    # docker exec -it sqltutorialbymikedane_mysql_1 bash
+    # mysql -u root -p
