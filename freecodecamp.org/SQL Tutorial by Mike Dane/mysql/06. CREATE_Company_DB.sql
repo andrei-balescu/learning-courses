@@ -77,11 +77,13 @@ CREATE TABLE works_with(
     CONSTRAINT fk_works_with_employee
     FOREIGN KEY(emp_id)
     REFERENCES employee(emp_id)
+    -- FOREIGN KEY is also PRIMARY KEY
     ON DELETE CASCADE,
     
     CONSTRAINT fk_works_with_client
     FOREIGN KEY (client_id)
     REFERENCES client(client_id)
+    -- FOREIGN KEY is also PRIMARY KEY
     ON DELETE CASCADE
 );
 
@@ -96,6 +98,7 @@ CREATE TABLE branch_supplier(
     CONSTRAINT fk_branch_supplier_branch
     FOREIGN KEY(branch_id)
     REFERENCES branch(branch_id)
+    -- FOREIGN KEY is also PRIMARY KEY
     ON DELETE CASCADE
 );
 

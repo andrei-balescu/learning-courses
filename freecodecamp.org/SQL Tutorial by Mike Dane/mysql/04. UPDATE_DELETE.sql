@@ -1,6 +1,8 @@
 USE freecodecamp_sql_tutorial;
 
-SET SQL_SAFE_UPDATES = 0; -- requires setting primary key in where clause
+-- Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
+-- requires declaring primary key in where clause
+SET SQL_SAFE_UPDATES = 0; 
 UPDATE student
 	SET gpa = 8.5
 WHERE major = 'Biology';
