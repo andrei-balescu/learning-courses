@@ -283,3 +283,27 @@ SELECT employee.name, employee.age
     FROM employee
     WHERE employee.salary > 30000;
 ```
+
+## ER Diagrams
+- ER = entity relationship
+
+![ER Diagram - Student](er_student.svg)
+- **Entity** - an object we want to model and store information about -> `Student`, `Class`, `Exam`
+- **Attributes** - specific pieces of information about an entity -> `student_id`, `gpa`
+- **Primary Key** - an attribute(s) that uniquely identify an entity in the database table -> `student_id`
+- **Composite attribute** - an attribute that can be broken up into sub-attributes -> `name`
+- **Multi-valued attribute** - an attribute that can have more than one value -> `clubs`
+- **Derived attribute** - an attribute that can be derived from the other attributes -> `has_honors`
+- **Multiple entities** - you can derive more than one entity in a ER diagram
+- **Relationships** - defines a relationship between two entities -> `Takes`
+- **Total participation** - all members must participate in the relationship
+    - a student may or may not take a class (partial participation)
+    - all classes must have students
+- **Relationship attribute** - an attribute about a relationship -> `grade`
+- **Relationship cardinality** - the number of instances of an entity that can be associated with a relationship
+    - 1:1
+    - 1:N
+    - N:M
+- **Weak entity** an entity that cannot be defined by it's attributes alone -> `Exam`
+- **Identifying relationship** - a relationship that is used to uniquely identify a weak entity -> `Has`
+    - weak entity always has total participation in the relationship
