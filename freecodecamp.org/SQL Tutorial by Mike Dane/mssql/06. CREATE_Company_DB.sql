@@ -1,5 +1,8 @@
 USE FreecodecampSqlTutorial;
 
+-- Script intended to be run multiple times
+-- Recreates/seeds tables on each run
+
 IF OBJECT_ID('FK_Branch_Employee', 'F') IS NOT NULL
     ALTER TABLE Branch
     DROP CONSTRAINT FK_Branch_Employee;
@@ -61,7 +64,7 @@ GO
 -- REFERENCES Employee(EmpID)
 -- ON DELETE NO ACTION; -- blocks deletion of row that is referenced
 
-CREATE TRIGGER TR_Employee_Delete
+CREATE TRIGGER TR_Employee_DELETE
 ON Employee
 AFTER DELETE 
 AS

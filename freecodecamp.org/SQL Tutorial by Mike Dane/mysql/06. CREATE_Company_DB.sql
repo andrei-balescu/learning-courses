@@ -1,5 +1,8 @@
 USE freecodecamp_sql_tutorial;
 
+-- Script intended to be run multiple times
+-- Recreates/seeds tables on each run
+
 -- view foreign keys for a table
 SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
     FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
