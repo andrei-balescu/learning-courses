@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS `freecodecamp_sql_tutorial`;
+SELECT SCHEMA_NAME
+	FROM INFORMATION_SCHEMA.SCHEMATA
+    WHERE SCHEMA_NAME = 'freecodecamp_sql_tutorial'
