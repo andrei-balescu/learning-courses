@@ -1,0 +1,12 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  bulkybook:
+    image: bulkybook
+    build:
+      context: .
+      dockerfile: BulkyBook/Dockerfile
+    ports:
+      - 5093:5093
