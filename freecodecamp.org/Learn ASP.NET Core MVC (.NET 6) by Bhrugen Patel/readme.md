@@ -26,6 +26,7 @@ Learn the basics of .NET Core (.NET 6) and then build a simple CRUD application 
 - 2002: WebForms
 - 2009: MVC
 - 2016: .NET Core
+
 |Date       |.NET           |Support    |
 |--         |--             |--         |
 |June 2006  |.NET Core 1.0  |           |
@@ -56,15 +57,15 @@ Learn the basics of .NET Core (.NET 6) and then build a simple CRUD application 
 - Moddeled after Angular directive functionality
 
 ### Action Result
-|ActionResult           |Helper                                 |
-|--                     |--                                     |
-|ContentResult          |                                       |
-|FileContentResult      |                                       |
-|NotFoundResult         |                                       |
-|PageResult             |                                       |
-|PartialResult          |                                       |
-|RedirectToPageResult   |RedirectTopage                         |
-|                       |RedirectToPagePermanent                |
-|                       |RedirectToPagePreserveMethod           |
-|                       |RedirectToPagePreserveMethodPermanent  |
-|ViewComponentResult    |                                       |
+|ActionResult           |Helper                                 |Descripption   |
+|--                     |--                                     |--             |
+|ContentResult          |Content                                |Takes a string and returns it with a text/plaincontent-type header by default. Overloads enable you to specify the content-type to return other formats such as text/html or application/json for example. |
+|FileContentResult      |File                                   |Returns a file from a byte array, stream or virtual path.  |
+|NotFoundResult         |NotFount                               |Returns an HTTP 404 (Not Found) status code indicating that the requested resource could not be found. |
+|PageResult             |Page                                   |Will process and return the result of the current pag. |
+|PartialResult          |Partail                                |Returns a partial page.    |
+|RedirectToPageResult   |RedirectTopage                         |Redirects user to the specified page.  |
+|                       |RedirectToPagePermanent                ||
+|                       |RedirectToPagePreserveMethod           ||
+|                       |RedirectToPagePreserveMethodPermanent  ||
+|ViewComponentResult    |                                       |Returns the result of executing a View Component.  |
