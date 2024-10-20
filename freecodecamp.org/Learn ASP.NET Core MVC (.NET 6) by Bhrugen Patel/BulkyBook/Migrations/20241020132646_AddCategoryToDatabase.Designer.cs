@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyBook.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241020131058_AddCategoryToDatabase")]
+    [Migration("20241020132646_AddCategoryToDatabase")]
     partial class AddCategoryToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
