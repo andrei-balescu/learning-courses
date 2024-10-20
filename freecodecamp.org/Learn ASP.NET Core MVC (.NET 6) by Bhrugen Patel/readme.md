@@ -63,7 +63,7 @@ Learn the basics of .NET Core (.NET 6) and then build a simple CRUD application 
 |FileContentResult      |File                                   |Returns a file from a byte array, stream or virtual path.  |
 |NotFoundResult         |NotFount                               |Returns an HTTP 404 (Not Found) status code indicating that the requested resource could not be found. |
 |PageResult             |Page                                   |Will process and return the result of the current pag. |
-|PartialResult          |Partail                                |Returns a partial page.    |
-|RedirectToPageResult   |RedirectTopage \ RedirectToPagePermanent \ RedirectToPagePreserveMethod \ RedirectToPagePreserveMethodPermanent                       |Redirects user to the specified page.  |
+|PartialResult          |Partial                                |Returns a partial page.    |
+|RedirectToPageResult   |RedirectTopage \ RedirectToPagePermanent \ RedirectToPagePreserveMethod \ RedirectToPagePreserveMethodPermanent                           |Redirects user to the specified page.  |
 |ViewComponentResult    |                                       |Returns the result of executing a View Component.  |
 
