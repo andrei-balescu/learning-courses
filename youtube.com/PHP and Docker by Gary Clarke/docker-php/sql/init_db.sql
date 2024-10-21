@@ -7,6 +7,8 @@
 -- Generation Time: 2022-10-28 20:09:23.6480
 -- -------------------------------------------------------------
 
+CREATE DATABASE IF NOT EXISTS `training_docker_php`;
+
 USE training_docker_php;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
