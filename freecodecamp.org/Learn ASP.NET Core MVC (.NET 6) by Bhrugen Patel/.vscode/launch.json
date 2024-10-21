@@ -26,13 +26,24 @@
             "type": "coreclr",
             "request": "attach"
         },
+        // not working: Docker starts individual container without DB; use Docker .NET Attach with docker-compose
+        // {
+        //     "name": "Docker .NET Launch",
+        //     "type": "docker",
+        //     "request": "launch",
+        //     "preLaunchTask": "docker-run: debug",
+        //     "netCore": {
+        //         "appProject": "${workspaceFolder}/BulkyBook/BulkyBook.csproj"
+        //     }
+        // },
+        // Debug tab -> Add Configuration -> Docker .NET attach (Preview)
         {
-            "name": "Docker .NET Launch",
+            "name": "Docker .NET Attach (Preview)",
             "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/BulkyBook/BulkyBook.csproj"
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
             }
         }
     ]

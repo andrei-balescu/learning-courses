@@ -11,3 +11,12 @@ Add EF design pagkage to project: `dotnet add package Microsoft.EntityFrameworkC
 Add migration to project: `dotnet ef migrations add AddCategoryToDatabase`  
 Update DB: `dotnet ef database update` (will also create DB if not exists)  
 To unapply and remove migration: `dotnet ef migrations remove --force`
+
+## Debugging with Docker
+**Configuring debugger**
+Ctrl+Shift+P -> Docker: Add Docker Files to Workspace -> Add optional docker-compose  
+Run and Debug -> Add Configuration -> Docker .NET Attach  
+
+**Running debugger**
+Start container in Debug mode: `docker-compose -f docker-compose.debug.yml up --build -d`  
+Run and Debug -> Docker .NET Attach -> select container
