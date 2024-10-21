@@ -10,7 +10,8 @@ Add EF design pagkage to project: `dotnet add package Microsoft.EntityFrameworkC
 
 Add migration to project: `dotnet ef migrations add AddCategoryToDatabase`  
 Update DB: `dotnet ef database update` (will also create DB if not exists)  
-To unapply and remove migration: `dotnet ef migrations remove --force`
+To unapply and remove migration: `dotnet ef migrations remove --force`  
+**NOTE**: Change connnection string in `appSettings.Development.json` to point to local machine
 
 ## Debugging with Docker
 **Configuring debugger**

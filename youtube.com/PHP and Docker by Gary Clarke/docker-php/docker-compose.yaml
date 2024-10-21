@@ -37,7 +37,7 @@ services:
   db:
     image: mysql:8.0
     volumes:
-      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+      - ~/Development/db/mysql8:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: unless-stopped

@@ -25,7 +25,7 @@ services:
   db:
     image: mysql:8.0
     volumes:
-      - /home/ozzie/Development/db/mysql8:/var/lib/mysql
+      - ~/Development/db/mysql8:/var/lib/mysql
     restart: unless-stopped
     env_file: ./environment/mysql/mysql.env
   cache:

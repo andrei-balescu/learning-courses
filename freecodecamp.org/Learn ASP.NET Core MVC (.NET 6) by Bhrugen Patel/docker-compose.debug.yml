@@ -23,7 +23,7 @@ services:
      # root user: sa
      SA_PASSWORD: Pwd12345!
    volumes:
-     - /home/ozzie/Development/db/mssql2022:/var/opt/mssql
+     - ~/Development/db/mssql2022:/var/opt/mssql
    ports:
      # VS code connect to: localhost,1433
      - 1433:1433
