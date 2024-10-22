@@ -7,16 +7,16 @@ DECLARE @Categories TABLE(
 );
 
 INSERT INTO @Categories 
-    ([Name], DisplayOrder, CreatedDateTime)
+    ([Name], DisplayOrder)
 VALUES
-    ('Laptop', 1, GETDATE()),
-    ('Telefoane', 3, GETDATE()),
-    ('Tablete', 2, GETDATE())
+    ('Laptop', 1),
+    ('Telefoane', 3),
+    ('Tablete', 2)
 
 MERGE INTO Categories AS c
 USING @Categories AS tc
 ON c.[Name] = tc.[Name]
 WHEN NOT MATCHED THEN 
-    INSERT ([Name], DisplayOrder, CreatedDateTime)
-    VALUES (tc.[Name], tc.DisplayOrder, tc.CreatedDateTime)
+    INSERT ([Name], DisplayOrder)
+    VALUES (tc.[Name], tc.DisplayOrder)
 OUTPUT $action, INSERTED.[Name];

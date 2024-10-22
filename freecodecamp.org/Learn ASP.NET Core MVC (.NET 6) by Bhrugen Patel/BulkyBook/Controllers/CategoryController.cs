@@ -15,7 +15,9 @@ public class CategoryController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Category> categories = _dbContext.Categories.OrderBy(c => c.DisplayOrder);
+        IEnumerable<CategoryViewModel> categories = _dbContext.Categories
+            .Select(m => new CategoryViewModel { Name = m.Name, DisplayOrder = m.DisplayOrder })
+            .OrderBy(c => c.DisplayOrder);
 
         return View(categories);
     }

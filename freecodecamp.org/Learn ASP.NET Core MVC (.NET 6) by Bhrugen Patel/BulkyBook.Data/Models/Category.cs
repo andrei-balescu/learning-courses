@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BulkyBook.Models;
+namespace BulkyBook.Data.Models;
 
 public class Category
 {
@@ -14,4 +14,5 @@ public class Category
     public int DisplayOrder { get; set; }
 
     public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+    
 }

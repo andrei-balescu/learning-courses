@@ -1,4 +1,4 @@
-@model IEnumerable<Category>;
+@model IEnumerable<CategoryViewModel>;
 @{
     ViewData["Title"] = "Categories";
 }
@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Category category in Model)
+        @foreach (CategoryViewModel category in Model)
         {
             <tr>
                 <td width="50%">
