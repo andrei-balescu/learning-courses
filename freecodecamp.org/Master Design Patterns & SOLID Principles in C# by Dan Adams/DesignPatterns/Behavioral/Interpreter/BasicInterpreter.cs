@@ -3,9 +3,7 @@ using DesignPatterns.Behavioral.Interpreter.Expressions;
 
 namespace DesignPatterns.Behavioral.Interpreter;
 
-/// <summary>
-/// Only handles additions and subtractions.
-/// </summary>
+/// <summary>Only handles additions and subtractions.</summary>
 public class BasicInterpreter
 {
     private InterpreterContext _context;
@@ -22,11 +20,9 @@ public class BasicInterpreter
         return interpretedExpression;
     }
 
-    /// <summary>
-    /// Only handles additions and subtractions.
-    /// </summary>
+    /// <summary>Only handles additions and subtractions.</summary>
     /// <param name="input">Mathemethical expression separated by single spaces.</param>
-    /// <returns>RExpression tree for mathematical expresion.</returns>
+    /// <returns>Expression tree for mathematical expresion.</returns>
     private IExpression BuildExpressionTree(string input)
     {
         Queue<string> inputQueue = ParseInputString(input);
@@ -63,9 +59,7 @@ public class BasicInterpreter
 
 
 
-    /// <summary>
-    /// Using Shunting Yard algorithm to convert infix (A+B) to postfix (AB+).
-    /// </summary>
+    /// <summary>Using Shunting Yard algorithm to convert infix (A+B) to postfix (AB+).</summary>
     /// <param name="input">The input string to parse</param>
     /// <returns>A queue of numbers and operations.</returns>
     private Queue<string> ParseInputString(string input)
