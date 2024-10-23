@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBook.Controllers;
 
+/// <summary>Controller that manages categories.</summary>
 public class CategoryController : Controller
 {
     private readonly ApplicationDbContext _dbContext;
@@ -14,6 +15,8 @@ public class CategoryController : Controller
         _dbContext = dbContext;
     }
 
+    /// <summary>Lists all catogories.</summary>
+    /// <returns>Category/Index page</returns>
     [HttpGet]
     public IActionResult Index()
     {
@@ -24,12 +27,17 @@ public class CategoryController : Controller
         return View(categories);
     }
 
+    /// <summary>Page to reate a new category</summary>
+    /// <returns>Category/Create page</returns>
     [HttpGet]
     public IActionResult Create()
     {
         return View();
     }
 
+    /// <summary>Creates a new category</summary>
+    /// <param name="category">The category to create.</param>
+    /// <returns>Redirects to category index or back to category creation if any errors.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(CategoryViewModel category)
