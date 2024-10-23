@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: BulkyBook/Dockerfile
     ports:
-      - 5093:5093
+      - 8000:5093
     depends_on: 
       - db
   db:
