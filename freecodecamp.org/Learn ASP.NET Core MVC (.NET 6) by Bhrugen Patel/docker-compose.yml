@@ -1,0 +1,25 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  bulkybook:
+    image: bulkybook
+    build:
+      context: .
+      dockerfile: BulkyBook/Dockerfile
+    ports:
+      - 8000:5093
+    depends_on: 
+      - db
+  db:
+   image: mcr.microsoft.com/mssql/server:2022-latest
+   environment:
+     ACCEPT_EULA: Y
+     # root user: sa
+     SA_PASSWORD: Pwd12345!
+   volumes:
+     - ~/Development/db/mssql2022:/var/opt/mssql
+   ports:
+     # VS code connect to: localhost,1433
+     - 1433:1433

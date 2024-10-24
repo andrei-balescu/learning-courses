@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/BulkyBook/bin/Debug/net6.0/BulkyBook.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/BulkyBook",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        // not working: Docker starts individual container without DB; use Docker .NET Attach with docker-compose
+        // {
+        //     "name": "Docker .NET Launch",
+        //     "type": "docker",
+        //     "request": "launch",
+        //     "preLaunchTask": "docker-run: debug",
+        //     "netCore": {
+        //         "appProject": "${workspaceFolder}/BulkyBook/BulkyBook.csproj"
+        //     }
+        // },
+        // Debug tab -> Add Configuration -> Docker .NET attach (Preview)
+        {
+            "name": "Docker .NET Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        }
+    ]
+}

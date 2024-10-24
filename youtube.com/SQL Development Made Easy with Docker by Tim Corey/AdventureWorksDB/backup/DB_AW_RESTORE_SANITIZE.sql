@@ -10,7 +10,7 @@ USE AdventureWorks
 GO
 
 UPDATE SalesLT.Customer
-SET EmailAddress = FirstName + 'example.com',
+SET EmailAddress = FirstName + '@example.com',
     LastName = 'Customer',
     Phone = '000-000-0000',
     PasswordHash = '',

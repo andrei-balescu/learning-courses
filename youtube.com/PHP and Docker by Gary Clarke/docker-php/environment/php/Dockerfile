@@ -28,6 +28,7 @@ COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 # This is enough to take advantage of docker cache and composer install will
 # be executed only when composer.json or composer.lock have indeed changed!-
 # https://medium.com/@softius/faster-docker-builds-with-composer-install-b4d2b15d0fff
+WORKDIR /var/www/html
 COPY ./app/composer.* ./app/
 
 

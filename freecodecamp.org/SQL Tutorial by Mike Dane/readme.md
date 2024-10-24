@@ -15,7 +15,6 @@ Throughout the course we'll be looking at various topics including schema design
     - [Foreign keys](#foreign-keys)
 - [SQL basics](#structured-query-language-sql)
 - [ER Diagrams](#er-diagrams)
-    - [Designing an ER diagram](#designing-an-er-diagram)
 - [Company database](#company-database)
     - [Company data requirements](#company-data-requirements)
     - [Company ER diagram](#company-er-diagram)

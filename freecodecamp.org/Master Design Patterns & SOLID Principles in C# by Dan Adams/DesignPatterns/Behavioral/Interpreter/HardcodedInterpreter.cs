@@ -19,9 +19,7 @@ public class HardCodedInterpreter
         return interpretedExpression;
     }
 
-    /// <summary>
-    /// Hardcoded function
-    /// </summary>
+    /// <summary>Hardcoded function</summary>
     /// <param name="input">Hardcoded to: 1 + 2 * 3"</param>
     /// <returns>Expression tree based on hardcoded input.</returns>
     private IExpression BuildExpressionTree(string input)
