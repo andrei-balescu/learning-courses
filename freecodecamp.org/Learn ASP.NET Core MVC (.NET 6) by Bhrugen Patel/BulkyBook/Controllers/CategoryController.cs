@@ -13,6 +13,7 @@ public class CategoryController : Controller
     private const string VALIDATION_NAME_EQUAL_DISPPLAY = "The Display Order cannot exactly match the name";
     private const string VALIDATION_NAME_UNIQUE = "Name already exists";
     private const string VALIDATION_DISPLAY_UNIQUE = "Display order already in use";
+    
 
     private readonly ApplicationDbContext _dbContext;
 
@@ -67,6 +68,8 @@ public class CategoryController : Controller
         {
             _dbContext.Categories.Add(new Category { Name = category.Name, DisplayOrder = category.DisplayOrder });
             _dbContext.SaveChanges();
+            // TempData only available for a single request (e.g. not available after refresh)
+            TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category created successfully";
             return RedirectToAction("Index");
         }
         else
@@ -127,11 +130,56 @@ public class CategoryController : Controller
                     DisplayOrder =  categoryViewModel.DisplayOrder
                 });
             _dbContext.SaveChanges();
+            TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category updated successfully";
             return RedirectToAction("Index");
         }
         else
         {
             return View(categoryViewModel);
         }
+    }
+
+    /// <summary>Display the delete category page.</summary>
+    /// <param name="id">ID of the category to delete.</param>
+    /// <returns>The Category/Delete page</returns>
+    [HttpGet]
+    public IActionResult Delete(int? id)
+    {
+        if (!id.HasValue)
+        {
+            return NotFound();
+        }
+
+        Category? category = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        CategoryViewModel categoryViewModel = new CategoryViewModel { Id = category.Id, Name = category.Name, DisplayOrder = category.DisplayOrder };
+        return View(categoryViewModel);
+    }
+
+    /// <summary>Delete a category.</summary>
+    /// <param name="id">ID of the category to delete.</param>
+    /// <returns>Redirects to Category/Index page</returns>
+    [HttpPost]
+    public IActionResult DeleteConfirm(int? id)
+    {
+        if (!id.HasValue)
+        {
+            return NotFound();
+        }
+
+        Category? category = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Categories.Remove(category);
+        _dbContext.SaveChanges();
+        TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category deleted successfully";
+        return RedirectToAction("Index");
     }
 }

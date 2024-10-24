@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 IMvcBuilder mvcBuilder = builder.Services.AddControllersWithViews();
 if (builder.Environment.IsDevelopment())
 {
+    // Add runtime compilation of razor pages: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-8.0&tabs=visual-studio
     mvcBuilder.AddRazorRuntimeCompilation();
 }
 
