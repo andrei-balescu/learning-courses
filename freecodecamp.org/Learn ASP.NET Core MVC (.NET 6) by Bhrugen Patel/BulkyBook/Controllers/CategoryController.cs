@@ -69,7 +69,7 @@ public class CategoryController : Controller
             _dbContext.Categories.Add(new Category { Name = category.Name, DisplayOrder = category.DisplayOrder });
             _dbContext.SaveChanges();
             // TempData only available for a single request (e.g. not available after refresh)
-            TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category created successfully";
+            TempData[SharedConstants.ALERT_SUCCESS] = "Category created successfully";
             return RedirectToAction("Index");
         }
         else
@@ -130,7 +130,7 @@ public class CategoryController : Controller
                     DisplayOrder =  categoryViewModel.DisplayOrder
                 });
             _dbContext.SaveChanges();
-            TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category updated successfully";
+            TempData[SharedConstants.ALERT_SUCCESS] = "Category updated successfully";
             return RedirectToAction("Index");
         }
         else
@@ -179,7 +179,7 @@ public class CategoryController : Controller
 
         _dbContext.Categories.Remove(category);
         _dbContext.SaveChanges();
-        TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] = "Category deleted successfully";
+        TempData[SharedConstants.ALERT_SUCCESS] = "Category deleted successfully";
         return RedirectToAction("Index");
     }
 }

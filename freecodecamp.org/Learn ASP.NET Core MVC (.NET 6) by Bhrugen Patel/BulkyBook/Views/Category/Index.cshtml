@@ -4,10 +4,7 @@
 }
 
 <div class="container p-3">
-    @if (TempData[SharedConstants.TEMPDATA_KEY_SUCCESS] != null)
-    {
-        <h3>@TempData[SharedConstants.TEMPDATA_KEY_SUCCESS]</h3>
-    }
+    <partial name = "_Notification" />
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">@ViewData["Title"]</h2>

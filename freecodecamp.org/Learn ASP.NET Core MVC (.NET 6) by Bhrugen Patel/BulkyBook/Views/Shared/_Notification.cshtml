@@ -1,0 +1,8 @@
+@if (TempData[SharedConstants.ALERT_SUCCESS] != null)
+{
+    <div class="alert alert-success">@TempData[SharedConstants.ALERT_SUCCESS]</div>
+}
+@if (TempData[SharedConstants.ALERT_ERROR] != null)
+{
+    <div class="alert alert-error">@TempData[SharedConstants.ALERT_ERROR]</div>
+}
