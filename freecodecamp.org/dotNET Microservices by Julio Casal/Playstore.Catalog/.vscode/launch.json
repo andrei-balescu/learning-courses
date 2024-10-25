@@ -23,6 +23,7 @@
             "serverReadyAction": {
                 "action": "openExternally",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                // start swagger by default
                 "uriFormat": "%s/swagger"
             },
             "env": {

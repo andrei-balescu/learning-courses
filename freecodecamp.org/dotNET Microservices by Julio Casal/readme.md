@@ -55,3 +55,8 @@ When should you move to microservices?
 - Teams can't move fast anymore
 - Builds become too slow due to large code base
 - Time to market is compromised due to infrequent deployments and long verification times
+
+### REST API
+A REST api defines the operations exposed by a microservice.
+
+A Data Transfer Object (DTO) is an object that carries data between processes. The DTO represents the _contract_ between the microservice API and the client.
