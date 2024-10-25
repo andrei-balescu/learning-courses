@@ -1,2 +1,4 @@
 # Palystore Catalog project
-Using .NET 6 WebAPI
+Project using:
+- .NET 6 WebAPI.
+- Docker for containerization
