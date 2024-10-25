@@ -1,8 +1,17 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-builder.Services.AddControllers();
+// Add services to the container.
+builder.Services.AddControllers(o =>
+{
+    // do not remove 'Async' suffix from method names
+    o.SuppressAsyncSuffixInActionNames = false;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

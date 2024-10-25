@@ -16,3 +16,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+  mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/Development/db/mongodb8:/data/db
+    restart: always

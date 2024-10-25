@@ -10,3 +10,12 @@ services:
       dockerfile: Playstore.Catalog.Service/Dockerfile
     ports:
       - 8000:5215
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/Development/db/mongodb8:/data/db
+    restart: always
