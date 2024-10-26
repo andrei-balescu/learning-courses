@@ -4,7 +4,7 @@ using Playstore.Catalog.Service.Entities;
 namespace Playstore.Catalog.Service.Repositories;
 
 /// <summary>Repository for working with <see cref="Item"/> entities.</summary>
-public class ItemsRepository
+public class ItemsRepository : IItemsRepository
 {
     private const string COLLECTION_NAME = "items";
 
@@ -12,10 +12,8 @@ public class ItemsRepository
 
     private readonly FilterDefinitionBuilder<Item> _filterDefinitionBuilder = Builders<Item>.Filter;
 
-    public ItemsRepository()
+    public ItemsRepository(IMongoDatabase database)
     {
-        var mongoClient = new MongoClient("mongodb://localhost:27017");
-        IMongoDatabase database = mongoClient.GetDatabase("freecodecamp_microservices_catalog");
         _dbCollection = database.GetCollection<Item>(COLLECTION_NAME);
     }
 

@@ -5,11 +5,20 @@ using Playstore.Catalog.Service.Repositories;
 
 namespace Playstore.Catalog.Service.Controllers;
 
+/// <summary>Controller for working with items.</summary>
 [ApiController]
 [Route("items")]
 public class ItemsController : ControllerBase
 {
-    private static ItemsRepository _itemsRepository = new();
+    /// <summary>Repository for storing items.</summary>
+    private readonly IItemsRepository _itemsRepository;
+
+    /// <summary>Create a new instance.</summary>
+    /// <param name="itemsRepository">Repository for storing items.</param>
+    public ItemsController(IItemsRepository itemsRepository)
+    {
+        _itemsRepository = itemsRepository;
+    }
 
     /// <summary>Returns all items.</summary>
     /// <returns>A list of items</returns>

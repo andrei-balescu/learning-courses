@@ -1,11 +1,10 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
+using Playstore.Catalog.Service.ServiceRegistration;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Default serializer for GUIDs in MongoDB.
-BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+var serviceRegistration = new ServiceRegistration(builder);
+serviceRegistration.AddMongoDb();
+serviceRegistration.AddRepositories();
 
 // Add services to the container.
 builder.Services.AddControllers(o =>
@@ -16,6 +15,7 @@ builder.Services.AddControllers(o =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
