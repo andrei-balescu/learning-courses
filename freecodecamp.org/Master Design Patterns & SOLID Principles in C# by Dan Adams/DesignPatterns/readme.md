@@ -7,6 +7,7 @@ There are three main groups of design patterns:
     - [Factory Method](Creational/FactoryMethod/)
     - [Abstract Factory](Creational/AbstractFactory/)
     - [Builder](Creational/Builder/)
+    - [Dependency Injection](Creational/DependencyInjection/)
 - Structural: the relationships between those objects
     - [Composite](Structural/Composite/)
     - [Adapter](Structural/Adapter/)
