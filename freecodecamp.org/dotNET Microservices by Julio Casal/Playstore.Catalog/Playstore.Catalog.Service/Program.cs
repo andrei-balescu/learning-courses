@@ -4,6 +4,7 @@ using MongoDB.Bson.Serialization.Serializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Default serializer for GUIDs in MongoDB.
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
 // Add services to the container.

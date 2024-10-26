@@ -1,5 +1,6 @@
 namespace Playstore.Catalog.Service.Entities;
 
+/// <summary>Represents an item stored in the database</summary>
 public class Item
 {
     public Guid Id { get; set; }
