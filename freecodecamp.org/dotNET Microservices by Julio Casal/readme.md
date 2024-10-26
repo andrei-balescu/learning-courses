@@ -56,10 +56,25 @@ When should you move to microservices?
 - Builds become too slow due to large code base
 - Time to market is compromised due to infrequent deployments and long verification times
 
-### REST API
+## REST API
 A REST api defines the operations exposed by a microservice.
 
 A Data Transfer Object (DTO) is an object that carries data between processes. The DTO represents the _contract_ between the microservice API and the client.
 
 ### ASP.NET Core Configuration
 ![ASP.NET Core Configuration](dotnet_configuration.svg)
+
+### Postman
+The OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Postman as a collection.
+
+### Reusing common code
+![Common code using NuGet](common_nuget.svg)
+
+- Don't repeat yourself (DRY)
+- Microservices should be independent of each other
+- Each microservice should live in its own repository
+- NuGet is the package manager for .NET
+- A NuGet file is a single ZIP file (.nupkg) that contains files to share with others
+- Microservice project don't need to know where NuGet packages are hosted
+- The common code is now maintained in one place
+- The time to build new microservices is significantly reduced

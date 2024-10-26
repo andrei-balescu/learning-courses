@@ -1,15 +1,15 @@
-using Playstore.Catalog.Service.ServiceRegistration;
+using Playstore.Catalog.Service.Entities;
+using Playstore.Catalog.Service.Repositories;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var serviceRegistration = new ServiceRegistration(builder);
-serviceRegistration.AddMongoDb();
-serviceRegistration.AddRepositories();
+builder.Services.AddMongo()
+                .AddMongoRepository<Item>("items");
 
 // Add services to the container.
 builder.Services.AddControllers(o =>
 {
-    // do not remove 'Async' suffix from method names
+    // avoids routing errors when removing 'Async' suffix from method names
     o.SuppressAsyncSuffixInActionNames = false;
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

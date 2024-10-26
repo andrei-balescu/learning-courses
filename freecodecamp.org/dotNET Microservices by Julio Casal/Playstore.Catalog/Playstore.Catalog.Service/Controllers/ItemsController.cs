@@ -11,11 +11,11 @@ namespace Playstore.Catalog.Service.Controllers;
 public class ItemsController : ControllerBase
 {
     /// <summary>Repository for storing items.</summary>
-    private readonly IItemsRepository _itemsRepository;
+    private readonly IRepository<Item> _itemsRepository;
 
     /// <summary>Create a new instance.</summary>
     /// <param name="itemsRepository">Repository for storing items.</param>
-    public ItemsController(IItemsRepository itemsRepository)
+    public ItemsController(IRepository<Item> itemsRepository)
     {
         _itemsRepository = itemsRepository;
     }
