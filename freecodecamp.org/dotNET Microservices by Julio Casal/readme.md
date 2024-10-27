@@ -78,3 +78,5 @@ The OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Post
 - Microservice project don't need to know where NuGet packages are hosted
 - The common code is now maintained in one place
 - The time to build new microservices is significantly reduced
+
+**NOTE**: Not implementing NuGet packaging for commmon code due to hosting issues. Instead, the Playstore.Common project will be referenced by other microservices.

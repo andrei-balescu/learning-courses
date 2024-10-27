@@ -9,11 +9,24 @@ services:
       context: .
       dockerfile: Playstore.Catalog.Service/Dockerfile
     ports:
-      - 8000:5215
+      - 8001:5001
     depends_on:
       - mongodb
+
+  playstoreinventoryservice:
+    image: playstoreinventoryservice
+    build:
+      context: .
+      dockerfile: Playstore.Inventory.Service/Dockerfile
+    ports:
+      - 8002:5002
+    depends_on:
+      - mongodb
+
   mongodb:
+    # docker run -d --rm --name mongo -p 27017:27017 -v ~/Development/db/mongodb8:/data/db mongo:8
     image: mongo:8
+    container_name: mongodb
     ports:
       - 27017:27017
     volumes:

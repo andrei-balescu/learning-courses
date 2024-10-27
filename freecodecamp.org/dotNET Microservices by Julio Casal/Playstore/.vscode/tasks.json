@@ -11,7 +11,7 @@
                 "build",
                 "${workspaceFolder}/Playstore.Catalog.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile",
             "group": {
@@ -20,64 +20,28 @@
             }
         },
         {
-            "type": "docker-build",
-            "label": "docker-build: debug",
-            "dependsOn": [
-                "build"
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Playstore.Catalog.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
-            "dockerBuild": {
-                "tag": "playstorecatalog:dev",
-                "target": "base",
-                "dockerfile": "${workspaceFolder}/Playstore.Catalog.Service/Dockerfile",
-                "context": "${workspaceFolder}",
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj"
-            }
+            "problemMatcher": "$msCompile"
         },
         {
-            "type": "docker-build",
-            "label": "docker-build: release",
-            "dependsOn": [
-                "build"
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Playstore.Catalog.sln"
             ],
-            "dockerBuild": {
-                "tag": "playstorecatalog:latest",
-                "dockerfile": "${workspaceFolder}/Playstore.Catalog.Service/Dockerfile",
-                "context": "${workspaceFolder}",
-                "platform": {
-                    "os": "linux",
-                    "architecture": "amd64"
-                },
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj"
-            }
-        },
-        {
-            "type": "docker-run",
-            "label": "docker-run: debug",
-            "dependsOn": [
-                "docker-build: debug"
-            ],
-            "dockerRun": {},
-            "netCore": {
-                "appProject": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj",
-                "enableDebugging": true
-            }
-        },
-        {
-            "type": "docker-run",
-            "label": "docker-run: release",
-            "dependsOn": [
-                "docker-build: release"
-            ],
-            "dockerRun": {},
-            "netCore": {
-                "appProject": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj"
-            }
+            "problemMatcher": "$msCompile"
         }
     ]
 }

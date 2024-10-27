@@ -5,13 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C#: Playstore.Catalog.Service Debug",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj"
-        },
-        {
-            "name": ".NET Core Launch (web)",
+            "name": "Playstore.Catalog.Service Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -29,13 +23,27 @@
             }
         },
         {
-            "name": "Docker .NET Launch",
-            "type": "docker",
+            "name": "Playstore.Inventory.Service Launch (web)",
+            "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/Playstore.Catalog.Service/Playstore.Catalog.Service.csproj"
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Playstore.Inventory.Service/bin/Debug/net6.0/Playstore.Inventory.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Inventory.Service",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
             }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
         },
         {
             "name": "Docker .NET Attach (Preview)",

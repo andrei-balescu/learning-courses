@@ -11,11 +11,28 @@ services:
       args:
         - configuration=Debug
     ports:
-      - 8000:5215
+      - 8001:5001
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - mongodb
+
+  playstoreinventoryservice:
+    image: playstoreinventoryservice
+    build:
+      context: .
+      dockerfile: Playstore.Inventory.Service/Dockerfile
+    ports:
+      - 8002:5002
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:8
     ports:
