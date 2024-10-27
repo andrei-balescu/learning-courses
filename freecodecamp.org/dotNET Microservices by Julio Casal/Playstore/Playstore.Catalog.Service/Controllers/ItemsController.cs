@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Service.Dtos;
 using Playstore.Catalog.Service.Entities;
-using Playstore.Catalog.Service.Repositories;
+using Playstore.Common;
 
 namespace Playstore.Catalog.Service.Controllers;
 

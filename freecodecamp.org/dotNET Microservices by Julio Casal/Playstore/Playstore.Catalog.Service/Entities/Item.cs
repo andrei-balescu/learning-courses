@@ -1,3 +1,5 @@
+using Playstore.Common;
+
 namespace Playstore.Catalog.Service.Entities;
 
 /// <summary>Represents an item stored in the database</summary>
