@@ -61,11 +61,14 @@ A REST api defines the operations exposed by a microservice.
 
 A Data Transfer Object (DTO) is an object that carries data between processes. The DTO represents the _contract_ between the microservice API and the client.
 
+### Dependency Injection
+![DI - Diagram](../Master%20Design%20Patterns%20&%20SOLID%20Principles%20in%20C#%20by%20Dan%20Adams/DesignPatterns/Creational/DependencyInjection/di_uml.svg)
+
 ### ASP.NET Core Configuration
 ![ASP.NET Core Configuration](dotnet_configuration.svg)
 
 ### Postman
-The OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Postman as a collection.
+A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Postman as a collection.
 
 ### Reusing common code
 ![Common code using NuGet](common_nuget.svg)

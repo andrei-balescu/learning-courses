@@ -54,5 +54,17 @@
                 "/src": "${workspaceFolder}"
             }
         }
+    ],
+    "compounds": [
+        {
+            // Launch all projects in the solution
+            "name": "Launch solution",
+            "configurations": [
+                "Playstore.Catalog.Service Launch (web)",
+                "Playstore.Inventory.Service Launch (web)"
+            ],
+            "preLaunchTask": "build",
+            "stopAll": true
+        }
     ]
 }
