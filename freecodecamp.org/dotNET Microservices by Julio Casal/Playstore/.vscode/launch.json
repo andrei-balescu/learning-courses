@@ -19,7 +19,9 @@
                 "uriFormat": "%s/swagger"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                // Disable HTTPS redirect - cannot trust certificates in Linux
+                "ASPNETCORE_URLS": "http://localhost:5001"
             }
         },
         {
@@ -37,7 +39,9 @@
                 "uriFormat": "%s/swagger"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                // Disable HTTPS redirect - cannot trust certificates in Linux
+                "ASPNETCORE_URLS": "http://localhost:5002"
             }
         },
         {
@@ -58,7 +62,7 @@
     "compounds": [
         {
             // Launch all projects in the solution
-            "name": "Launch solution",
+            "name": "Launch solution (web)",
             "configurations": [
                 "Playstore.Catalog.Service Launch (web)",
                 "Playstore.Inventory.Service Launch (web)"

@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 5002
 
+# Disable HTTPS redirect - cannot trust certificates in Linux
 ENV ASPNETCORE_URLS=http://+:5002
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
