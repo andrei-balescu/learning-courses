@@ -19,9 +19,16 @@
                 "uriFormat": "%s/swagger"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                // Disable HTTPS redirect - cannot trust certificates in Linux
-                "ASPNETCORE_URLS": "http://localhost:5001"
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "linux": {
+                "env": {
+                    // Disable HTTPS redirect - cannot trust dev certificates on Linux
+                    "ASPNETCORE_URLS": "http://localhost:5001"
+                }
+            },
+            "presentation": {
+                "order": 1
             }
         },
         {
@@ -39,9 +46,17 @@
                 "uriFormat": "%s/swagger"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                // Disable HTTPS redirect - cannot trust certificates in Linux
-                "ASPNETCORE_URLS": "http://localhost:5002"
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "linux": {
+                "env": {
+                    // Disable HTTPS redirect - cannot trust dev certificates on Linux
+                    "ASPNETCORE_URLS": "http://localhost:5002"
+                }
+            },
+            "presentation": {
+                // Depends on other microservice. Launch as compound.
+                "hidden": true,
             }
         },
         {
@@ -62,13 +77,16 @@
     "compounds": [
         {
             // Launch all projects in the solution
-            "name": "Launch solution (web)",
+            "name": "Playstore.Inventory.Service Launch (compound)",
             "configurations": [
                 "Playstore.Catalog.Service Launch (web)",
                 "Playstore.Inventory.Service Launch (web)"
             ],
             "preLaunchTask": "build",
-            "stopAll": true
+            "stopAll": true,
+            "presentation": {
+                "order": 2
+            }
         }
     ]
 }

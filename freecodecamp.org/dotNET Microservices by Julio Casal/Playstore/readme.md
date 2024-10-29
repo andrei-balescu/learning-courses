@@ -54,12 +54,14 @@ A REST api defines the operations exposed by a microservice.
 
 A Data Transfer Object (DTO) is an object that carries data between processes. The DTO represents the _contract_ between the microservice API and the client.
 
+## Dependency Injection
+![Dependency Injection](dependency_injection.svg)
+
 ## Developer certificates
-Generate SSL dev cert ([see doc](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs)): `dotnet dev-certs https`
-View certificates: `ls -la ~/.dotnet/corefx/cryptography/x509stores/my`
+Generate SSL dev cert ([see doc](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs)): `dotnet dev-certs https`.  
+Trust dev certs ([see doc](https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-8.0&tabs=visual-studio%2Clinux-ubuntu%2Clinux-sles#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)): `dotnet dev-certs https --trust`.  
+View certificates: `ls -la ~/.dotnet/corefx/cryptography/x509stores/my`.  
 Cannot trust dev cert on Linux. Use `ASPNETCORE_URLS` environment variable to disable HTTPS redirect ([see doc](https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-8.0&tabs=visual-studio%2Clinux-ubuntu%2Clinux-sles)): 
-
-
 
 ## ASP.NET Core Configuration
 ![ASP.NET Core Configuration](dotnet_configuration.svg)

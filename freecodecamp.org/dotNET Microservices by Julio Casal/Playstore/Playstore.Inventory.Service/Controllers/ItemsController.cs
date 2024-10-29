@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Common;
+using Playstore.Inventory.Service.Clients;
 using Playstore.Inventory.Service.Dtos;
 using Playstore.Inventory.Service.Entities;
 
@@ -11,10 +12,12 @@ namespace Playstore.Inventory.Service.Controllers;
 public class ItemsController : ControllerBase
 {
     private readonly IRepository<InventoryItem> _itemsRepository;
+    private readonly CatalogClient _catalogClient;
 
-    public ItemsController(IRepository<InventoryItem> itemsRepository)
+    public ItemsController(IRepository<InventoryItem> itemsRepository, CatalogClient catalogClient)
     {
         _itemsRepository = itemsRepository;
+        _catalogClient = catalogClient;
     }
 
     /// <summary>Retrieves all inventory items for a user.</summary>
@@ -28,7 +31,14 @@ public class ItemsController : ControllerBase
             return BadRequest();
         }
 
-        IEnumerable<InventoryItemDto> items = (await _itemsRepository.GetAllAsync(i => i.UserId == userId)).Select(i => i.AsDto());
+        IReadOnlyCollection<CatalogItemDto> catalogItems = await _catalogClient.GetItems();
+        IEnumerable<InventoryItem> inventoryItems = await _itemsRepository.GetAllAsync(i => i.UserId == userId);
+
+        IEnumerable<InventoryItemDto> items = 
+            from catalogItem in catalogItems
+            join inventoryItem in inventoryItems
+            on catalogItem.Id equals inventoryItem.CatalogItemId
+            select inventoryItem.AsDto(catalogItem.Name, catalogItem.Description);
 
         return Ok(items);
     }
