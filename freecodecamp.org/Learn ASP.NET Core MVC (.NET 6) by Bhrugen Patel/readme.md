@@ -7,6 +7,12 @@ Learn the basics of .NET Core (.NET 6) and then build a simple CRUD application 
 - Video tutorial: https://www.youtube.com/watch?v=hZ1DASYd9rk
 - Code repo: https://github.com/bhrugen/Bulky/tree/3d83a49c70ebf3ed043e9415a0dcd782f62f5bf7
 
+## Project
+- Simple .NET 6 MVC project showcasing CRUD operations.  
+- Entity Framework Core ORM.  
+- SQL Server DB
+- Docker for containerization
+
 ## Topics covered
 - Fundamentals of ASP.NET Core
 - Changes in .NET 6
