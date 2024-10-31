@@ -1,3 +1,14 @@
+# Summary
+- [Monolith vs microservices](#monolith-vs-microservices)
+- [REST API](#rest-api)
+    - [Dependency Injection](#dependency-injection)
+    - [Developer certificates](#developer-certificates)
+    - [ASP.NET Core Configuration](#aspnet-core-configuration)
+    - [Postman](#postman)
+    - [Reusing common code](#reusing-common-code)
+    - [Synchronous communication](#synchronous-communication)
+
+
 # Monolith vs microservices
 ## Monolith pros and cons
 Pros:
@@ -10,6 +21,7 @@ Pros:
 - One thing to deploy
 - One thing to test end-to-end
 - One thing to scale
+
 Cons:
 - Easily gets too complex to understand
 - Merging code can be challenging
@@ -23,7 +35,8 @@ Cons:
 - Hard to adopt new tech
 
 ## What are microservices?
-An architectural style that structures an application as a collection of independently deployable services that are modeled around a business domain and are usually owned by a small team.
+An architectural style that structures an application as a collection of independently deployable services that are modeled around a business domain and are usually owned by a small team.  
+
 Pros:
 - Small, easier to understand code base
 - Quicker to build
@@ -69,7 +82,7 @@ Cannot trust dev cert on Linux. Use `ASPNETCORE_URLS` environment variable to di
 ## Postman
 A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Postman to generate a collection.
 
-### Reusing common code
+## Reusing common code
 ![Common code using NuGet](common_nuget.svg)
 
 - Don't repeat yourself (DRY)

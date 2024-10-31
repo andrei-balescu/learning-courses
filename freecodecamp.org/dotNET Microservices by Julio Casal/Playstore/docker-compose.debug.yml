@@ -32,6 +32,7 @@ services:
       - ~/.vsdbg:/remote_debugger:rw
     depends_on:
       - mongodb
+      - playstorecatalogservice
 
   mongodb:
     image: mongo:8

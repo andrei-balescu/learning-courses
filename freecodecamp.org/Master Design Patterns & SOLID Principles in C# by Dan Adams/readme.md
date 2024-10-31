@@ -12,3 +12,8 @@ What you will learn:
 ## Resources
 - Video tutorial: https://www.youtube.com/watch?v=rylaiB2uH2A
 - Source code: https://github.com/DoableDanny/Design-Patterns-in-C-Sharp
+
+## Project
+- .NET 6 class libraries showcasing OOP principles, SOLID principles, Design patterns
+- UML diagrams for each design pattern
+- MSTest unit test projects using Moq
