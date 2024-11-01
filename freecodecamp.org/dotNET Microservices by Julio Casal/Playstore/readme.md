@@ -1,4 +1,4 @@
-# Summary
+# Course summary
 - [Monolith vs microservices](#monolith-vs-microservices)
 - [REST API](#rest-api)
     - [Dependency Injection](#dependency-injection)
@@ -94,7 +94,7 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 - The common code is now maintained in one place
 - The time to build new microservices is significantly reduced
 
-**NOTE**: Not implementing NuGet packaging for commmon code due to hosting issues. Instead, the Playstore.Common project will be referenced by other microservices.
+**NOTE**: Not implementing NuGet packaging for commmon code due to hosting limitations. Instead, the Playstore.Common project will be referenced by other microservices.
 
 ## Synchronous communication
 - The client sends a request and waits for the response from the service

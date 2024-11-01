@@ -77,7 +77,7 @@
     "compounds": [
         {
             // Launch all projects in the solution
-            "name": "Playstore.Inventory.Service Launch (compound)",
+            "name": "Playstore.Inventory.Service Launch (multi-service)",
             "configurations": [
                 "Playstore.Catalog.Service Launch (web)",
                 "Playstore.Inventory.Service Launch (web)"
