@@ -1,4 +1,4 @@
-using Playstore.Common.MongoDB;
+using Playstore.Common.DependencyInjection;
 using Playstore.Inventory.Service;
 using Playstore.Inventory.Service.Entities;
 

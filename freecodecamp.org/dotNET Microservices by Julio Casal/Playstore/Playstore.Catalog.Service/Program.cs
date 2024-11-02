@@ -1,5 +1,5 @@
 using Playstore.Catalog.Service.Entities;
-using Playstore.Common.MongoDB;
+using Playstore.Common.DependencyInjection;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

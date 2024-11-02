@@ -4,12 +4,13 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using Playstore.Common.MongoDB;
 using Playstore.Common.Settings;
 
-namespace Playstore.Common.MongoDB;
+namespace Playstore.Common.DependencyInjection;
 
 /// <summary>Extenstion methods for registering MongoDB services.</summary>
-public static class MongoRegistrationExtensions
+public static class MongoRepositories
 {
     /// <summary>Registers a Mongo database.</summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add this method to.</param>

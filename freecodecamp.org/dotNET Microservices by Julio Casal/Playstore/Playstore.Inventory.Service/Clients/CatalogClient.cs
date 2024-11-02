@@ -2,7 +2,7 @@ using Playstore.Inventory.Service.Dtos;
 
 namespace Playstore.Inventory.Service.Clients;
 
-public class CatalogClient
+public class CatalogClient : ICatalogClient
 {
     private readonly HttpClient _httpClient;
 

@@ -68,7 +68,7 @@ A REST api defines the operations exposed by a microservice.
 A Data Transfer Object (DTO) is an object that carries data between processes. The DTO represents the _contract_ between the microservice API and the client.
 
 ## Dependency Injection
-![Dependency Injection](dependency_injection.svg)
+![Dependency Injection](readme/dependency_injection.svg)
 
 ## Developer certificates
 Generate SSL dev cert ([see doc](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs)): `dotnet dev-certs https`.  
@@ -77,13 +77,13 @@ View certificates: `ls -la ~/.dotnet/corefx/cryptography/x509stores/my`.
 Cannot trust dev cert on Linux. Use `ASPNETCORE_URLS` environment variable to disable HTTPS redirect ([see doc](https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-8.0&tabs=visual-studio%2Clinux-ubuntu%2Clinux-sles)): 
 
 ## ASP.NET Core Configuration
-![ASP.NET Core Configuration](dotnet_configuration.svg)
+![ASP.NET Core Configuration](readme/dotnet_configuration.svg)
 
 ## Postman
 A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be imported into Postman to generate a collection.
 
 ## Reusing common code
-![Common code using NuGet](common_nuget.svg)
+![Common code using NuGet](readme/common_nuget.svg)
 
 - Don't repeat yourself (DRY)
 - Microservices should be independent of each other
@@ -103,19 +103,19 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 - Rest + HTTP protocol is the traditional approach
 - gRPC is an increasingly popular approach for internal inter-service communication (using HTTP2)
 
-![Synchronous communication](sync_communication.svg)
+![Synchronous communication](readme/sync_communication.svg)
 
 ## Microservice Resilience
 **Timeout policy**  
 
-![Timeout policy](polly_timeout.svg)
+![Timeout policy](readme/polly_timeout.svg)
 
 **Retry policy**  
 Retries with exponential backoff  
 
-![Retry policy](polly_retry.svg)
+![Retry policy](readme/polly_retry.svg)
 
 **Circuit Breaker**  
 
-![Circuit Breaker](polly_circuit_breaker.svg)
+![Circuit Breaker](readme/polly_circuit_breaker.svg)
 

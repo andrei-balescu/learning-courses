@@ -12,9 +12,9 @@ namespace Playstore.Inventory.Service.Controllers;
 public class ItemsController : ControllerBase
 {
     private readonly IRepository<InventoryItem> _itemsRepository;
-    private readonly CatalogClient _catalogClient;
+    private readonly ICatalogClient _catalogClient;
 
-    public ItemsController(IRepository<InventoryItem> itemsRepository, CatalogClient catalogClient)
+    public ItemsController(IRepository<InventoryItem> itemsRepository, ICatalogClient catalogClient)
     {
         _itemsRepository = itemsRepository;
         _catalogClient = catalogClient;

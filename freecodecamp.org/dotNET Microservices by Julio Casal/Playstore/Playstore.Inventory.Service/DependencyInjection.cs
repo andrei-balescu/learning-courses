@@ -12,7 +12,7 @@ public static class DependencyInjection
     /// <returns>The service collection.</returns>
     public static IServiceCollection AddServiceClients(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddHttpClient<CatalogClient>((serviceProvider, client) =>
+        serviceCollection.AddHttpClient<ICatalogClient, CatalogClient>((serviceProvider, client) =>
         {
             var configuration = serviceProvider.GetService<IConfiguration>();
             var clientSettings = configuration.GetSection(nameof(ServiceClientSettings)).Get<ServiceClientSettings>();
