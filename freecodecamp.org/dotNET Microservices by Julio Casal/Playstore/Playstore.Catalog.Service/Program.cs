@@ -4,7 +4,8 @@ using Playstore.Common.DependencyInjection;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMongo()
-                .AddMongoRepository<Item>("items");
+                .AddMongoRepository<Item>("items")
+                .AddMassTransitWithRabbitMq();
 
 // Add services to the container.
 builder.Services.AddControllers(o =>

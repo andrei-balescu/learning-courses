@@ -1,4 +1,6 @@
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Playstore.Catalog.Contracts;
 using Playstore.Catalog.Service.Dtos;
 using Playstore.Catalog.Service.Entities;
 using Playstore.Common;
@@ -13,11 +15,16 @@ public class ItemsController : ControllerBase
     /// <summary>Repository for storing items.</summary>
     private readonly IRepository<Item> _itemsRepository;
 
+    /// <summary>Endpoint for publishing to a message queue.</summary>
+    private readonly IPublishEndpoint _publishEndpoint;
+
     /// <summary>Create a new instance.</summary>
     /// <param name="itemsRepository">Repository for storing items.</param>
-    public ItemsController(IRepository<Item> itemsRepository)
+    /// <param name="publishEndpoint">Endpoint for publishing to a message queue.</param>
+    public ItemsController(IRepository<Item> itemsRepository, IPublishEndpoint publishEndpoint)
     {
         _itemsRepository = itemsRepository;
+        _publishEndpoint = publishEndpoint;
     }
 
     /// <summary>Returns all items.</summary>
@@ -66,6 +73,8 @@ public class ItemsController : ControllerBase
 
         await _itemsRepository.CreateAsync(item);
 
+        await _publishEndpoint.Publish(new CatalogItemCreated(item.Id, item.Name, item.Description));
+
         return CreatedAtAction(nameof(GetByIdAsync), new { Id = item.Id }, item.AsDto());
     }
 
@@ -90,6 +99,8 @@ public class ItemsController : ControllerBase
 
         await _itemsRepository.UpdateAsync(existingItem);
 
+        await _publishEndpoint.Publish(new CatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
+
         return NoContent();
     }
 
@@ -108,6 +119,8 @@ public class ItemsController : ControllerBase
         }
 
         await _itemsRepository.RemoveAsync(id);
+
+        await _publishEndpoint.Publish(new CatalogItemDeleted(id));
 
         return NoContent();
     }

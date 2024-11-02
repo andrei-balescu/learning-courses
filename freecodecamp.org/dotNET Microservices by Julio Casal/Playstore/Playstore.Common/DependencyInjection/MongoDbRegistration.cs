@@ -10,7 +10,7 @@ using Playstore.Common.Settings;
 namespace Playstore.Common.DependencyInjection;
 
 /// <summary>Extenstion methods for registering MongoDB services.</summary>
-public static class MongoRepositories
+public static class MongoDbRegistration
 {
     /// <summary>Registers a Mongo database.</summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add this method to.</param>

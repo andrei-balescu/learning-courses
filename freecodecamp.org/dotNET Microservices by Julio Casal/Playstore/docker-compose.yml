@@ -33,3 +33,15 @@ services:
     volumes:
       - ~/Development/db/mongodb8:/data/db
     restart: always
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      # post messages to the queue
+      - 5672:5672
+      # access portal: username=guest, password=guest
+      - 15672:15672
+    volumes:
+      - ~/Development/db/rabbitmq4:/var/lib/rabbitmq
+    # important for persisting data in same place (random value by default)
+    hostname: rabbitmq

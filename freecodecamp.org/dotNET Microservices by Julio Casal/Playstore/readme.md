@@ -7,7 +7,8 @@
     - [Postman](#postman)
     - [Reusing common code](#reusing-common-code)
     - [Synchronous communication](#synchronous-communication)
-    - [Microservice resilience](#microservice-resilience)
+        - [Microservice resilience](#microservice-resilience)
+    - [Asynchronous communication](#asynchronous-communication)
 
 # Monolith vs microservices
 ## Monolith pros and cons
@@ -94,7 +95,7 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 - The common code is now maintained in one place
 - The time to build new microservices is significantly reduced
 
-**NOTE**: Not implementing NuGet packaging for commmon code due to hosting limitations. Instead, the Playstore.Common project will be referenced by other microservices.
+**NOTE**: Not implementing NuGet packaging for commmon code due to hosting limitations with Docker. Instead, the Playstore.Common project will be referenced by other microservices.
 
 ## Synchronous communication
 - The client sends a request and waits for the response from the service
@@ -105,7 +106,7 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 
 ![Synchronous communication](readme/sync_communication.svg)
 
-## Microservice Resilience
+### Microservice Resilience
 **Timeout policy**  
 
 ![Timeout policy](readme/polly_timeout.svg)
@@ -119,3 +120,16 @@ Retries with exponential backoff
 
 ![Circuit Breaker](readme/polly_circuit_breaker.svg)
 
+## Asynchronous communication
+- The client does not wait for a response in a timely manner
+- There might be no response at all
+- Usually involves the use of a message broker
+- Message broker has high availability
+- Messages are sent to the message broker and can be received by: 
+    - A single receiver (asynchronous commands)
+    - Multiple receivers (publish/subscribe events)
+- Partial failures are no longer propagated
+- Independent service SLA
+- Microservice autonomy enforced
+
+![Asynchronous communication](readme/queue_comunication.svg)
