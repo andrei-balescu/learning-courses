@@ -95,6 +95,8 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 - The common code is now maintained in one place
 - The time to build new microservices is significantly reduced
 
+Generate NuGet package: `dotnet pack p:PackageVersion=1.0.1 -o package/`
+
 **NOTE**: Not implementing NuGet packaging for commmon code due to hosting limitations with Docker. Instead, the Playstore.Common project will be referenced by other microservices.
 
 ## Synchronous communication

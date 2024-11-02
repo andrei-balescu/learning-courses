@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMongo()
-                .AddMongoRepository<InventoryItem>("inventoryitems");
+                .AddMongoRepository<InventoryItem>("inventoryitems")
+                .AddMongoRepository<CatalogItem>("catalogitems")
+                .AddMassTransitWithRabbitMq();
 
 builder.Services.AddServiceClients();
 
