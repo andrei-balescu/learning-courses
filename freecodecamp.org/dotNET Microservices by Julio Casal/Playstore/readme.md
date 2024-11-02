@@ -7,7 +7,7 @@
     - [Postman](#postman)
     - [Reusing common code](#reusing-common-code)
     - [Synchronous communication](#synchronous-communication)
-
+    - [Microservice resilience](#microservice-resilience)
 
 # Monolith vs microservices
 ## Monolith pros and cons
@@ -104,3 +104,18 @@ A .NET microservice's OpenAPI specification (`/swagger/v1/swagger.json`) can be 
 - gRPC is an increasingly popular approach for internal inter-service communication (using HTTP2)
 
 ![Synchronous communication](sync_communication.svg)
+
+## Microservice Resilience
+**Timeout policy**  
+
+![Timeout policy](polly_timeout.svg)
+
+**Retry policy**  
+Retries with exponential backoff  
+
+![Retry policy](polly_retry.svg)
+
+**Circuit Breaker**  
+
+![Circuit Breaker](polly_circuit_breaker.svg)
+
