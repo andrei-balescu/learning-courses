@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Common;
-using Playstore.Inventory.Service.Clients;
 using Playstore.Inventory.Service.Dtos;
 using Playstore.Inventory.Service.Entities;
 
@@ -11,13 +10,13 @@ namespace Playstore.Inventory.Service.Controllers;
 [Route("items")]
 public class ItemsController : ControllerBase
 {
-    private readonly IRepository<InventoryItem> _itemsRepository;
-    private readonly ICatalogClient _catalogClient;
+    private readonly IRepository<InventoryItem> _inventoryItemsRepository;
+    private readonly IRepository<CatalogItem> _catalogItemsRepository;
 
-    public ItemsController(IRepository<InventoryItem> itemsRepository, ICatalogClient catalogClient)
+    public ItemsController(IRepository<InventoryItem> itemsRepository, IRepository<CatalogItem> catalogItemsRepository)
     {
-        _itemsRepository = itemsRepository;
-        _catalogClient = catalogClient;
+        _inventoryItemsRepository = itemsRepository;
+        _catalogItemsRepository = catalogItemsRepository;
     }
 
     /// <summary>Retrieves all inventory items for a user.</summary>
@@ -31,8 +30,11 @@ public class ItemsController : ControllerBase
             return BadRequest();
         }
 
-        IReadOnlyCollection<CatalogItemDto> catalogItems = await _catalogClient.GetItems();
-        IEnumerable<InventoryItem> inventoryItems = await _itemsRepository.GetAllAsync(i => i.UserId == userId);
+        IReadOnlyCollection<InventoryItem> inventoryItems = await _inventoryItemsRepository.GetAllAsync(i => i.UserId == userId);
+
+        IEnumerable<Guid> catalogItemIds = inventoryItems.Select(item => item.CatalogItemId);
+        IReadOnlyCollection<CatalogItem> catalogItems = await _catalogItemsRepository.GetAllAsync(item => catalogItemIds.Contains(item.Id));
+
 
         IEnumerable<InventoryItemDto> items = 
             from catalogItem in catalogItems
@@ -49,7 +51,7 @@ public class ItemsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> PostAsync(GrantItemsDto grantItemsDto)
     {
-        InventoryItem inventoryItem = await _itemsRepository.GetAsync(i => i.UserId == grantItemsDto.UserId
+        InventoryItem inventoryItem = await _inventoryItemsRepository.GetAsync(i => i.UserId == grantItemsDto.UserId
                                                             && i.CatalogItemId == grantItemsDto.CatalogItemId);
 
         if (inventoryItem == null)
@@ -63,13 +65,13 @@ public class ItemsController : ControllerBase
                 AcquiredDate = DateTimeOffset.UtcNow
             };
 
-            await _itemsRepository.CreateAsync(inventoryItem);
+            await _inventoryItemsRepository.CreateAsync(inventoryItem);
         }
         else
         {
             inventoryItem.Quantity += grantItemsDto.Quantity;
 
-            await _itemsRepository.UpdateAsync(inventoryItem);
+            await _inventoryItemsRepository.UpdateAsync(inventoryItem);
         }
 
         return Ok();
