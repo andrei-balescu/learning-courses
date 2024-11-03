@@ -12,6 +12,7 @@ services:
       - 8001:5001
     depends_on:
       - mongodb
+      - rabbitmq
 
   playstoreinventoryservice:
     image: playstoreinventoryservice
@@ -22,7 +23,7 @@ services:
       - 8002:5002
     depends_on:
       - mongodb
-      - playstorecatalogservice
+      - rabbitmq
 
   mongodb:
     # docker run -d --rm --name mongo -p 27017:27017 -v ~/Development/db/mongodb8:/data/db mongo:8

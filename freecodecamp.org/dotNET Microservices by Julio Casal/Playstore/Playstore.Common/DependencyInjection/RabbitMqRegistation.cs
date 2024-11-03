@@ -24,6 +24,10 @@ public static class RabbitMqRegistation
                 var rabbitMqSettings = configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
                 configurator.Host(rabbitMqSettings.Host);
                 configurator.ConfigureEndpoints(context, new KebabCaseEndpointNameFormatter(rabbitMqSettings.EndpointPrefix, false));
+                configurator.UseMessageRetry(configurator =>
+                {
+                    configurator.Interval(3, TimeSpan.FromSeconds(5));
+                });
             });
         });
 

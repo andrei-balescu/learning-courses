@@ -18,6 +18,7 @@ services:
       - ~/.vsdbg:/remote_debugger:rw
     depends_on:
       - mongodb
+      - rabbitmq
 
   playstoreinventoryservice:
     image: playstoreinventoryservice
@@ -32,7 +33,7 @@ services:
       - ~/.vsdbg:/remote_debugger:rw
     depends_on:
       - mongodb
-      - playstorecatalogservice
+      - rabbitmq
 
   mongodb:
     image: mongo:8
