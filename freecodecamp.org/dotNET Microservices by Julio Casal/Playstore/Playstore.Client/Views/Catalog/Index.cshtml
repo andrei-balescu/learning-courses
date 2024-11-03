@@ -1,5 +1,4 @@
-@using Playstore.Client.Dto;
-@model IReadOnlyCollection<CatalogItemDto>;
+@model IEnumerable<CatalogItemViewModel>;
 @{
     ViewData["Title"] = "Catalog";
 }
@@ -9,6 +8,12 @@
         <div class="col-6">
             <h2 class="text-primary">@ViewData["Title"]</h2>
         </div>
+        <div class="col-6 text-end">
+            <a asp-asp-controller="Catalog" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                Create new item
+            </a>
+        </div>
     </div>
 
     <table class="table table-bordered table-striped" style="width: 100%;">
@@ -16,14 +21,16 @@
             <tr>
                 <th width="20%">Name</th>
                 <th width="50%">Description</th>
+                <th width="10%">Price</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (CatalogItemDto item in Model)
+            @foreach (CatalogItemViewModel item in Model)
             {
                 <tr>
                     <td>@item.Name</td>
                     <td>@item.Description</td>
+                    <td>@item.Price</td>
                 </tr>
             }
         </tbody>

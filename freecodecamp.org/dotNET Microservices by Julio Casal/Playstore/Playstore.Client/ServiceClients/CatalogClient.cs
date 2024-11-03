@@ -1,4 +1,6 @@
-using Playstore.Client.Dto;
+using MongoDB.Bson;
+using Playstore.Client.Dtos;
+using Playstore.Client.Dtos;
 
 namespace Playstore.Client.ServiceClients;
 
@@ -24,5 +26,12 @@ public class CatalogClient : ICatalogClient
     {
         var items = await _httpClient.GetFromJsonAsync<IReadOnlyCollection<CatalogItemDto>>(c_itemsEndpoint);
         return items;
+    }
+
+    /// <summary>Create a new item in the catalog.</summary>
+    /// <param name="item">The item to create.</param>
+    public async Task CreateItem(CreateCatalogItemDto item)
+    {
+        await _httpClient.PostAsJsonAsync(c_itemsEndpoint, item);
     }
 }
