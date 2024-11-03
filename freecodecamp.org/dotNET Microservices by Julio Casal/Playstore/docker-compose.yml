@@ -3,6 +3,17 @@
 version: '3.4'
 
 services:
+  playstoreclient:
+    image: playstoreclient
+    build:
+      context: .
+      dockerfile: Playstore.Client/Dockerfile
+    ports:
+      - 8010:5010
+    depends_on:
+      - playstorecatalogservice
+      - playstoreinventoryservice
+      
   playstorecatalogservice:
     image: playstorecatalogservice
     build:

@@ -28,7 +28,7 @@
                 }
             },
             "presentation": {
-                "order": 1
+                "order": 2
             }
         },
         {
@@ -55,6 +55,29 @@
                 }
             },
             "presentation": {
+                "order": 3
+            }
+        },
+        {
+            "name": "Playstore.Client Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Playstore.Client/bin/Debug/net6.0/Playstore.Client.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Client",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Playstore.Client/Views"
+            },
+            "presentation": {
                 // Depends on other microservice. Launch as compound.
                 "hidden": true,
             }
@@ -77,15 +100,16 @@
     "compounds": [
         {
             // Launch all projects in the solution
-            "name": "Playstore.Inventory.Service Launch (multi-service)",
+            "name": "Playstore.Client Launch (multi-service)",
             "configurations": [
                 "Playstore.Catalog.Service Launch (web)",
-                "Playstore.Inventory.Service Launch (web)"
+                "Playstore.Inventory.Service Launch (web)",
+                "Playstore.Client Launch (web)"
             ],
             "preLaunchTask": "build",
             "stopAll": true,
             "presentation": {
-                "order": 2
+                "order": 1
             }
         }
     ]

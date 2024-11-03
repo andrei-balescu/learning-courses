@@ -11,3 +11,5 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 - MongoDB storage
 - Docker for containerization
 - Microservice client resilience using Polly
+- Asynchronous communication using RabbitMQ
+- Docker for containerization

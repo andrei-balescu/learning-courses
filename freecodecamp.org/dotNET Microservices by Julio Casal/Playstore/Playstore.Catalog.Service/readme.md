@@ -8,9 +8,9 @@ Project using:
 ## Endpoints
 ### /items
 
-Retrieve all items in catalog
+Retrieve all items in catalog  
 Request: **GET** /items  
-```
+``` json
 GET /items
 ```
 Response: 200 Success  
@@ -28,10 +28,10 @@ Response: 200 Success
 
 ---
 
-Retrieve specific item details
+Retrieve specific item details  
 Request: **GET** /items/{id}  
-```
-/items/3fa85f64-5717-4562-b3fc-2c963f66afa6
+``` json
+GET /items/3fa85f64-5717-4562-b3fc-2c963f66afa6
 ```
 Response: 200 Success  
 ``` json
@@ -46,7 +46,7 @@ Response: 200 Success
 
 ---
 
-Create new item in catalog
+Create new item in catalog  
 Request: **POST** /items  
 ``` json
 POST /items
@@ -69,7 +69,7 @@ Response: 200 Success
 
 ---
 
-Update existing item
+Update existing item  
 Request: **PUT** /items/{id}  
 ``` json
 PUT /items/3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -83,9 +83,9 @@ Response: 204 No content
 
 ---
 
-Delete item from catalog
+Delete item from catalog  
 Request: **DELETE** /items/{id}  
-```
+``` json
 DELETE /items/77981ced-f62f-491f-8768-a4ed521b4afb
 ```
 Response: 200 Success  

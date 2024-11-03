@@ -10,7 +10,7 @@ Project using:
 
 Get items in user's inventory:  
 Request: **GET** /items/{userId}
-```
+``` json
 GET /items/3fa85f64-5717-4562-b3fc-2c963f66afa6
 ```
 Response:
@@ -31,6 +31,7 @@ Response:
 Grant items to user:  
 Request: **POST** /items
 ``` json
+POST /items
 {
   "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "catalogItemId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",

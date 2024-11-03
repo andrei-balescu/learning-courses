@@ -3,6 +3,23 @@
 version: '3.4'
 
 services:
+  playstoreclient:
+    image: playstoreclient
+    build:
+      context: .
+      dockerfile: Playstore.Client/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 8010:5010
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - playstorecatalogservice
+      - playstoreinventoryservice
+
   playstorecatalogservice:
     image: playstorecatalogservice
     build:
