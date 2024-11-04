@@ -1,3 +1,4 @@
+@using Playstore.Client.Models.Catalog;
 @model IEnumerable<CatalogItemViewModel>;
 @{
     ViewData["Title"] = "Catalog";
@@ -22,6 +23,7 @@
                 <th width="20%">Name</th>
                 <th width="50%">Description</th>
                 <th width="10%">Price</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -37,9 +39,14 @@
                                 <i class="bi bi-pencil-square"></i>
                                 Edit
                             </a>
+                            <a asp-controller="Catalog" asp-action="Delete" asp-route-id=@item.Id class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i>
+                                Delete
+                            </a>
                         </div>
                     </td>
                 </tr>
             }
         </tbody>
+    </table>
 </div>

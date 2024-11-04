@@ -26,13 +26,6 @@ public class CatalogClient : ICatalogClient
         return items;
     }
 
-    /// <summary>Create a new item in the catalog.</summary>
-    /// <param name="item">The item to create.</param>
-    public async Task CreateItem(CreateCatalogItemDto item)
-    {
-        await _httpClient.PostAsJsonAsync(c_itemsEndpoint, item);
-    }
-
     /// <summary>Get an item by id.</summary>
     /// <param name="id">The id of the item.</param>
     /// <returns>The item details.</returns>
@@ -42,11 +35,25 @@ public class CatalogClient : ICatalogClient
         return item;
     }
 
+    /// <summary>Create a new item in the catalog.</summary>
+    /// <param name="item">The item to create.</param>
+    public async Task CreateItem(CreateCatalogItemDto item)
+    {
+        await _httpClient.PostAsJsonAsync(c_itemsEndpoint, item);
+    }
+
     /// <summary>Update an item in the catalog.</summary>
     /// <param name="itemId">ID of item to update.</param>
     /// <param name="item">The item to update.</param>
     public async Task UpdateItem(Guid itemId, UpdateCatalogItemDto item)
     {
         await _httpClient.PutAsJsonAsync($"{c_itemsEndpoint}/{itemId}", item);
+    }
+
+    /// <summary>Delete an item from the catalog.</summary>
+    /// <param name="itemId">ID of the item to delete.</param>
+    public async Task DeleteItem(Guid itemId)
+    {
+        await _httpClient.DeleteAsync($"{c_itemsEndpoint}/{itemId}");
     }
 }

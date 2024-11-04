@@ -22,4 +22,8 @@ public interface ICatalogClient
     /// <param name="itemId">ID of item to update.</param>
     /// <param name="item">The item to update.</param>
     Task UpdateItem(Guid itemId, UpdateCatalogItemDto item);
+
+    /// <summary>Delete an item from the catalog.</summary>
+    /// <param name="itemId">ID of the item to delete.</param>
+    Task DeleteItem(Guid itemId);
 }

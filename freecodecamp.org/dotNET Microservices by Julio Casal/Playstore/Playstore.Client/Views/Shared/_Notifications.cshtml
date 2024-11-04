@@ -1,0 +1,8 @@
+@if (TempData[NotificationsViewModel.c_Success] != null)
+{
+    <div class="alert alert-success">@TempData[NotificationsViewModel.c_Success]</div>
+}
+@if (TempData[NotificationsViewModel.c_Error] != null)
+{
+    <div class="alert alert-error">@TempData[NotificationsViewModel.c_Error]</div>
+}

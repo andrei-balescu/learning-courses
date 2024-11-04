@@ -1,32 +1,32 @@
 @using Playstore.Client.Models.Catalog;
 @model CatalogItemViewModel
 @{
-    ViewData["Title"] = "Create item";
+    ViewData["Title"] = "Delete item";
 }
 
-<form method="post">
+<form method="post" asp-action="DeleteConfirm">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">@ViewData["Title"]</h2>
             <hr />
         </div>
-        <div asp-validation-summary="All"></div>
+        <input asp-for="Id" hidden />
         <div class="mb-3">
             <label asp-for="Name">Name</label>
-            <input asp-for="Name" class="form-control" />
+            <input asp-for="Name" class="form-control" disabled />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Description">Description</label>
-            <input asp-for="Description" class="form-control" />
+            <input asp-for="Description" class="form-control" disabled />
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Price">Price</label>
-            <input asp-for="Price" class="form-control" />
+            <input asp-for="Price" class="form-control" disabled />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-asp-controller="Catalog" asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
 

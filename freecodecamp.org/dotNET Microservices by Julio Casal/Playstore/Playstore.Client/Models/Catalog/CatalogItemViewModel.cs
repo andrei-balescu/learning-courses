@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Playstore.Client.Models;
+namespace Playstore.Client.Models.Catalog;
 
 public class CatalogItemViewModel
 {
-    [Required]
     public Guid Id { get; set; }
 
     [Required]
@@ -15,6 +14,6 @@ public class CatalogItemViewModel
     [MaxLength(250)]
     public string Description { get; set; }
 
-    [Range(0, ushort.MaxValue)]
+    [Range(0, 1000)]
     public decimal Price { get; set; }
 }

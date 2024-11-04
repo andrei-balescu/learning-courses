@@ -3,6 +3,7 @@ using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
+using Playstore.Client.Models.Catalog;
 using Playstore.Client.ServiceClients;
 
 namespace Playstore.Client.Controllers;
@@ -23,7 +24,7 @@ public class CatalogController : Controller
     /// <summary>Displays all catalog items.</summary>
     /// <returns>Catalog/Index page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> IndexAsync()
     {
         IEnumerable<CatalogItemViewModel> catalogItems = (await _catalogClient.GetAllItemsAsync())
             .Select(dto => new CatalogItemViewModel
@@ -40,21 +41,22 @@ public class CatalogController : Controller
     /// <summary>Page to create new item.</summary>
     /// <returns>Catalog/Create page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return View();
     }
 
     /// <summary>Create a new item.</summary>
     /// <param name="item">The item to create.</param>
-    /// <returns>Redirects to Catalog index or back to page if any validation errors.</returns>
+    /// <returns>Redirects to catalog index.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(CatalogItemViewModel item)
+    public async Task<IActionResult> CreateAsync(CatalogItemViewModel item)
     {
         if (ModelState.IsValid)
         {
             await _catalogClient.CreateItem(new CreateCatalogItemDto(item.Name, item.Description, item.Price));
+            TempData[NotificationsViewModel.c_Success] = "Catalog item created successfully";
 
             return RedirectToAction("Index");
         }
@@ -68,7 +70,7 @@ public class CatalogController : Controller
     /// <param name="id">ID of the item to edit.</param>
     /// <returns>Catalog/Edit page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Edit(Guid? id)
+    public async Task<IActionResult> EditAsync(Guid? id)
     {
         if (!id.HasValue)
         {
@@ -92,22 +94,72 @@ public class CatalogController : Controller
                 return NotFound();
             }
 
+            TempData[NotificationsViewModel.c_Error] = "An error occured on the server.";
             return RedirectToAction("Index");
         }
     }
 
+    /// <summary>Update an item in the catalog.</summary>
+    /// <param name="item">The item to update.</param>
+    /// <returns>Redirects to catalog index.</returns>
     [HttpPost]
-    public async Task<IActionResult> Edit(CatalogItemViewModel item)
+    public async Task<IActionResult> EditAsync(CatalogItemViewModel item)
     {
         if (ModelState.IsValid)
         {
             await _catalogClient.UpdateItem(item.Id, new UpdateCatalogItemDto(item.Name, item.Description, item.Price));
 
+            TempData[NotificationsViewModel.c_Success] = "Catalog item updated successfully";
             return RedirectToAction("Index");
         }
         else
         {
             return View(item);
         }
+    }
+
+    /// <summary>Page to delete an item from the catalog.</summary>
+    /// <param name="id">ID of the item to delete.</param>
+    /// <returns>Catalog/Delete page.</returns>
+    [HttpGet]
+    public async Task<IActionResult> Delete(Guid? id)
+    {
+        if (!id.HasValue)
+        {
+            return NotFound();
+        }
+        try
+        {
+            CatalogItemDto dto = await _catalogClient.GetItem(id.Value);
+            return View(new CatalogItemViewModel
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price
+            });
+        }
+        catch (HttpRequestException exception)
+        {
+            if (exception.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+
+            TempData[NotificationsViewModel.c_Error] = "An error occured on the server.";
+            return RedirectToAction("Index");
+        }
+    }
+
+    /// <summary>Delete an item from the catalog.</summary>
+    /// <param name="id">ID of the item to delete.</param>
+    /// <returns>Redirects to catalog index.</returns>
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirm(Guid id)
+    {
+        await _catalogClient.DeleteItem(id);
+
+        TempData[NotificationsViewModel.c_Success] = "Catalog item deleted successfully";
+        return RedirectToAction("Index");
     }
 }
