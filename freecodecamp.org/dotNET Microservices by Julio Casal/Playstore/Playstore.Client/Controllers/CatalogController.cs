@@ -1,6 +1,7 @@
+using System.Net;
 using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
-using Playstore.Client.Dtos;
+using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
 using Playstore.Client.ServiceClients;
 
@@ -27,6 +28,7 @@ public class CatalogController : Controller
         IEnumerable<CatalogItemViewModel> catalogItems = (await _catalogClient.GetAllItemsAsync())
             .Select(dto => new CatalogItemViewModel
             {
+                Id = dto.Id,
                 Name = dto.Name,
                 Description = dto.Description,
                 Price = dto.Price
@@ -53,6 +55,53 @@ public class CatalogController : Controller
         if (ModelState.IsValid)
         {
             await _catalogClient.CreateItem(new CreateCatalogItemDto(item.Name, item.Description, item.Price));
+
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return View(item);
+        }
+    }
+
+    /// <summary>Page to edit an item.</summary>
+    /// <param name="id">ID of the item to edit.</param>
+    /// <returns>Catalog/Edit page.</returns>
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid? id)
+    {
+        if (!id.HasValue)
+        {
+            return NotFound();
+        }
+        try
+        {
+            CatalogItemDto dto = await _catalogClient.GetItem(id.Value);
+            return View(new CatalogItemViewModel
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price
+            });
+        }
+        catch (HttpRequestException exception)
+        {
+            if (exception.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Index");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(CatalogItemViewModel item)
+    {
+        if (ModelState.IsValid)
+        {
+            await _catalogClient.UpdateItem(item.Id, new UpdateCatalogItemDto(item.Name, item.Description, item.Price));
 
             return RedirectToAction("Index");
         }

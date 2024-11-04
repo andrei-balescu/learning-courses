@@ -1,4 +1,4 @@
-namespace Playstore.Catalog.Contracts;
+namespace Playstore.Catalog.Contracts.MassTransit;
 
 public record CatalogItemCreated(Guid ItemId, string Name, string Description);
 

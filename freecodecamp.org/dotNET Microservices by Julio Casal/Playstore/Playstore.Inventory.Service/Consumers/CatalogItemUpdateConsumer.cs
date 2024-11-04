@@ -1,5 +1,5 @@
 using MassTransit;
-using Playstore.Catalog.Contracts;
+using Playstore.Catalog.Contracts.MassTransit;
 using Playstore.Common;
 using Playstore.Inventory.Service.Entities;
 

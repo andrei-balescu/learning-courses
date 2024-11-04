@@ -1,7 +1,7 @@
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Playstore.Catalog.Contracts;
-using Playstore.Catalog.Service.Dtos;
+using Playstore.Catalog.Contracts.DataTransferObjects;
+using Playstore.Catalog.Contracts.MassTransit;
 using Playstore.Catalog.Service.Entities;
 using Playstore.Common;
 
@@ -31,9 +31,9 @@ public class ItemsController : ControllerBase
     /// <returns>A list of items</returns>
     /// <remarks>GET /items</remarks>
     [HttpGet]
-    public async Task<IEnumerable<ItemDto>> GetAsync()
+    public async Task<IEnumerable<CatalogItemDto>> GetAsync()
     {
-        IEnumerable<ItemDto> items = (await _itemsRepository.GetAllAsync())
+        IEnumerable<CatalogItemDto> items = (await _itemsRepository.GetAllAsync())
                                                             .Select(i => i.AsDto());
         return items;
     }
@@ -43,7 +43,7 @@ public class ItemsController : ControllerBase
     /// <returns>An item DTO.</returns>
     /// <remarks>GET /items/{id}</remarks>
     [HttpGet("{id}")]
-    public async Task<ActionResult<ItemDto>> GetByIdAsync(Guid id)
+    public async Task<ActionResult<CatalogItemDto>> GetByIdAsync(Guid id)
     {
         Item? item = await _itemsRepository.GetAsync(id);
 
@@ -60,7 +60,7 @@ public class ItemsController : ControllerBase
     /// <returns>The result of the action.</returns>
     /// <remarks>POST /items</remarks>
     [HttpPost]
-    public async Task<ActionResult<ItemDto>> CreateAsync(CreateItemDto createItemDto)
+    public async Task<ActionResult<CatalogItemDto>> CreateAsync(CreateCatalogItemDto createItemDto)
     {
         var item = new Item
         {
@@ -84,7 +84,7 @@ public class ItemsController : ControllerBase
     /// <returns>No content if item updated; Not found if item not found.</returns>
     /// <remarks>PUT /items/{id}</remarks>
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(Guid id, UpdateItemDto updateItemDto)
+    public async Task<IActionResult> UpdateAsync(Guid id, UpdateCatalogItemDto updateItemDto)
     {
         Item? existingItem = await _itemsRepository.GetAsync(id);
         

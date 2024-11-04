@@ -5,6 +5,9 @@ namespace Playstore.Client.Models;
 public class CatalogItemViewModel
 {
     [Required]
+    public Guid Id { get; set; }
+
+    [Required]
     [MaxLength(100)]
     public string Name { get; set; }
 
@@ -13,5 +16,5 @@ public class CatalogItemViewModel
     public string Description { get; set; }
 
     [Range(0, ushort.MaxValue)]
-    public int Price { get; set; }
+    public decimal Price { get; set; }
 }

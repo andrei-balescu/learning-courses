@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Playstore.Common\Playstore.Common.csproj" />
+    <ProjectReference Include="..\Playstore.Catalog.Contracts\Playstore.Catalog.Contracts.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
