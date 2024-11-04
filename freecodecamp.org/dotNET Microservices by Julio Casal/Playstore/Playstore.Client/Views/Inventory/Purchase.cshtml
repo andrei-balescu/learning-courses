@@ -1,19 +1,13 @@
-@using Playstore.Client.Models.Inventory;
-@model IEnumerable<InventoryItemViewModel>;
+@using Playstore.Client.Models.Catalog;
+@model IEnumerable<CatalogItemViewModel>;
 @{
-    ViewData["Title"] = "Inventory items";
+    ViewData["Title"] = "Catalog";
 }
 
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">@ViewData["Title"]</h2>
-        </div>
-        <div class="col-6 text-end">
-            <a asp-asp-controller="Inventory" asp-action="Purchase" class="btn btn-primary">
-                <i class="bi bi-cart"></i>
-                Purchase items
-            </a>
         </div>
     </div>
 
@@ -22,18 +16,19 @@
             <tr>
                 <th width="20%">Name</th>
                 <th width="50%">Description</th>
-                <th width="10%">Quantity</th>
+                <th width="10%">Price</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (InventoryItemViewModel item in Model)
+            @foreach (CatalogItemViewModel item in Model)
             {
                 <tr>
                     <td>@item.Name</td>
                     <td>@item.Description</td>
-                    <td>@item.Quantity</td>
+                    <td>@item.Price</td>
                 </tr>
             }
         </tbody>
     </table>
+    <a asp-controller="Inventory" asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
