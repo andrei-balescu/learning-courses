@@ -1,0 +1,116 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Playstore.Catalog.Service Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_catalog",
+            "program": "${workspaceFolder}/Playstore.Catalog.Service/bin/Debug/net6.0/Playstore.Catalog.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Catalog.Service",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "linux": {
+                "env": {
+                    // Disable HTTPS redirect - cannot trust dev certificates on Linux
+                    "ASPNETCORE_URLS": "http://localhost:5001"
+                }
+            },
+            "presentation": {
+                "order": 2
+            }
+        },
+        {
+            "name": "Playstore.Inventory.Service Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_inventory",
+            "program": "${workspaceFolder}/Playstore.Inventory.Service/bin/Debug/net6.0/Playstore.Inventory.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Inventory.Service",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "linux": {
+                "env": {
+                    // Disable HTTPS redirect - cannot trust dev certificates on Linux
+                    "ASPNETCORE_URLS": "http://localhost:5002"
+                }
+            },
+            "presentation": {
+                "order": 3
+            }
+        },
+        {
+            "name": "Playstore.Client Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Playstore.Client/bin/Debug/net6.0/Playstore.Client.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Client",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Playstore.Client/Views"
+            },
+            "presentation": {
+                // Depends on other microservice. Launch as compound.
+                "hidden": true,
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "name": "Docker .NET Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            // Launch all projects in the solution
+            "name": "Playstore.Client Launch (multi-service)",
+            "configurations": [
+                "Playstore.Catalog.Service Launch (web)",
+                "Playstore.Inventory.Service Launch (web)",
+                "Playstore.Client Launch (web)"
+            ],
+            "preLaunchTask": "build",
+            "stopAll": true,
+            "presentation": {
+                "order": 1
+            }
+        }
+    ]
+}

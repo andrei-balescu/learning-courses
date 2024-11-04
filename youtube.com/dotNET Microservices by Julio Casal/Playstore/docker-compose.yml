@@ -1,0 +1,59 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  playstoreclient:
+    image: playstoreclient
+    build:
+      context: .
+      dockerfile: Playstore.Client/Dockerfile
+    ports:
+      - 8010:5010
+    depends_on:
+      - playstorecatalogservice
+      - playstoreinventoryservice
+      
+  playstorecatalogservice:
+    image: playstorecatalogservice
+    build:
+      context: .
+      dockerfile: Playstore.Catalog.Service/Dockerfile
+    ports:
+      - 8001:5001
+    depends_on:
+      - mongodb
+      - rabbitmq
+
+  playstoreinventoryservice:
+    image: playstoreinventoryservice
+    build:
+      context: .
+      dockerfile: Playstore.Inventory.Service/Dockerfile
+    ports:
+      - 8002:5002
+    depends_on:
+      - mongodb
+      - rabbitmq
+
+  mongodb:
+    # docker run -d --rm --name mongo -p 27017:27017 -v ~/Development/db/mongodb8:/data/db mongo:8
+    image: mongo:8
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/Development/db/mongodb8:/data/db
+    restart: always
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      # post messages to the queue
+      - 5672:5672
+      # access portal: username=guest, password=guest
+      - 15672:15672
+    volumes:
+      - ~/Development/db/rabbitmq4:/var/lib/rabbitmq
+    # important for persisting data in same place (random value by default)
+    hostname: rabbitmq

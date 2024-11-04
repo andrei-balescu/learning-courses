@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playstore.Catalog.Service", "Playstore.Catalog.Service\Playstore.Catalog.Service.csproj", "{C6E215B4-DB74-4896-B4B1-6D82E98103D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Common", "Playstore.Common\Playstore.Common.csproj", "{849D74C8-2115-4CF2-854C-E6B3C4BC2DF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Inventory.Service", "Playstore.Inventory.Service\Playstore.Inventory.Service.csproj", "{47CCC49A-ADCD-4DDD-A420-CDBEF5A797CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Catalog.Contracts", "Playstore.Catalog.Contracts\Playstore.Catalog.Contracts.csproj", "{C17B1787-8E09-4128-832B-C00F61C6E25B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Client", "Playstore.Client\Playstore.Client.csproj", "{4750BDB4-0C32-4E85-B4A8-16CD0DBBD62A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Inventory.Contracts", "Playstore.Inventory.Contracts\Playstore.Inventory.Contracts.csproj", "{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6E215B4-DB74-4896-B4B1-6D82E98103D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E215B4-DB74-4896-B4B1-6D82E98103D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E215B4-DB74-4896-B4B1-6D82E98103D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E215B4-DB74-4896-B4B1-6D82E98103D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849D74C8-2115-4CF2-854C-E6B3C4BC2DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849D74C8-2115-4CF2-854C-E6B3C4BC2DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849D74C8-2115-4CF2-854C-E6B3C4BC2DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849D74C8-2115-4CF2-854C-E6B3C4BC2DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CCC49A-ADCD-4DDD-A420-CDBEF5A797CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CCC49A-ADCD-4DDD-A420-CDBEF5A797CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CCC49A-ADCD-4DDD-A420-CDBEF5A797CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CCC49A-ADCD-4DDD-A420-CDBEF5A797CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17B1787-8E09-4128-832B-C00F61C6E25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17B1787-8E09-4128-832B-C00F61C6E25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17B1787-8E09-4128-832B-C00F61C6E25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17B1787-8E09-4128-832B-C00F61C6E25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4750BDB4-0C32-4E85-B4A8-16CD0DBBD62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4750BDB4-0C32-4E85-B4A8-16CD0DBBD62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4750BDB4-0C32-4E85-B4A8-16CD0DBBD62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4750BDB4-0C32-4E85-B4A8-16CD0DBBD62A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0132B46C-28D4-42F7-AF57-5F250F447A90}
+	EndGlobalSection
+EndGlobal
