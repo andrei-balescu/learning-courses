@@ -21,6 +21,15 @@ public static class DependencyInjection
         })
         .AddHttpClientResiliencePolicy<CatalogClient>(services);
 
+        services.AddHttpClient<IInventoryClient, InventoryClient>((serviceProvider, client) =>
+        {
+            var configuration = serviceProvider.GetService<IConfiguration>();
+            var clientSettings = configuration.GetSection(nameof(ServiceClientSettings)).Get<ServiceClientSettings>();
+
+            client.BaseAddress = new Uri(clientSettings.InventoryServiceUrl);
+        })
+        .AddHttpClientResiliencePolicy<InventoryClient>(services);
+
         return services;
     }
 }

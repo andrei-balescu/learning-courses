@@ -5,4 +5,7 @@ public class ServiceClientSettings
 {
     /// <summary>URL of the catalog service.</summary>
     public string CatalogServiceUrl { get; set; }
+
+    /// <summary>URL of the inventory service.</summary>
+    public string InventoryServiceUrl { get; set; }
 }

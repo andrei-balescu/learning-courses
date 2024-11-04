@@ -1,0 +1,32 @@
+@using Playstore.Client.Models.Inventory;
+@model IEnumerable<InventoryItemViewModel>;
+@{
+    ViewData["Title"] = "Inventory items";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">@ViewData["Title"]</h2>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" style="width: 100%;">
+        <thead>
+            <tr>
+                <th width="20%">Name</th>
+                <th width="50%">Description</th>
+                <th width="10%">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (InventoryItemViewModel item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

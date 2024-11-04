@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Common;
-using Playstore.Inventory.Service.Dtos;
+using Playstore.Inventory.Contracts.DataTransferObjects;
 using Playstore.Inventory.Service.Entities;
 
 namespace Playstore.Inventory.Service.Controllers;
@@ -49,7 +49,7 @@ public class ItemsController : ControllerBase
     /// <param name="grantItemsDto">DTO specifying grant details.</param>
     /// <returns>OK response.</returns>
     [HttpPost]
-    public async Task<ActionResult> PostAsync(GrantItemsDto grantItemsDto)
+    public async Task<ActionResult> PostAsync(GrantInventoryItemsDto grantItemsDto)
     {
         InventoryItem inventoryItem = await _inventoryItemsRepository.GetAsync(i => i.UserId == grantItemsDto.UserId
                                                             && i.CatalogItemId == grantItemsDto.CatalogItemId);

@@ -2,7 +2,7 @@ using Playstore.Catalog.Contracts.DataTransferObjects;
 
 namespace Playstore.Client.ServiceClients;
 
-/// <summary>Client for accessint Catalog service.</summary>
+/// <summary>Client for accessing Catalog service.</summary>
 public class CatalogClient : ICatalogClient
 {
     /// <summary>Client to use for communication.</summary>

@@ -1,4 +1,4 @@
-using Playstore.Inventory.Service.Dtos;
+using Playstore.Inventory.Contracts.DataTransferObjects;
 
 namespace Playstore.Inventory.Service.Entities;
 
