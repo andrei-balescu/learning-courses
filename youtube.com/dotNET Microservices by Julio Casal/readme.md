@@ -8,6 +8,7 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 
 ## Project
 - .NET 6 WebAPI microservices
+- .NET 6 MVC client
 - MongoDB storage
 - Docker for containerization
 - Microservice client resilience using Polly
