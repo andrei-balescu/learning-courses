@@ -9,4 +9,8 @@ public interface IInventoryClient
     /// <param name="userId">The user ID.</param>
     /// <returns>A list of items.</returns>
     Task<IReadOnlyCollection<InventoryItemDto>> GetItemsAsync(Guid userId);
+
+    /// <summary>Grant catalog items to a user.</summary>
+    /// <param name="grantItemsDto">Parameters for granting items.</param>
+    Task GrantInventoryItems(GrantInventoryItemsDto grantItemsDto);
 }

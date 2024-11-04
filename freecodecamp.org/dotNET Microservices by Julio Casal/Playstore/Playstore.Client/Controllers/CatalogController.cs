@@ -94,7 +94,7 @@ public class CatalogController : Controller
                 return NotFound();
             }
 
-            TempData[NotificationsViewModel.c_Error] = "An error occured on the server.";
+            TempData[NotificationsViewModel.c_Error] = "An error has occured on the server.";
             return RedirectToAction("Index");
         }
     }
@@ -146,7 +146,7 @@ public class CatalogController : Controller
                 return NotFound();
             }
 
-            TempData[NotificationsViewModel.c_Error] = "An error occured on the server.";
+            TempData[NotificationsViewModel.c_Error] = "An error has occured on the server.";
             return RedirectToAction("Index");
         }
     }

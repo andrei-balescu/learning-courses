@@ -1,0 +1,43 @@
+@using Playstore.Client.Models.Inventory;
+@model PurchaseItemViewModel;
+@{
+    ViewData["Title"] = "Purchase item";
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@ViewData["Title"]</h2>
+            <hr />
+        </div>
+        @* Disabled fields not sent in form. Adding hidden fields. *@
+        <input asp-for="Name" hidden />
+        <input asp-for="Description" hidden />
+        <input asp-for="Price" hidden />
+        <div class="mb-3">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" disabled />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control" disabled />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price">Price</label>
+            <input asp-for="Price" class="form-control" disabled />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb3">
+            <label asp-for="Quantity">Quantity</label>
+            <input asp-for="Quantity" class="form-control" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Purchase</button>
+        <a asp-controller="Inventory" asp-action="Purchase" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

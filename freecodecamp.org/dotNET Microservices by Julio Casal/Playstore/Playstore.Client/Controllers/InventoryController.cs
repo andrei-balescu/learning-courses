@@ -1,8 +1,12 @@
+using System.Net;
 using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
+using Playstore.Catalog.Contracts.DataTransferObjects;
+using Playstore.Client.Models;
 using Playstore.Client.Models.Catalog;
 using Playstore.Client.Models.Inventory;
 using Playstore.Client.ServiceClients;
+using Playstore.Inventory.Contracts.DataTransferObjects;
 
 namespace Playstore.Client.Controllers;
 
@@ -27,6 +31,7 @@ public class InventoryController : Controller
 
     /// <summary>Lists the items in the inventory.</summary>
     /// <returns>Inventory/Index page.</returns>
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         IEnumerable<InventoryItemViewModel> items = (await _inventoryClient.GetItemsAsync(_hardcodedUserId))
@@ -43,6 +48,7 @@ public class InventoryController : Controller
 
     /// <summary>Lists catalog items for purchase.</summary>
     /// <returns>Inventory/Purchase page.</returns>
+    [HttpGet]
     public async Task<IActionResult> Purchase()
     {
         IEnumerable<CatalogItemViewModel> catalogItems = (await _catalogClient.GetAllItemsAsync())
@@ -55,5 +61,57 @@ public class InventoryController : Controller
             });
 
         return View(catalogItems);
+    }
+
+    /// <summary>Page for purchasing an item.</summary>
+    /// <param name="id">ID of the item in the catalog.</param>
+    /// <returns>Inventory/PurchaseItem page.</returns>
+    [HttpGet]
+    public async Task<IActionResult> PurchaseItem(Guid? id)
+    {
+        if (!id.HasValue)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            CatalogItemDto item = await _catalogClient.GetItem(id.Value);
+            return View(new PurchaseItemViewModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Description = item.Description,
+                Price = item.Price
+            });
+        }
+        catch (HttpRequestException exception)
+        {
+            if (exception.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+
+            TempData[NotificationsViewModel.c_Error] = "An error has occured on the server";
+            return RedirectToAction("Index");
+        }
+    }
+
+    /// <summary>Purchase an item.</summary>
+    /// <param name="item">The item to purchase.</param>
+    /// <returns>Redirects to Inventory/Index page.</returns>
+    [HttpPost]
+    public async Task<IActionResult> PurchaseItem(PurchaseItemViewModel item)
+    {
+        if (ModelState.IsValid)
+        {
+            await _inventoryClient.GrantInventoryItems(new GrantInventoryItemsDto(_hardcodedUserId, item.Id, item.Quantity));
+            TempData[NotificationsViewModel.c_Success] = "Items purchased successfully";
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return View(item);
+        }
     }
 }

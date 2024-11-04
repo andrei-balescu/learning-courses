@@ -27,4 +27,10 @@ public class InventoryClient : IInventoryClient
         IReadOnlyCollection<InventoryItemDto> items = await _httpClient.GetFromJsonAsync<IReadOnlyCollection<InventoryItemDto>>(url);
         return items;
     }
+    /// <summary>Grant catalog items to a user.</summary>
+    /// <param name="grantItemsDto">Parameters for granting items.</param>
+    public async Task GrantInventoryItems(GrantInventoryItemsDto grantItemsDto)
+    {
+        await _httpClient.PostAsJsonAsync(c_ItemsEndpoint, grantItemsDto);
+    }
 }
