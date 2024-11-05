@@ -13,7 +13,15 @@ services:
     depends_on:
       - playstorecatalogservice
       - playstoreinventoryservice
-      
+
+  playstoreauthservice:
+    image: playstoreauthservice
+    build:
+      context: .
+      dockerfile: Playstore.Auth.Service/Dockerfile
+    ports:
+      - 8003:5003
+
   playstorecatalogservice:
     image: playstorecatalogservice
     build:

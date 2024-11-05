@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Client", "Playsto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Inventory.Contracts", "Playstore.Inventory.Contracts\Playstore.Inventory.Contracts.csproj", "{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Auth.Service", "Playstore.Auth.Service\Playstore.Auth.Service.csproj", "{A25AF34C-122D-41F8-A13B-5BE2FD943CED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A25E75A7-14AD-4343-B89E-6C0C8374BBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25AF34C-122D-41F8-A13B-5BE2FD943CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25AF34C-122D-41F8-A13B-5BE2FD943CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25AF34C-122D-41F8-A13B-5BE2FD943CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25AF34C-122D-41F8-A13B-5BE2FD943CED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

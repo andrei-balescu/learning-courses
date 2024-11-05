@@ -20,6 +20,20 @@ services:
       - playstorecatalogservice
       - playstoreinventoryservice
 
+  playstoreauthservice:
+    image: playstoreauthservice
+    build:
+      context: .
+      dockerfile: Playstore.Auth.Service/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 8003:5003
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+
   playstorecatalogservice:
     image: playstorecatalogservice
     build:

@@ -55,6 +55,33 @@
                 }
             },
             "presentation": {
+                "order": 4
+            }
+        },
+        {
+            "name": "Playstore.Auth.Service Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_auth",
+            "program": "${workspaceFolder}/Playstore.Auth.Service/bin/Debug/net6.0/Playstore.Auth.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Playstore.Auth.Service",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "linux": {
+                "env": {
+                    // Disable HTTPS redirect - cannot trust dev certificates on Linux
+                    "ASPNETCORE_URLS": "http://localhost:5003"
+                }
+            },
+            "presentation": {
                 "order": 3
             }
         },
