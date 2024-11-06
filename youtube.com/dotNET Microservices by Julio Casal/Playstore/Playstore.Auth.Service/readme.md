@@ -13,3 +13,5 @@ Create identity tables:
 - Update DB: `dotnet ef database update` (will also create DB if not exists)  
 - To unapply and remove migration: `dotnet ef migrations remove --force` (some migrations are customized - beware of loss of functionality)
 **NOTE**: Change connnection string in `appSettings.Development.json` to point to local machine
+
+Decode token information: https://jwt.io/

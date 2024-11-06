@@ -24,7 +24,7 @@ public class UserService : IUserService
         return user;
     }
 
-    public async Task<IdentityUser?> LoginUser(LoginUserDto loginUserDto)
+    public async Task<IdentityUser?> LoginUser(LoginUserRequest loginUserDto)
     {
         IdentityUser? user = _dbContext.Users.SingleOrDefault(u => u.UserName == loginUserDto.Name);
         if (user != null)
@@ -39,7 +39,7 @@ public class UserService : IUserService
         return null;
     }
 
-    public async Task<IEnumerable<IdentityError>?> RegisterUser(RegisterUserDto registerUserDto)
+    public async Task<IEnumerable<IdentityError>?> RegisterUser(RegisterUserRequest registerUserDto)
     {
         IdentityUser user = new()
         {

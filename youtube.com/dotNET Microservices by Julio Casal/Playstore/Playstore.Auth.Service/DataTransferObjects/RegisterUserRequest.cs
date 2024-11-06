@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Playstore.Auth.Service.DataTransferObjects;
 
-public record RegisterUserDto(
+public record RegisterUserRequest(
     [Required]
     string Name, 
     

@@ -5,9 +5,9 @@ namespace Playstore.Auth.Service.Services;
 
 public interface IUserService
 {
-    Task<IEnumerable<IdentityError>?> RegisterUser(RegisterUserDto registerUserDto);
+    Task<IEnumerable<IdentityError>?> RegisterUser(RegisterUserRequest registerUserDto);
 
-    Task<IdentityUser?> LoginUser(LoginUserDto user);
+    Task<IdentityUser?> LoginUser(LoginUserRequest user);
 
     IdentityUser GetUserByName(string userId);
 }
