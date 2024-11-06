@@ -1,8 +1,8 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Playstore.Auth.Service.Data;
 using Playstore.Auth.Service.DataTransferObjects;
+using Playstore.Auth.Service.Services;
 
 namespace Playstore.Auth.Service.Controllers;
 
@@ -10,48 +10,58 @@ namespace Playstore.Auth.Service.Controllers;
 [ApiController] 
 public class UserController : ControllerBase
 {
-    private readonly AppDbContext _dbContext;
+    private readonly IUserService _userService;
 
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IJwtTokenService _jwtTokenService;
 
-    public UserController(AppDbContext dbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+    public UserController(IUserService userService, IJwtTokenService jwtTokenService)
     {
-        _dbContext = dbContext;
-        _userManager = userManager;
-        _roleManager = roleManager;
+        _userService = userService;
+        _jwtTokenService = jwtTokenService;
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
     {
-        IdentityUser user = new()
+        IEnumerable<IdentityError>? result = await _userService.RegisterUser(registerUserDto);
+        if (result == null)
         {
-            UserName = registerUserDto.Name
-        };
-        
-        IdentityResult result = await _userManager.CreateAsync(user, registerUserDto.Password);
-        if (result.Succeeded)
-        {
-            user = _dbContext.Users.Single(user => user.UserName == registerUserDto.Name);
+            IdentityUser user = _userService.GetUserByName(registerUserDto.Name);
 
             var registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
             return Ok(registrationResponse);
         }
-        else
-        {
-            foreach(var error in result.Errors)
-            {
-                ModelState.AddModelError(error.Code, error.Description);
-            }
-
-            return BadRequest(ModelState);
-        }
+        
+        return BadRequest(result);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login()
+    public async Task<IActionResult> Login(LoginUserDto loginUserDto)
     {
-        return Ok();
+        IdentityUser? user = await _userService.LoginUser(loginUserDto);
+        if (user == null)
+        {
+            return BadRequest();
+        }
+
+        string token = _jwtTokenService.GenerateToken(user);
+        var loginResponse = new LoginResponseDto(
+            user: new UserDto(new Guid(user.Id), user.UserName), 
+            token: token
+        );
+        return Ok(loginResponse);
+    }
+
+    private BadRequestObjectResult BadRequest(IEnumerable<IdentityError> identityErrors)
+    {
+        foreach(var error in identityErrors)
+        {
+            ModelState.AddModelError(error.Code, error.Description);
+        }
+
+        // make behavior consistent with default API validation
+        var validationProblems = new ValidationProblemDetails(ModelState);
+        validationProblems.Extensions["traceId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+        return BadRequest(validationProblems);
     }
 }
