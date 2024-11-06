@@ -28,13 +28,13 @@ public class JwtTokenService : IJwtTokenService
             /// Unique ID for the token
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
-
+        
         SecurityTokenDescriptor tokenDescriptor = new()
         {
             Audience = _jwtSettings.Audience,
             Issuer = _jwtSettings.Issuer,
             Subject = new ClaimsIdentity(claims),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
         };
 
         JwtSecurityTokenHandler tokenHandler = new();

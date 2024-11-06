@@ -21,21 +21,22 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterUserRequest registerUserDto)
+    public async Task<IActionResult> Register(RegisterRequestDto registerUserDto)
     {
         IEnumerable<IdentityError>? result = await _userService.RegisterUser(registerUserDto);
         if (result == null)
         {
             IdentityUser user = _userService.GetUserByName(registerUserDto.Name);
 
-            return Ok();
+            var registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
+            return Ok(registrationResponse);
         }
         
         return BadRequest(result);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginUserRequest loginUserDto)
+    public async Task<IActionResult> Login(LoginRequestDto loginUserDto)
     {
         IdentityUser? user = await _userService.LoginUser(loginUserDto);
         if (user == null)
@@ -44,8 +45,11 @@ public class UserController : ControllerBase
         }
 
         string token = _jwtTokenService.GenerateToken(user);
-        LoginResponseDto loginResponseDto = new(token);
-        return Ok(loginResponseDto);
+        LoginResponseDto loginResponse = new(
+            new UserDto(new Guid(user.Id), user.UserName),
+            token
+        );
+        return Ok(loginResponse);
     }
 
     private BadRequestObjectResult BadRequest(IEnumerable<IdentityError> identityErrors)

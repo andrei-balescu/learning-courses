@@ -2,10 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Playstore.Auth.Service.DataTransferObjects;
 
-public record LoginUserRequest(
+public record RegisterRequestDto(
     [Required]
-    string Name,
-
+    string Name, 
+    
     [Required]
-    string Password
-);
+    string Password,
+    
+    UserRole role);
