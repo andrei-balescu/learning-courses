@@ -8,6 +8,7 @@ using Playstore.Auth.Service.Settings;
 
 namespace Playstore.Auth.Service.Services;
 
+/// <summary>Generates JWT tokens.</summary>
 public class JwtTokenService : IJwtTokenService
 {
     private readonly JwtSettings _jwtSettings;
@@ -17,6 +18,9 @@ public class JwtTokenService : IJwtTokenService
         _jwtSettings = jwtSettings.Value;
     }
 
+    /// <summary>Generate a JWT token.</summary>
+    /// <param name="user">The user to generate token for.</param>
+    /// <returns>The JWT token.</returns>
     public string GenerateToken(IdentityUser user)
     {
         byte[] key = Encoding.UTF8.GetBytes(_jwtSettings.Secret);

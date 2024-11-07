@@ -6,20 +6,29 @@ using Playstore.Auth.Service.Services;
 
 namespace Playstore.Auth.Service.Controllers;
 
-[Route("user")]
+/// <summary>Performs authentication / Authorization.</summary>
+[Route("auth")]
 [ApiController] 
-public class UserController : ControllerBase
+public class AuthController : ControllerBase
 {
-    private readonly IUserService _userService;
+    /// <summary>The service performing authentication / authorization.</summary>
+    private readonly IAuthService _userService;
 
+    /// <summary>Service for generating JWT tokens.</summary>
     private readonly IJwtTokenService _jwtTokenService;
 
-    public UserController(IUserService userService, IJwtTokenService jwtTokenService)
+    /// <summary>Create a new instance.</summary>
+    /// <param name="userService">The service performing authentication / authorization.</param>
+    /// <param name="jwtTokenService">Service for generating JWT tokens.</param>
+    public AuthController(IAuthService userService, IJwtTokenService jwtTokenService)
     {
         _userService = userService;
         _jwtTokenService = jwtTokenService;
     }
 
+    /// <summary>Registers a user.</summary>
+    /// <param name="registerUserDto">The registration parameters.</param>
+    /// <returns>The registration result.</returns>
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequestDto registerUserDto)
     {
@@ -49,6 +58,9 @@ public class UserController : ControllerBase
         }
     }
 
+    /// <summary>Logs in a user.</summary>
+    /// <param name="loginUserDto">The login parameters.</param>
+    /// <returns>Ok if the login was successful.</returns>
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequestDto loginUserDto)
     {
@@ -64,18 +76,5 @@ public class UserController : ControllerBase
             token
         );
         return Ok(loginResponse);
-    }
-
-    private BadRequestObjectResult BadRequest(IEnumerable<IdentityError> identityErrors)
-    {
-        foreach(var error in identityErrors)
-        {
-            ModelState.AddModelError(error.Code, error.Description);
-        }
-
-        // make behavior consistent with default API validation
-        var validationProblems = new ValidationProblemDetails(ModelState);
-        validationProblems.Extensions["traceId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-        return BadRequest(validationProblems);
     }
 }

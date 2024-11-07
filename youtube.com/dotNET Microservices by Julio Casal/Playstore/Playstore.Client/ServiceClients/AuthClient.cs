@@ -1,3 +1,4 @@
+using System.Net;
 using Playstore.Auth.Contracts.DataTransferObjects;
 
 namespace Playstore.Client.ServiceClients;
@@ -17,18 +18,23 @@ public class AuthClient : IAuthClient
 
     public async Task<LoginResponseDto> LoginUserAsync(LoginRequestDto loginRequestDto)
     {
-        HttpResponseMessage loginResponse = await _httpClient.PostAsJsonAsync("/login", loginRequestDto);
-        LoginResponseDto responseContent = await loginResponse.Content.ReadFromJsonAsync<LoginResponseDto>();
+        LoginResponseDto responseContent = null;
+
+        HttpResponseMessage loginResponse = await _httpClient.PostAsJsonAsync("/auth/login", loginRequestDto);
+        if (loginResponse.StatusCode == HttpStatusCode.OK)
+        {
+            responseContent = await loginResponse.Content.ReadFromJsonAsync<LoginResponseDto>();
+        }
 
         return responseContent;
     }
 
     /// <summary>Register a user. </summary>
-    /// <param name="registerRequestDto">Registration request details.</param>
+    /// <param name="registerRequestDto">Registration request details.</param>  
     /// <returns>The registered user or an error if any.</returns>
     public async Task<RegisterResponseDto> RegisterUserAsync(RegisterRequestDto registerRequestDto)
     {
-        HttpResponseMessage registerResponse = await _httpClient.PostAsJsonAsync("/user/register", registerRequestDto);
+        HttpResponseMessage registerResponse = await _httpClient.PostAsJsonAsync("/auth/register", registerRequestDto);
         RegisterResponseDto responseContent = await registerResponse.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
         return responseContent;
