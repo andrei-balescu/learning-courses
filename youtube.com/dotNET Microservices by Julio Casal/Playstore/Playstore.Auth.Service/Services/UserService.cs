@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using Playstore.Auth.Contracts.DataTransferObjects;
 using Playstore.Auth.Service.Data;
-using Playstore.Auth.Service.DataTransferObjects;
-
 namespace Playstore.Auth.Service.Services;
 
 public class UserService : IUserService

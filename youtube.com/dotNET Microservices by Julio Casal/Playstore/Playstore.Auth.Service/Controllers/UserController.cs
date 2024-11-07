@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Playstore.Auth.Service.DataTransferObjects;
+using Playstore.Auth.Contracts.DataTransferObjects;
 using Playstore.Auth.Service.Services;
 
 namespace Playstore.Auth.Service.Controllers;
@@ -23,16 +23,30 @@ public class UserController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequestDto registerUserDto)
     {
+        RegisterResponseDto registrationResponse;
+
         IEnumerable<IdentityError>? result = await _userService.RegisterUser(registerUserDto);
         if (result == null)
         {
             IdentityUser user = _userService.GetUserByName(registerUserDto.Name);
 
-            var registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
+            registrationResponse = new()
+            {
+                IsSuccess = true,
+                User = new UserDto(new Guid(user.Id), user.UserName)
+            };
             return Ok(registrationResponse);
         }
-        
-        return BadRequest(result);
+        else
+        {
+            registrationResponse = new()
+            {
+                IsSuccess = false,
+                ErrorMessage = result.First().Description
+            };
+
+            return BadRequest(registrationResponse);
+        }
     }
 
     [HttpPost("login")]

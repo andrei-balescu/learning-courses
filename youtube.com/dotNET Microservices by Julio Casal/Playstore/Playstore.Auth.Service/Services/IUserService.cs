@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using Playstore.Auth.Service.DataTransferObjects;
+using Playstore.Auth.Contracts.DataTransferObjects;
 
 namespace Playstore.Auth.Service.Services;
 

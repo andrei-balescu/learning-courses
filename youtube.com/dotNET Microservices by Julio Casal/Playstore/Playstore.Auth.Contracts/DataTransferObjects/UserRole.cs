@@ -1,4 +1,4 @@
-namespace Playstore.Auth.Service.DataTransferObjects;
+namespace Playstore.Auth.Contracts.DataTransferObjects;
 
 public enum UserRole
 {

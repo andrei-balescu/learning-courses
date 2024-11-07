@@ -8,4 +8,6 @@ public class ServiceClientSettings
 
     /// <summary>URL of the inventory service.</summary>
     public string InventoryServiceUrl { get; set; }
+
+    public string AuthServiceUrl { get; set; }
 }

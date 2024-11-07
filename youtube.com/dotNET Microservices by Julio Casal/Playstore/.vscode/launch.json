@@ -131,6 +131,7 @@
             "configurations": [
                 "Playstore.Catalog.Service Launch (web)",
                 "Playstore.Inventory.Service Launch (web)",
+                "Playstore.Auth.Service Launch (web)",
                 "Playstore.Client Launch (web)"
             ],
             "preLaunchTask": "build",
