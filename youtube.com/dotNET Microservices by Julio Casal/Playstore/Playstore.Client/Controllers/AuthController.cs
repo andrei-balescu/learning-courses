@@ -1,3 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Playstore.Auth.Contracts.DataTransferObjects;
@@ -26,6 +30,39 @@ public class AuthController : Controller
         return View();
     }
 
+    [HttpPost]
+    public async Task<IActionResult> LoginAsync(LoginViewModel login)
+    {
+        if (ModelState.IsValid)
+        {
+            LoginResponseDto loginResponse = await _authClient.LoginUserAsync(new LoginRequestDto(login.UserName, login.Password));
+
+            if (loginResponse != null)
+            {
+                await SignInUserAsync(loginResponse.token);
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        ModelState.AddModelError("(none)", "Username or password incorrect.");
+        return View(login);
+    }
+
+    /// <summary>Signs a user it based on a jwt token.</summary>
+    /// <param name="jwtToken">The token to used for getting login information.</param>
+    private async Task SignInUserAsync(string jwtToken)
+    {
+        JwtSecurityTokenHandler handler = new();
+        JwtSecurityToken jwt = handler.ReadJwtToken(jwtToken);
+
+        ClaimsIdentity identity = new(CookieAuthenticationDefaults.AuthenticationScheme);
+        identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId));
+        identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sub));
+
+        ClaimsPrincipal principal = new(identity);
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+    }
+
     /// <summary>Page to register a user.</summary>
     /// <returns>The Auth/Register page</returns>
     [HttpGet]
@@ -39,7 +76,7 @@ public class AuthController : Controller
     /// <param name="registration">Registration parameters.</param>
     /// <returns>Redirects to Auth/Login page if registration successful.</returns>
     [HttpPost]
-    public async Task<IActionResult> Register(RegisterViewModel registration)
+    public async Task<IActionResult> RegisterAsync(RegisterViewModel registration)
     {
         if (ModelState.IsValid)
         {
@@ -78,8 +115,9 @@ public class AuthController : Controller
         ViewBag.RoleList = roleList;
     }
 
-    public IActionResult Logout()
+    public async Task<IActionResult> LogoutAsync()
     {
-        return View();
+        await HttpContext.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 }
