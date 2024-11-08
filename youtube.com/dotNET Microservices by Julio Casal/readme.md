@@ -5,6 +5,7 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 
 ## Resources
 - Video tutorial: https://www.youtube.com/watch?v=CqCDOosvZIk
+- Authentication / authorization functionality: https://www.youtube.com/watch?v=Nw4AZs1kLAs
 
 ## Project
 - .NET 6 WebAPI microservices
