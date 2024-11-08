@@ -48,6 +48,7 @@ public class JwtTokenService : IJwtTokenService
             ValidateLifetime = true, // default
             ValidateIssuer = true, // default
             ValidateAudience = true, // default
+            ValidateIssuerSigningKey = true,
             ValidIssuer = _jwtSettings.Issuer,
             ValidAudience = _jwtSettings.Audience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret))
