@@ -58,7 +58,7 @@ public class AuthController : ControllerBase
             return BadRequest();
         }
 
-        string token = _jwtTokenService.GenerateToken(user);
+        string token = await _jwtTokenService.GenerateTokenAsync(user);
         LoginResponseDto loginResponse = new(
             new UserDto(new Guid(user.Id), user.UserName),
             token

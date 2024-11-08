@@ -23,16 +23,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Catalog" asp-action="Index">Catalog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Inventory" asp-action="Index">Inventory</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("GameMaster"))
+                        { 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Catalog" asp-action="Index">Catalog</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Player"))
+                        { 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Inventory" asp-action="Index">Inventory</a>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hello, @User.Identity.Name</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Auth" asp-action="Logout">Logout</a>
                             </li>

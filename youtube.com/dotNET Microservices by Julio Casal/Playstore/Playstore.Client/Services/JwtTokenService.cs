@@ -31,6 +31,10 @@ public class JwtTokenService : IJwtTokenService
         identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId));
         identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sub));
 
+        // ClaimTypes REQUIRED for ASP.NET authorization integration.
+        identity.AddClaim(new Claim(ClaimTypes.Name, jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId).Value));
+        identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(c => c.Type == "role")?.Value));
+
         ClaimsPrincipal principal = new(identity);
         return principal;
     }

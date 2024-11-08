@@ -1,5 +1,6 @@
 using System.Net;
 using MassTransit.Initializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
@@ -9,6 +10,7 @@ using Playstore.Client.ServiceClients;
 namespace Playstore.Client.Controllers;
 
 /// <summary>Operations on catalog items.</summary>
+[Authorize(Roles = "GameMaster")]
 public class CatalogController : Controller
 {
     /// <summary>Client for communicating with the catalog service.</summary>

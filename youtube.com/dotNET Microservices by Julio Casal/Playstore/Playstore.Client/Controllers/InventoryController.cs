@@ -1,5 +1,6 @@
 using System.Net;
 using MassTransit.Initializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
@@ -11,6 +12,7 @@ using Playstore.Inventory.Contracts.DataTransferObjects;
 namespace Playstore.Client.Controllers;
 
 /// <summary>Operations with inventory items.</summary>
+[Authorize(Roles = "Player")]
 public class InventoryController : Controller
 {
     /// <summary>Client for communicating with the catalog service.</summary>

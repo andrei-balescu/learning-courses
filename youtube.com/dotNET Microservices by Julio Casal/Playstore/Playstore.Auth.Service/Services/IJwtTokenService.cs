@@ -8,5 +8,5 @@ public interface IJwtTokenService
     /// <summary>Generate a JWT token.</summary>
     /// <param name="user">The user to generate token for.</param>
     /// <returns>The JWT token.</returns>
-    string GenerateToken(IdentityUser user);
+    Task<string> GenerateTokenAsync(IdentityUser user);
 }
