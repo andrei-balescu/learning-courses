@@ -17,6 +17,7 @@ services:
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
     depends_on:
+      - playstoreauthservice
       - playstorecatalogservice
       - playstoreinventoryservice
 

@@ -1,6 +1,6 @@
 namespace Playstore.Auth.Service.Settings;
 
-/// <summary>Setings for signing JWT tokens.</summary>
+/// <summary>Setings for validating JWT tokens.</summary>
 public class JwtSettings
 {
     public string Secret { get; set; }

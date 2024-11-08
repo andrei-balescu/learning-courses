@@ -11,6 +11,7 @@ services:
     ports:
       - 8010:5010
     depends_on:
+      - playstoreauthservice
       - playstorecatalogservice
       - playstoreinventoryservice
 

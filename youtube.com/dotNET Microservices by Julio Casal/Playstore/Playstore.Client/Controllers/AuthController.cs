@@ -8,6 +8,7 @@ using Playstore.Auth.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
 using Playstore.Client.Models.Auth;
 using Playstore.Client.ServiceClients;
+using Playstore.Client.Services;
 
 namespace Playstore.Client.Controllers;
 
@@ -17,11 +18,14 @@ public class AuthController : Controller
     /// <summary>Client to use for performing authentication / authorization.</summary>
     private readonly IAuthClient _authClient;
 
+    private readonly IJwtTokenService _jwtTokenService;
+
     /// <summary>Create a new instance.</summary>
     /// <param name="authClient">Client to use for performing authentication / authorization.</param>
-    public AuthController(IAuthClient authClient)
+    public AuthController(IAuthClient authClient, IJwtTokenService jwtTokenService)
     {
         _authClient = authClient;
+        _jwtTokenService = jwtTokenService;
     }
 
     [HttpGet]
@@ -39,28 +43,16 @@ public class AuthController : Controller
 
             if (loginResponse != null)
             {
-                await SignInUserAsync(loginResponse.token);
+                ClaimsPrincipal principal = _jwtTokenService.GetPrincipal(
+                    CookieAuthenticationDefaults.AuthenticationScheme, 
+                    loginResponse.token);
+                await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Home");
             }
         }
 
         ModelState.AddModelError("(none)", "Username or password incorrect.");
         return View(login);
-    }
-
-    /// <summary>Signs a user it based on a jwt token.</summary>
-    /// <param name="jwtToken">The token to used for getting login information.</param>
-    private async Task SignInUserAsync(string jwtToken)
-    {
-        JwtSecurityTokenHandler handler = new();
-        JwtSecurityToken jwt = handler.ReadJwtToken(jwtToken);
-
-        ClaimsIdentity identity = new(CookieAuthenticationDefaults.AuthenticationScheme);
-        identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId));
-        identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sub));
-
-        ClaimsPrincipal principal = new(identity);
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
     }
 
     /// <summary>Page to register a user.</summary>
