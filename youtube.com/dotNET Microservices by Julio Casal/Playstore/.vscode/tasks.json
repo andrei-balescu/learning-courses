@@ -20,6 +20,18 @@
             }
         },
         {
+            "label": "build_auth",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Playstore.Auth.Service/Playstore.Auth.Service.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "build_catalog",
             "command": "dotnet",
             "type": "process",

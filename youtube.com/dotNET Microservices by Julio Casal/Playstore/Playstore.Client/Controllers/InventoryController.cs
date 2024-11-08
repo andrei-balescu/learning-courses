@@ -1,5 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using MassTransit.Initializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
@@ -11,6 +13,7 @@ using Playstore.Inventory.Contracts.DataTransferObjects;
 namespace Playstore.Client.Controllers;
 
 /// <summary>Operations with inventory items.</summary>
+[Authorize(Roles = "Player")]
 public class InventoryController : Controller
 {
     /// <summary>Client for communicating with the catalog service.</summary>
@@ -18,10 +21,6 @@ public class InventoryController : Controller
 
     /// <summary>Client for communicating with the inventory service.</summary>
     private readonly IInventoryClient _inventoryClient;
-
-    /// <summary>ID of the user owning the inventory.</summary>
-    /// <remarks>Hardcoded until user/identity service available.</remarks>
-    private  Guid _hardcodedUserId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6");
 
     public InventoryController(IInventoryClient inventoryClient, ICatalogClient catalogClient)
     {
@@ -34,7 +33,7 @@ public class InventoryController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        IEnumerable<InventoryItemViewModel> items = (await _inventoryClient.GetItemsAsync(_hardcodedUserId))
+        IEnumerable<InventoryItemViewModel> items = (await _inventoryClient.GetItemsAsync(GetCurrentUserId()))
             .Select(dto =>  new InventoryItemViewModel
             {
                 Id = dto.CatalogItemId,
@@ -105,7 +104,7 @@ public class InventoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _inventoryClient.GrantInventoryItems(new GrantInventoryItemsDto(_hardcodedUserId, item.Id, item.Quantity));
+            await _inventoryClient.GrantInventoryItems(new GrantInventoryItemsDto(GetCurrentUserId(), item.Id, item.Quantity));
             TempData[NotificationsViewModel.c_Success] = "Items purchased successfully";
             return RedirectToAction("Index");
         }
@@ -113,5 +112,11 @@ public class InventoryController : Controller
         {
             return View(item);
         }
+    }
+
+    private Guid GetCurrentUserId()
+    {
+        var userId = User.Claims.Single(claim => claim.Type == JwtRegisteredClaimNames.Sub).Value;
+        return new Guid(userId);
     }
 }

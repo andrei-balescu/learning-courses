@@ -4,10 +4,12 @@
     <ProjectReference Include="..\Playstore.Common\Playstore.Common.csproj" />
     <ProjectReference Include="..\Playstore.Catalog.Contracts\Playstore.Catalog.Contracts.csproj" />
     <ProjectReference Include="..\Playstore.Inventory.Contracts\Playstore.Inventory.Contracts.csproj" />
+    <ProjectReference Include="..\Playstore.Auth.Contracts\Playstore.Auth.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6" />
   </ItemGroup>
 
   <PropertyGroup>
