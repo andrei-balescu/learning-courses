@@ -53,9 +53,12 @@ public class AuthController : Controller
                 TempData[NotificationsViewModel.c_Success] = $"User {registerResponse.User.Name} registered successfully";
                 return RedirectToAction("Login");
             }
-            else
+            else if (registerResponse.BadRequest != null)
             {
-                ModelState.AddModelError("(none)", registerResponse.ErrorMessage);
+                foreach(KeyValuePair<string, IEnumerable<string>> field in registerResponse.BadRequest.Errors)
+                {
+                    ModelState.AddModelError(field.Key, field.Value.First());
+                }
             }
         }
         

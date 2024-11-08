@@ -1,4 +1,6 @@
-namespace Playstore.Auth.Contracts.DataTransferObjects;
+using Playstore.Auth.Contracts.DataTransferObjects;
+
+namespace Playstore.Client.Models.Auth;
 
 /// <summary>Registration response DTO.</summary>
 public class RegisterResponseDto
@@ -9,6 +11,6 @@ public class RegisterResponseDto
     /// <summary>The user details.</summary>
     public UserDto? User { get; set; }
 
-    /// <summary>Error encountered when registering user.</summary>
-    public string? ErrorMessage { get; set; }
+    /// <summary>Errors encountered when registering user if any.</summary>
+    public BadRequestDto? BadRequest { get; set; }
 }

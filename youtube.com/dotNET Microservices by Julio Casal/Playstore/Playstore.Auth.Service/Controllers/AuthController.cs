@@ -32,29 +32,17 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequestDto registerUserDto)
     {
-        RegisterResponseDto registrationResponse;
-
-        IEnumerable<IdentityError>? result = await _userService.RegisterUser(registerUserDto);
-        if (result == null)
+        IEnumerable<IdentityError>? errors = await _userService.RegisterUser(registerUserDto);
+        if (errors == null)
         {
             IdentityUser user = _userService.GetUserByName(registerUserDto.Name);
 
-            registrationResponse = new()
-            {
-                IsSuccess = true,
-                User = new UserDto(new Guid(user.Id), user.UserName)
-            };
+            UserDto registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
             return Ok(registrationResponse);
         }
         else
         {
-            registrationResponse = new()
-            {
-                IsSuccess = false,
-                ErrorMessage = result.First().Description
-            };
-
-            return BadRequest(registrationResponse);
+            return BadRequest(errors);
         }
     }
 
@@ -76,5 +64,21 @@ public class AuthController : ControllerBase
             token
         );
         return Ok(loginResponse);
+    }
+
+    /// <summary>Returns identity errors in a Bad Request response.</summary>
+    /// <param name="identityErrors">The errors to return.</param>
+    /// <returns>A Bad Request response containing errors.</returns>
+    private BadRequestObjectResult BadRequest(IEnumerable<IdentityError> identityErrors)
+    {
+        foreach(var error in identityErrors)
+        {
+            ModelState.AddModelError(error.Code, error.Description);
+        }
+
+        // make behavior consistent with default API validation
+        var validationProblems = new ValidationProblemDetails(ModelState);
+        validationProblems.Extensions["traceId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+        return BadRequest(validationProblems);
     }
 }

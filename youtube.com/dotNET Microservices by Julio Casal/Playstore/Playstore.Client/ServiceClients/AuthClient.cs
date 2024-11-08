@@ -1,5 +1,7 @@
 using System.Net;
 using Playstore.Auth.Contracts.DataTransferObjects;
+using Playstore.Client.Models;
+using Playstore.Client.Models.Auth;
 
 namespace Playstore.Client.ServiceClients;
 
@@ -34,9 +36,20 @@ public class AuthClient : IAuthClient
     /// <returns>The registered user or an error if any.</returns>
     public async Task<RegisterResponseDto> RegisterUserAsync(RegisterRequestDto registerRequestDto)
     {
-        HttpResponseMessage registerResponse = await _httpClient.PostAsJsonAsync("/auth/register", registerRequestDto);
-        RegisterResponseDto responseContent = await registerResponse.Content.ReadFromJsonAsync<RegisterResponseDto>();
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync("/auth/register", registerRequestDto);
 
-        return responseContent;
+        RegisterResponseDto clientTesponse = new RegisterResponseDto();
+
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            clientTesponse.IsSuccess = true;
+            clientTesponse.User = await response.Content.ReadFromJsonAsync<UserDto>();
+        }
+        else if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            clientTesponse.BadRequest = await response.Content.ReadFromJsonAsync<BadRequestDto>();
+        }
+
+        return clientTesponse;
     }
 }

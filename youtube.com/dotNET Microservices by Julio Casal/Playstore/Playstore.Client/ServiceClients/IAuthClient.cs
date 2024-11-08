@@ -1,5 +1,6 @@
 using Playstore.Auth.Contracts.DataTransferObjects;
 using Playstore.Client.Models;
+using Playstore.Client.Models.Auth;
 
 namespace Playstore.Client.ServiceClients;
 
