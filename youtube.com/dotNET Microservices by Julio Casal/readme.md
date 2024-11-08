@@ -8,9 +8,10 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 
 ## Project
 - .NET 6 WebAPI microservices
+- .NET 6 authentication / authorization microservice using .NET Core identity
 - .NET 6 MVC client
+- SQL Server for auth service
 - MongoDB storage
-- Docker for containerization
 - Microservice client resilience using Polly
 - Asynchronous communication using RabbitMQ
 - Docker for containerization

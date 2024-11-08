@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Playstore.Auth.Service.Settings;
 using Playstore.Client;
 using Playstore.Client.Services;
+using Playstore.Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 

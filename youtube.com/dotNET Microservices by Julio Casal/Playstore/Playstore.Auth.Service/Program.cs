@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Playstore.Auth.Service.Data;
 using Playstore.Auth.Service.Services;
-using Playstore.Auth.Service.Settings;
+using Playstore.Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 

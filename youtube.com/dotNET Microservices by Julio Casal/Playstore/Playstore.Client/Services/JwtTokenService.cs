@@ -1,10 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Playstore.Auth.Service.Settings;
+using Playstore.Common.Settings;
 
 namespace Playstore.Client.Services;
 

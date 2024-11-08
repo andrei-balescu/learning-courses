@@ -100,8 +100,7 @@ public class AuthController : Controller
         var roleList = new List<SelectListItem>
         {
             new SelectListItem { Text = UserRole.Player.ToString(), Value = ((int)UserRole.Player).ToString() },
-            new SelectListItem { Text = UserRole.GameMaster.ToString(), Value = ((int)UserRole.GameMaster).ToString() },
-            new SelectListItem { Text = UserRole.Admin.ToString(), Value = ((int)UserRole.Admin).ToString() }
+            new SelectListItem { Text = UserRole.GameMaster.ToString(), Value = ((int)UserRole.GameMaster).ToString() }
         };
 
         ViewBag.RoleList = roleList;

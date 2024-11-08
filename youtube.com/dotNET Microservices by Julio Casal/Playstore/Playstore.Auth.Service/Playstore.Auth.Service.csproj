@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Playstore.Auth.Contracts\Playstore.Auth.Contracts.csproj" />
+    <ProjectReference Include="..\Playstore.Common\Playstore.Common.csproj" />
   </ItemGroup>
 
 </Project>
