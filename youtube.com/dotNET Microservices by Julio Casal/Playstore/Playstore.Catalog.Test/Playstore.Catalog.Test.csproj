@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Playstore.Catalog.Service\Playstore.Catalog.Service.csproj" />
+    <ProjectReference Include="..\Playstore.Catalog.Contracts\Playstore.Catalog.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
