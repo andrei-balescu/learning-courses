@@ -13,7 +13,7 @@ using Playstore.Catalog.Service.Controllers;
 using Playstore.Catalog.Service.Entities;
 using Playstore.Common;
 
-namespace Playstore.Catalog.Tests;
+namespace Playstore.Catalog.Test;
 
 [TestClass]
 public class ItemsControllerTests
@@ -97,7 +97,7 @@ public class ItemsControllerTests
             i => i.Name == expectedName 
             && i.Description == expectedDescription
             && i.Price == expectedPrice
-            && i.Id != new Guid()
+            && i.Id != Guid.Empty
             && (expectedCreatedDate - i.CreatedDate).Milliseconds < 1)));
 
         _publishEndpointMock.Verify(m => m.Publish(It.Is<CatalogItemCreated>(
