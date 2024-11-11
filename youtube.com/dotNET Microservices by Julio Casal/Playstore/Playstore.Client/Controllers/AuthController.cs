@@ -45,7 +45,7 @@ public class AuthController : Controller
             {
                 ClaimsPrincipal principal = _jwtTokenService.GetPrincipal(
                     CookieAuthenticationDefaults.AuthenticationScheme, 
-                    loginResponse.token);
+                    loginResponse.Token);
                 await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Home");
             }

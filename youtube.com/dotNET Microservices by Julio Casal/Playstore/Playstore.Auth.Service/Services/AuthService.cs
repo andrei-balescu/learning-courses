@@ -28,14 +28,14 @@ public class AuthService : IAuthService
     }
 
     /// <summary>Logs in a user.</summary>
-    /// <param name="user">User login details.</param>
+    /// <param name="loginRequestDto">User login details.</param>
     /// <returns>The logged in user.</returns>
-    public async Task<IdentityUser?> LoginUser(LoginRequestDto loginUserDto)
+    public async Task<IdentityUser?> LoginUserAsync(LoginRequestDto loginRequestDto)
     {
-        IdentityUser? user = _dbContext.Users.SingleOrDefault(u => u.UserName == loginUserDto.Name);
+        IdentityUser? user = _dbContext.Users.SingleOrDefault(u => u.UserName == loginRequestDto.Name);
         if (user != null)
         {
-            bool isValid = await _userManager.CheckPasswordAsync(user, loginUserDto.Password);
+            bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             if (isValid)
             {
                 return user;
@@ -46,16 +46,16 @@ public class AuthService : IAuthService
     }
 
     /// <summary>Register a user.</summary>
-    /// <param name="registerUserDto">User registration parameters.</param>
+    /// <param name="registerRequestDto">User registration parameters.</param>
     /// <returns>Any errors encountered during registration.</returns>
-    public async Task<IEnumerable<IdentityError>?> RegisterUser(RegisterRequestDto registerUserDto)
+    public async Task<IEnumerable<IdentityError>?> RegisterUserAsync(RegisterRequestDto registerRequestDto)
     {
         IdentityUser user = new()
         {
-            UserName = registerUserDto.Name
+            UserName = registerRequestDto.Name
         };
         
-        IdentityResult result = await _userManager.CreateAsync(user, registerUserDto.Password);
+        IdentityResult result = await _userManager.CreateAsync(user, registerRequestDto.Password);
 
         if (!result.Succeeded)
         {
@@ -63,16 +63,16 @@ public class AuthService : IAuthService
         }
         else
         {
-            if (registerUserDto.role != UserRole.None)
+            if (registerRequestDto.role != UserRole.None)
             {
-                await AssignRole(user, registerUserDto.role);
+                await AssignRoleAsync(user, registerRequestDto.role);
             }
 
             return null;
         }
     }
 
-    private async Task AssignRole(IdentityUser user, UserRole role)
+    private async Task AssignRoleAsync(IdentityUser user, UserRole role)
     {
         var roleAsString = role.ToString();
         if (!await _roleManager.RoleExistsAsync(roleAsString))

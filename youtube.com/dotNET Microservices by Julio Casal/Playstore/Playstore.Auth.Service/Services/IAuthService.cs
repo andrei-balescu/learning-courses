@@ -7,14 +7,14 @@ namespace Playstore.Auth.Service.Services;
 public interface IAuthService
 {
     /// <summary>Register a user.</summary>
-    /// <param name="registerUserDto">User registration parameters.</param>
+    /// <param name="registerRequestDto">User registration parameters.</param>
     /// <returns>Any errors encountered during registration.</returns>
-    Task<IEnumerable<IdentityError>?> RegisterUser(RegisterRequestDto registerUserDto);
+    Task<IEnumerable<IdentityError>?> RegisterUserAsync(RegisterRequestDto registerRequestDto);
 
     /// <summary>Logs in a user.</summary>
-    /// <param name="user">User login details.</param>
+    /// <param name="loginRequestDto">User login details.</param>
     /// <returns>The logged in user.</returns>
-    Task<IdentityUser?> LoginUser(LoginRequestDto user);
+    Task<IdentityUser?> LoginUserAsync(LoginRequestDto loginRequestDto);
 
     /// <summary>Gets a user by login name.</summary>
     /// <param name="loginName">The login name.</param>

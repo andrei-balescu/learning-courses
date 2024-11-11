@@ -12,7 +12,7 @@ namespace Playstore.Auth.Service.Controllers;
 public class AuthController : ControllerBase
 {
     /// <summary>The service performing authentication / authorization.</summary>
-    private readonly IAuthService _userService;
+    private readonly IAuthService _authService;
 
     /// <summary>Service for generating JWT tokens.</summary>
     private readonly IJwtTokenService _jwtTokenService;
@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
     /// <param name="jwtTokenService">Service for generating JWT tokens.</param>
     public AuthController(IAuthService userService, IJwtTokenService jwtTokenService)
     {
-        _userService = userService;
+        _authService = userService;
         _jwtTokenService = jwtTokenService;
     }
 
@@ -30,12 +30,12 @@ public class AuthController : ControllerBase
     /// <param name="registerUserDto">The registration parameters.</param>
     /// <returns>The registration result.</returns>
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequestDto registerUserDto)
+    public async Task<IActionResult> RegisterAsync(RegisterRequestDto registerUserDto)
     {
-        IEnumerable<IdentityError>? errors = await _userService.RegisterUser(registerUserDto);
+        IEnumerable<IdentityError>? errors = await _authService.RegisterUserAsync(registerUserDto);
         if (errors == null)
         {
-            IdentityUser user = _userService.GetUserByName(registerUserDto.Name);
+            IdentityUser user = _authService.GetUserByName(registerUserDto.Name);
 
             UserDto registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
             return Ok(registrationResponse);
@@ -50,9 +50,9 @@ public class AuthController : ControllerBase
     /// <param name="loginUserDto">The login parameters.</param>
     /// <returns>Ok if the login was successful.</returns>
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequestDto loginUserDto)
+    public async Task<IActionResult> LoginAsync(LoginRequestDto loginUserDto)
     {
-        IdentityUser? user = await _userService.LoginUser(loginUserDto);
+        IdentityUser? user = await _authService.LoginUserAsync(loginUserDto);
         if (user == null)
         {
             return BadRequest();
