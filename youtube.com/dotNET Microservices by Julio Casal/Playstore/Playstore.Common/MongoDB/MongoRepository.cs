@@ -19,7 +19,8 @@ public class MongoRepository<T> : IRepository<T> where T: IEntity
     /// <returns>A list of entities.</returns>
     public async Task<IReadOnlyCollection<T>> GetAllAsync()
     {
-        IReadOnlyCollection<T> entities = await _dbCollection.Find<T>(_filterDefinitionBuilder.Empty).ToListAsync();
+        IAsyncCursor<T> result = await _dbCollection.FindAsync(_filterDefinitionBuilder.Empty);
+        IReadOnlyCollection<T> entities = await result.ToListAsync();
         return entities;
     }
 
@@ -28,23 +29,26 @@ public class MongoRepository<T> : IRepository<T> where T: IEntity
     /// <returns>A list of entities.</returns>
     public async Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter)
     {
-        IReadOnlyCollection<T> entities = await _dbCollection.Find<T>(filter).ToListAsync();
+        IAsyncCursor<T> result = await _dbCollection.FindAsync(filter);
+        IReadOnlyCollection<T> entities = await result.ToListAsync();
         return entities;
     }
 
     /// <summary>Get an entity from the database.</summary>
     /// <param name="entityId">ID of the entity to retrieve.</param>
     /// <returns>An entity.</returns>
-     public async Task<T> GetAsync(Guid entityId)
+    public async Task<T> GetAsync(Guid entityId)
     {
         FilterDefinition<T> filter = _filterDefinitionBuilder.Eq(e => e.Id, entityId);
-        var entity = await _dbCollection.Find<T>(filter).SingleOrDefaultAsync();
+        IAsyncCursor<T> result = await _dbCollection.FindAsync(filter);
+        T entity = await result.SingleOrDefaultAsync();
         return entity;
     }
 
     public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
     {
-        var entity = await _dbCollection.Find<T>(filter).FirstOrDefaultAsync();
+        IAsyncCursor<T> result =  await _dbCollection.FindAsync(filter);
+        T entity = await result.FirstOrDefaultAsync();
         return entity;
     }
 
