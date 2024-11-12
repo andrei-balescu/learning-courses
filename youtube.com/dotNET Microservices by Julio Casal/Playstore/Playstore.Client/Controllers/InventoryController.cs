@@ -75,7 +75,7 @@ public class InventoryController : Controller
 
         try
         {
-            CatalogItemDto item = await _catalogClient.GetItem(id.Value);
+            CatalogItemDto item = await _catalogClient.GetItemAsync(id.Value);
             return View(new PurchaseItemViewModel
             {
                 Id = item.Id,

@@ -12,18 +12,18 @@ public interface ICatalogClient
     /// <summary>Get an item by id.</summary>
     /// <param name="id">The id of the item.</param>
     /// <returns>The item details.</returns>
-    Task<CatalogItemDto> GetItem(Guid id);
+    Task<CatalogItemDto> GetItemAsync(Guid id);
 
     /// <summary>Create a new item in the catalog.</summary>
     /// <param name="item">The item to create.</param>
-    Task CreateItem(CreateCatalogItemDto item);
+    Task CreateItemAsync(CreateCatalogItemDto item);
 
     /// <summary>Update an item in the catalog.</summary>
     /// <param name="itemId">ID of item to update.</param>
     /// <param name="item">The item to update.</param>
-    Task UpdateItem(Guid itemId, UpdateCatalogItemDto item);
+    Task UpdateItemAsync(Guid itemId, UpdateCatalogItemDto item);
 
     /// <summary>Delete an item from the catalog.</summary>
     /// <param name="itemId">ID of the item to delete.</param>
-    Task DeleteItem(Guid itemId);
+    Task DeleteItemAsync(Guid itemId);
 }
