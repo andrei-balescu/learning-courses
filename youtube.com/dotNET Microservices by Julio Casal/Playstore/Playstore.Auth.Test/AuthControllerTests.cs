@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Playstore.Auth.Contracts.DataTransferObjects;
+using Playstore.Auth.Service;
 using Playstore.Auth.Service.Controllers;
 using Playstore.Auth.Service.Services;
 
@@ -20,6 +21,8 @@ public class AuthControllerTests
 
     private Mock<IJwtTokenService> _jwtTokenServiceMock;
 
+    private Mock<IUserService> _userServiceMock;
+
     private AuthController _authController;
 
     [TestInitialize]
@@ -27,8 +30,9 @@ public class AuthControllerTests
     {
         _authServiceMock = new Mock<IAuthService>();
         _jwtTokenServiceMock = new Mock<IJwtTokenService>();
+        _userServiceMock = new Mock<IUserService>();
 
-        _authController = new AuthController(_authServiceMock.Object, _jwtTokenServiceMock.Object);
+        _authController = new AuthController(_authServiceMock.Object, _jwtTokenServiceMock.Object, _userServiceMock.Object);
     }
 
     [TestMethod]
@@ -40,10 +44,18 @@ public class AuthControllerTests
         RegisterRequestDto registrationRequest = new(expectedName, "test password", UserRole.Player);
 
         _authServiceMock.Setup(m => m.RegisterUserAsync(registrationRequest)).ReturnsAsync(null as IEnumerable<IdentityError>);
-        _authServiceMock.Setup(m => m.GetUserByName(expectedName)).Returns(new IdentityUser 
-        { 
-            Id = expectedUserId.ToString(),
-            UserName = expectedName 
+        _userServiceMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns((Func<IdentityUser, bool> predicate) =>
+        {
+            var userList = new List<IdentityUser>
+            {
+                new IdentityUser
+                {
+                    Id = expectedUserId.ToString(),
+                    UserName = expectedName
+                }
+            };
+            IdentityUser user = userList.SingleOrDefault(predicate);
+            return user;
         });
 
         // Act

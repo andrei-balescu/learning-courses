@@ -6,25 +6,16 @@ namespace Playstore.Auth.Service.Services;
 /// <summary>Service for performing authentication / authorization.</summary>
 public class AuthService : IAuthService
 {
-    private readonly AppDbContext _dbContext;
-
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public AuthService(AppDbContext dbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+    private readonly IUserService _userService;
+
+    public AuthService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IUserService userService)
     {
-        _dbContext = dbContext;
         _userManager = userManager;
         _roleManager = roleManager;
-    }
-
-    /// <summary>Gets a user by login name.</summary>
-    /// <param name="loginName">The login name.</param>
-    /// <returns>The user.</returns>
-    public IdentityUser GetUserByName(string userId)
-    {
-        IdentityUser? user = _dbContext.Users.Single(u => u.UserName == userId);
-        return user;
+        _userService = userService;
     }
 
     /// <summary>Logs in a user.</summary>
@@ -32,7 +23,7 @@ public class AuthService : IAuthService
     /// <returns>The logged in user.</returns>
     public async Task<IdentityUser?> LoginUserAsync(LoginRequestDto loginRequestDto)
     {
-        IdentityUser? user = _dbContext.Users.SingleOrDefault(u => u.UserName == loginRequestDto.Name);
+        IdentityUser? user = _userService.GetUser(u => u.UserName == loginRequestDto.Name);
         if (user != null)
         {
             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);

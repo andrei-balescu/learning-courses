@@ -15,10 +15,10 @@ public class JwtTokenService : IJwtTokenService
 
     private readonly JwtSettings _jwtSettings;
 
-    public JwtTokenService(IOptions<JwtSettings> jwtSettings, UserManager<IdentityUser> roleManager)
+    public JwtTokenService(IOptions<JwtSettings> jwtSettings, UserManager<IdentityUser> userManager)
     {
         _jwtSettings = jwtSettings.Value;
-        _userManager = roleManager;
+        _userManager = userManager;
     }
 
     /// <summary>Generate a JWT token.</summary>
