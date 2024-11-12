@@ -6,9 +6,9 @@ namespace Playstore.Auth.Service;
 /// <summary>Service for managing users.</summary>
 public class UserService : IUserService
 {
-    private readonly AppDbContext _dbContext;
+    private readonly IAppDbContext _dbContext;
 
-    public UserService(AppDbContext dbContext)
+    public UserService(IAppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
