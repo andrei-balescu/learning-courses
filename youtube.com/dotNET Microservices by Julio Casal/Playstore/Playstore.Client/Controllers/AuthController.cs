@@ -49,9 +49,12 @@ public class AuthController : Controller
                 await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError("(none)", "Username or password incorrect.");
+            }
         }
 
-        ModelState.AddModelError("(none)", "Username or password incorrect.");
         return View(login);
     }
 
@@ -106,6 +109,7 @@ public class AuthController : Controller
         ViewBag.RoleList = roleList;
     }
 
+    [HttpGet]
     public async Task<IActionResult> LogoutAsync()
     {
         await HttpContext.SignOutAsync();
