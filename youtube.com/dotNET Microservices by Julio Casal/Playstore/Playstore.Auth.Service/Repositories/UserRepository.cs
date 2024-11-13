@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Identity;
-using Playstore.Auth.Service.Data;
 
-namespace Playstore.Auth.Service;
+namespace Playstore.Auth.Respositories;
 
 /// <summary>Service for managing users.</summary>
-public class UserService : IUserService
+public class UserRepository : IUserRepository
 {
     private readonly IAppDbContext _dbContext;
 
-    public UserService(IAppDbContext dbContext)
+    public UserRepository(IAppDbContext dbContext)
     {
         _dbContext = dbContext;
     }

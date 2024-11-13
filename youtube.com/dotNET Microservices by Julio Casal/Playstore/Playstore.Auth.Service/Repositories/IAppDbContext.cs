@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Playstore.Auth.Service.Data;
+namespace Playstore.Auth.Respositories;
 
 /// <summary>DB context for this application.</summary>
 public interface IAppDbContext

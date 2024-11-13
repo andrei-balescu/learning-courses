@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Auth.Contracts.DataTransferObjects;
+using Playstore.Auth.Respositories;
 using Playstore.Auth.Service.Services;
 
 namespace Playstore.Auth.Service.Controllers;
@@ -18,17 +19,17 @@ public class AuthController : ControllerBase
     private readonly IJwtTokenService _jwtTokenService;
 
     /// <summary>Service for managing users.</summary>
-    private readonly IUserService _userService;
+    private readonly IUserRepository _userRepository;
 
     /// <summary>Create a new instance.</summary>
     /// <param name="authService">The service performing authentication / authorization.</param>
     /// <param name="jwtTokenService">Service for generating JWT tokens.</param>
-    /// <param name="userService">Service for managing users.</param>
-    public AuthController(IAuthService authService, IJwtTokenService jwtTokenService, IUserService userService)
+    /// <param name="userRepository">Service for managing users.</param>
+    public AuthController(IAuthService authService, IJwtTokenService jwtTokenService, IUserRepository userRepository)
     {
         _authService = authService;
         _jwtTokenService = jwtTokenService;
-        _userService = userService;
+        _userRepository = userRepository;
     }
 
     /// <summary>Registers a user.</summary>
@@ -40,7 +41,7 @@ public class AuthController : ControllerBase
         IEnumerable<IdentityError>? errors = await _authService.RegisterUserAsync(registerUserDto);
         if (errors == null)
         {
-            IdentityUser user = _userService.GetUser(u => u.UserName == registerUserDto.Name);
+            IdentityUser user = _userRepository.GetUser(u => u.UserName == registerUserDto.Name);
 
             UserDto registrationResponse = new UserDto(new Guid(user.Id), user.UserName);
             return Ok(registrationResponse);

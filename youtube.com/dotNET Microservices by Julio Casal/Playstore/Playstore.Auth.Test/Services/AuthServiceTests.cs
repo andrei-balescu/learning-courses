@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Playstore.Auth.Contracts.DataTransferObjects;
-using Playstore.Auth.Service;
+using Playstore.Auth.Respositories;
 using Playstore.Auth.Service.Services;
 
 namespace Playstore.Auth.Test.Services;
@@ -21,7 +21,7 @@ public class AuthServiceTests
 
     private Mock<RoleManager<IdentityRole>> _roleManagerMock;
 
-    private Mock<IUserService> _userServiceMock;
+    private Mock<IUserRepository> _userRepositoryMock;
 
     private AuthService _authService;
 
@@ -48,9 +48,9 @@ public class AuthServiceTests
             new Mock<ILogger<RoleManager<IdentityRole>>>().Object
         );
 
-        _userServiceMock = new Mock<IUserService>();
+        _userRepositoryMock = new Mock<IUserRepository>();
 
-        _authService = new AuthService(_userManagerMock.Object, _roleManagerMock.Object, _userServiceMock.Object);
+        _authService = new AuthService(_userManagerMock.Object, _roleManagerMock.Object, _userRepositoryMock.Object);
     }
 
     [TestMethod]
@@ -65,7 +65,7 @@ public class AuthServiceTests
             UserName = loginName
         };
 
-        _userServiceMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns((Func<IdentityUser, bool> predicate) =>
+        _userRepositoryMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns((Func<IdentityUser, bool> predicate) =>
         {
             var userList = new List<IdentityUser>{ expectedUser };
             IdentityUser user = userList.SingleOrDefault(predicate);
@@ -86,7 +86,7 @@ public class AuthServiceTests
         // Arrange
         LoginRequestDto loginRequest = new("loginName", "loginPassword");
 
-        _userServiceMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns(null as IdentityUser);
+        _userRepositoryMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns(null as IdentityUser);
 
         // Act
         IdentityUser? actualUser = await _authService.LoginUserAsync(loginRequest);
@@ -101,7 +101,7 @@ public class AuthServiceTests
         LoginRequestDto loginRequest = new("loginName", "loginPassword");
         IdentityUser identityUser = new();
 
-        _userServiceMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns(identityUser);
+        _userRepositoryMock.Setup(m => m.GetUser(It.IsAny<Func<IdentityUser, bool>>())).Returns(identityUser);
         _userManagerMock.Setup(m => m.CheckPasswordAsync(It.IsAny<IdentityUser>(), It.IsAny<string>())).ReturnsAsync(false);
 
         // Act

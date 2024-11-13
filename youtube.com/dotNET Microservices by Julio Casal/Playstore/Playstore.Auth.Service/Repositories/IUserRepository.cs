@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Playstore.Auth.Service;
+namespace Playstore.Auth.Respositories;
 
 /// <summary>Service for managing users.</summary>
-public interface IUserService
+public interface IUserRepository
 {
     /// <summary>Gets a user by login name.</summary>
     /// <param name="predicate">The query predicate.</param>

@@ -13,7 +13,7 @@ using Playstore.Catalog.Service.Controllers;
 using Playstore.Catalog.Service.Entities;
 using Playstore.Common;
 
-namespace Playstore.Catalog.Test;
+namespace Playstore.Catalog.Test.Controllers;
 
 [TestClass]
 public class ItemsControllerTests

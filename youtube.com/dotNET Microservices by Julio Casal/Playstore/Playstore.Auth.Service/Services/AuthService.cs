@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Playstore.Auth.Contracts.DataTransferObjects;
-using Playstore.Auth.Service.Data;
+using Playstore.Auth.Respositories;
 namespace Playstore.Auth.Service.Services;
 
 /// <summary>Service for performing authentication / authorization.</summary>
@@ -9,13 +9,13 @@ public class AuthService : IAuthService
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    private readonly IUserService _userService;
+    private readonly IUserRepository _userRepository;
 
-    public AuthService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IUserService userService)
+    public AuthService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IUserRepository userRepository)
     {
         _userManager = userManager;
         _roleManager = roleManager;
-        _userService = userService;
+        _userRepository = userRepository;
     }
 
     /// <summary>Logs in a user.</summary>
@@ -23,7 +23,7 @@ public class AuthService : IAuthService
     /// <returns>The logged in user.</returns>
     public async Task<IdentityUser?> LoginUserAsync(LoginRequestDto loginRequestDto)
     {
-        IdentityUser? user = _userService.GetUser(u => u.UserName == loginRequestDto.Name);
+        IdentityUser? user = _userRepository.GetUser(u => u.UserName == loginRequestDto.Name);
         if (user != null)
         {
             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);

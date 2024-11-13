@@ -1,21 +1,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Playstore.Auth.Service;
-using Playstore.Auth.Service.Data;
+using Playstore.Auth.Respositories;
 
-namespace Playstore.Auth.Test.Services;
+namespace Playstore.Auth.Test.Repositories;
 
 /// <summary>see doc https://stackoverflow.com/questions/54219742/mocking-ef-core-dbcontext-and-dbset</summary>
 [TestClass]
-public class UserServiceTests
+public class UserRepositoryTests
 {
     DbContextOptions<AppDbContext> _options;
     private AppDbContext _appDbContext;
 
-    private UserService _userService;
+    private UserRepository _userRepository;
 
-    public UserServiceTests()
+    public UserRepositoryTests()
     {
         _options = new DbContextOptionsBuilder<AppDbContext>()
             .UseInMemoryDatabase(databaseName: "Users")
@@ -26,7 +25,7 @@ public class UserServiceTests
     public void TestInitialize()
     {
         _appDbContext = new AppDbContext(_options);
-        _userService = new UserService(_appDbContext);
+        _userRepository = new UserRepository(_appDbContext);
     }
 
     [TestMethod]
@@ -40,7 +39,7 @@ public class UserServiceTests
         _appDbContext.SaveChanges();
 
         // Act
-        IdentityUser actualUser = _userService.GetUser(u => u.UserName == expectedUserName);
+        IdentityUser actualUser = _userRepository.GetUser(u => u.UserName == expectedUserName);
 
         // Assert
         Assert.AreEqual(expectedUser.UserName, actualUser.UserName);

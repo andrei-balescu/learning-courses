@@ -11,7 +11,7 @@ using Playstore.Inventory.Contracts.DataTransferObjects;
 using Playstore.Inventory.Service.Controllers;
 using Playstore.Inventory.Service.Entities;
 
-namespace Playstore.Inventory.Test;
+namespace Playstore.Inventory.Test.Controllers;
 
 [TestClass]
 public class ItemsControllerTests
