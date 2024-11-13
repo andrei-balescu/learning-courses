@@ -31,9 +31,10 @@ public class InventoryController : Controller
     /// <summary>Lists the items in the inventory.</summary>
     /// <returns>Inventory/Index page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> IndexAsync()
     {
-        IEnumerable<InventoryItemViewModel> items = (await _inventoryClient.GetItemsAsync(GetCurrentUserId()))
+        IReadOnlyCollection<InventoryItemDto> inventoryItems = await _inventoryClient.GetItemsAsync(GetCurrentUserId());
+        IEnumerable<InventoryItemViewModel> items = inventoryItems
             .Select(dto =>  new InventoryItemViewModel
             {
                 Id = dto.CatalogItemId,
@@ -48,9 +49,10 @@ public class InventoryController : Controller
     /// <summary>Lists catalog items for purchase.</summary>
     /// <returns>Inventory/Purchase page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Purchase()
+    public async Task<IActionResult> PurchaseAsync()
     {
-        IEnumerable<CatalogItemViewModel> catalogItems = (await _catalogClient.GetAllItemsAsync())
+        IReadOnlyCollection<CatalogItemDto> catalogItems = await _catalogClient.GetAllItemsAsync();
+        IEnumerable<CatalogItemViewModel> items = catalogItems
             .Select(dto => new CatalogItemViewModel
             {
                 Id = dto.Id,
@@ -59,14 +61,14 @@ public class InventoryController : Controller
                 Price = dto.Price
             });
 
-        return View(catalogItems);
+        return View(items);
     }
 
     /// <summary>Page for purchasing an item.</summary>
     /// <param name="id">ID of the item in the catalog.</param>
     /// <returns>Inventory/PurchaseItem page.</returns>
     [HttpGet]
-    public async Task<IActionResult> PurchaseItem(Guid? id)
+    public async Task<IActionResult> PurchaseItemAsync(Guid? id)
     {
         if (!id.HasValue)
         {
@@ -100,7 +102,7 @@ public class InventoryController : Controller
     /// <param name="item">The item to purchase.</param>
     /// <returns>Redirects to Inventory/Index page.</returns>
     [HttpPost]
-    public async Task<IActionResult> PurchaseItem(PurchaseItemViewModel item)
+    public async Task<IActionResult> PurchaseItemAsync(PurchaseItemViewModel item)
     {
         if (ModelState.IsValid)
         {
