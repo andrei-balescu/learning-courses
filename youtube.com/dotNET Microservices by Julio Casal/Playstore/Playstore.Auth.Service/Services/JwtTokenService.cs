@@ -38,7 +38,7 @@ public class JwtTokenService : IJwtTokenService
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
         };
 
-        JwtSecurityTokenHandler tokenHandler = new();
+        var tokenHandler = new JwtSecurityTokenHandler();
         SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
         string tokenString = tokenHandler.WriteToken(token);
 
