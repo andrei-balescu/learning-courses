@@ -16,6 +16,8 @@ public class CatalogController : Controller
     /// <summary>Client for communicating with the catalog service.</summary>
     private readonly ICatalogClient _catalogClient;
 
+    private const string c_ServerError = "An error has occured on the server.";
+
     /// <summary>Create new instance.</summary>
     /// <param name="catalogClient">Client for communicating with the catalog service.</param>
     public CatalogController(ICatalogClient catalogClient)
@@ -57,7 +59,7 @@ public class CatalogController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _catalogClient.CreateItem(new CreateCatalogItemDto(item.Name, item.Description, item.Price));
+            await _catalogClient.CreateItemAsync(new CreateCatalogItemDto(item.Name, item.Description, item.Price));
             TempData[NotificationsViewModel.c_Success] = "Catalog item created successfully";
 
             return RedirectToAction("Index");
@@ -80,7 +82,7 @@ public class CatalogController : Controller
         }
         try
         {
-            CatalogItemDto dto = await _catalogClient.GetItem(id.Value);
+            CatalogItemDto dto = await _catalogClient.GetItemAsync(id.Value);
             return View(new CatalogItemViewModel
             {
                 Id = dto.Id,
@@ -96,7 +98,7 @@ public class CatalogController : Controller
                 return NotFound();
             }
 
-            TempData[NotificationsViewModel.c_Error] = "An error has occured on the server.";
+            TempData[NotificationsViewModel.c_Error] = c_ServerError;
             return RedirectToAction("Index");
         }
     }
@@ -109,7 +111,7 @@ public class CatalogController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _catalogClient.UpdateItem(item.Id, new UpdateCatalogItemDto(item.Name, item.Description, item.Price));
+            await _catalogClient.UpdateItemAsync(item.Id, new UpdateCatalogItemDto(item.Name, item.Description, item.Price));
 
             TempData[NotificationsViewModel.c_Success] = "Catalog item updated successfully";
             return RedirectToAction("Index");
@@ -124,7 +126,7 @@ public class CatalogController : Controller
     /// <param name="id">ID of the item to delete.</param>
     /// <returns>Catalog/Delete page.</returns>
     [HttpGet]
-    public async Task<IActionResult> Delete(Guid? id)
+    public async Task<IActionResult> DeleteAsync(Guid? id)
     {
         if (!id.HasValue)
         {
@@ -132,7 +134,7 @@ public class CatalogController : Controller
         }
         try
         {
-            CatalogItemDto dto = await _catalogClient.GetItem(id.Value);
+            CatalogItemDto dto = await _catalogClient.GetItemAsync(id.Value);
             return View(new CatalogItemViewModel
             {
                 Id = dto.Id,
@@ -148,7 +150,7 @@ public class CatalogController : Controller
                 return NotFound();
             }
 
-            TempData[NotificationsViewModel.c_Error] = "An error has occured on the server.";
+            TempData[NotificationsViewModel.c_Error] = c_ServerError;
             return RedirectToAction("Index");
         }
     }
@@ -157,9 +159,9 @@ public class CatalogController : Controller
     /// <param name="id">ID of the item to delete.</param>
     /// <returns>Redirects to catalog index.</returns>
     [HttpPost]
-    public async Task<IActionResult> DeleteConfirm(Guid id)
+    public async Task<IActionResult> DeleteConfirmAsync(Guid id)
     {
-        await _catalogClient.DeleteItem(id);
+        await _catalogClient.DeleteItemAsync(id);
 
         TempData[NotificationsViewModel.c_Success] = "Catalog item deleted successfully";
         return RedirectToAction("Index");

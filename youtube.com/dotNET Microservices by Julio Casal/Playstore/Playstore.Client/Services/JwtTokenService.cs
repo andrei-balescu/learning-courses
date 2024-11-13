@@ -23,10 +23,10 @@ public class JwtTokenService : IJwtTokenService
     public ClaimsPrincipal GetPrincipal(string authenticationScheme, string jwtToken)
     {
         ValidateToken(jwtToken);
-        JwtSecurityTokenHandler handler = new();
+        var handler = new JwtSecurityTokenHandler();
         JwtSecurityToken jwt = handler.ReadJwtToken(jwtToken);
 
-        ClaimsIdentity identity = new(authenticationScheme);
+        var identity = new ClaimsIdentity(authenticationScheme);
         identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId));
         identity.AddClaim(jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sub));
 
@@ -34,7 +34,7 @@ public class JwtTokenService : IJwtTokenService
         identity.AddClaim(new Claim(ClaimTypes.Name, jwt.Claims.First(c => c.Type == JwtRegisteredClaimNames.NameId).Value));
         identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(c => c.Type == "role")?.Value));
 
-        ClaimsPrincipal principal = new(identity);
+        var principal = new ClaimsPrincipal(identity);
         return principal;
     }
 

@@ -19,6 +19,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Auth.Service", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Auth.Contracts", "Playstore.Auth.Contracts\Playstore.Auth.Contracts.csproj", "{672086E5-0B31-4C10-95B4-2F515D1FB390}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Catalog.Test", "Playstore.Catalog.Test\Playstore.Catalog.Test.csproj", "{40B547CC-A7FA-4FAC-AA76-1B90ADE35AF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Inventory.Test", "Playstore.Inventory.Test\Playstore.Inventory.Test.csproj", "{82132F25-C0F4-4C90-80F4-DDCEC3C1AFDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Common.Test", "Playstore.Common.Test\Playstore.Common.Test.csproj", "{932F6361-6D7E-4844-98C9-A6C20288AD63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Auth.Test", "Playstore.Auth.Test\Playstore.Auth.Test.csproj", "{3EFF54A7-D1CB-4C52-B09A-8264545F7273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playstore.Client.Test", "Playstore.Client.Test\Playstore.Client.Test.csproj", "{9019CF9E-2D5B-4A65-8EB1-DDAF35815184}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +67,26 @@ Global
 		{672086E5-0B31-4C10-95B4-2F515D1FB390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672086E5-0B31-4C10-95B4-2F515D1FB390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{672086E5-0B31-4C10-95B4-2F515D1FB390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B547CC-A7FA-4FAC-AA76-1B90ADE35AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B547CC-A7FA-4FAC-AA76-1B90ADE35AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B547CC-A7FA-4FAC-AA76-1B90ADE35AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B547CC-A7FA-4FAC-AA76-1B90ADE35AF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82132F25-C0F4-4C90-80F4-DDCEC3C1AFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82132F25-C0F4-4C90-80F4-DDCEC3C1AFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82132F25-C0F4-4C90-80F4-DDCEC3C1AFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82132F25-C0F4-4C90-80F4-DDCEC3C1AFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932F6361-6D7E-4844-98C9-A6C20288AD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932F6361-6D7E-4844-98C9-A6C20288AD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932F6361-6D7E-4844-98C9-A6C20288AD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932F6361-6D7E-4844-98C9-A6C20288AD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFF54A7-D1CB-4C52-B09A-8264545F7273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFF54A7-D1CB-4C52-B09A-8264545F7273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFF54A7-D1CB-4C52-B09A-8264545F7273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFF54A7-D1CB-4C52-B09A-8264545F7273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9019CF9E-2D5B-4A65-8EB1-DDAF35815184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9019CF9E-2D5B-4A65-8EB1-DDAF35815184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9019CF9E-2D5B-4A65-8EB1-DDAF35815184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9019CF9E-2D5B-4A65-8EB1-DDAF35815184}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

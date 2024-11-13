@@ -1,6 +1,6 @@
 namespace Playstore.Auth.Contracts.DataTransferObjects;
 
 /// <summary>The response of a successful login request.</summary>
-/// <param name="user">User details.</param>
-/// <param name="token">The login token.</param>
-public record LoginResponseDto(UserDto user, string token);
+/// <param name="User">User details.</param>
+/// <param name="Token">The login token.</param>
+public record LoginResponseDto(UserDto User, string Token);

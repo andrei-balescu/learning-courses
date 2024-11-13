@@ -45,13 +45,16 @@ public class AuthController : Controller
             {
                 ClaimsPrincipal principal = _jwtTokenService.GetPrincipal(
                     CookieAuthenticationDefaults.AuthenticationScheme, 
-                    loginResponse.token);
+                    loginResponse.Token);
                 await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError("(none)", "Username or password incorrect.");
+            }
         }
 
-        ModelState.AddModelError("(none)", "Username or password incorrect.");
         return View(login);
     }
 
@@ -106,6 +109,7 @@ public class AuthController : Controller
         ViewBag.RoleList = roleList;
     }
 
+    [HttpGet]
     public async Task<IActionResult> LogoutAsync()
     {
         await HttpContext.SignOutAsync();

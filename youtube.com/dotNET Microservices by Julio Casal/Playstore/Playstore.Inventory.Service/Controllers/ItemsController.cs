@@ -49,7 +49,7 @@ public class ItemsController : ControllerBase
     /// <param name="grantItemsDto">DTO specifying grant details.</param>
     /// <returns>OK response.</returns>
     [HttpPost]
-    public async Task<ActionResult> PostAsync(GrantInventoryItemsDto grantItemsDto)
+    public async Task<ActionResult> GrantItemsAsync(GrantInventoryItemsDto grantItemsDto)
     {
         InventoryItem inventoryItem = await _inventoryItemsRepository.GetAsync(i => i.UserId == grantItemsDto.UserId
                                                             && i.CatalogItemId == grantItemsDto.CatalogItemId);

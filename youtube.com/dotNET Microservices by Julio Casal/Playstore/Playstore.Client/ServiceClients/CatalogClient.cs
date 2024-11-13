@@ -29,7 +29,7 @@ public class CatalogClient : ICatalogClient
     /// <summary>Get an item by id.</summary>
     /// <param name="id">The id of the item.</param>
     /// <returns>The item details.</returns>
-    public async Task<CatalogItemDto> GetItem(Guid id)
+    public async Task<CatalogItemDto> GetItemAsync(Guid id)
     {
         var item = await _httpClient.GetFromJsonAsync<CatalogItemDto>($"{c_itemsEndpoint}/{id}");
         return item;
@@ -37,7 +37,7 @@ public class CatalogClient : ICatalogClient
 
     /// <summary>Create a new item in the catalog.</summary>
     /// <param name="item">The item to create.</param>
-    public async Task CreateItem(CreateCatalogItemDto item)
+    public async Task CreateItemAsync(CreateCatalogItemDto item)
     {
         await _httpClient.PostAsJsonAsync(c_itemsEndpoint, item);
     }
@@ -45,14 +45,14 @@ public class CatalogClient : ICatalogClient
     /// <summary>Update an item in the catalog.</summary>
     /// <param name="itemId">ID of item to update.</param>
     /// <param name="item">The item to update.</param>
-    public async Task UpdateItem(Guid itemId, UpdateCatalogItemDto item)
+    public async Task UpdateItemAsync(Guid itemId, UpdateCatalogItemDto item)
     {
         await _httpClient.PutAsJsonAsync($"{c_itemsEndpoint}/{itemId}", item);
     }
 
     /// <summary>Delete an item from the catalog.</summary>
     /// <param name="itemId">ID of the item to delete.</param>
-    public async Task DeleteItem(Guid itemId)
+    public async Task DeleteItemAsync(Guid itemId)
     {
         await _httpClient.DeleteAsync($"{c_itemsEndpoint}/{itemId}");
     }
