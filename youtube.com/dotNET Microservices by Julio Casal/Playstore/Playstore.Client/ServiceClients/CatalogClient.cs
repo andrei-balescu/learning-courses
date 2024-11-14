@@ -1,21 +1,20 @@
 using Playstore.Catalog.Contracts.DataTransferObjects;
+using Playstore.Client.Services;
 
 namespace Playstore.Client.ServiceClients;
 
 /// <summary>Client for accessing Catalog service.</summary>
-public class CatalogClient : ICatalogClient
+public class CatalogClient : AuthorizedServiceClient, ICatalogClient
 {
-    /// <summary>Client to use for communication.</summary>
-    private readonly HttpClient _httpClient;
-
     /// <summary>Endpoint for performing operations with catalog items.</summary>
     private static string c_itemsEndpoint = "/items";
 
-    /// <summary>Create new instance of <see cref="CatalogClient"/>.</summary>
+    /// <summary>Create new instance.</summary>
     /// <param name="httpClient">Client to use for communication.</param>
-    public CatalogClient(HttpClient httpClient)
+    /// <param name="tokenStorageService">Service that stores JWT tokens.</param>
+    public CatalogClient(HttpClient httpClient, ITokenStorageService tokenStorageService) 
+        : base(httpClient, tokenStorageService)
     {
-        _httpClient = httpClient;
     }
 
     /// <summary>Get all items from the catalog</summary>

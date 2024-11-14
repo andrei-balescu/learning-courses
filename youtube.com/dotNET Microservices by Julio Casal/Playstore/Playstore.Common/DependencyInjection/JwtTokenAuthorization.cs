@@ -11,6 +11,7 @@ public static class JwtTokenAuthorization
 {
     public static IServiceCollection AddJwtSecurity(this IServiceCollection services, ConfigurationManager configuration)
     {
+        // see doc - AddSecurityRequirement(): https://medium.com/@deidra108/oauth-bearer-token-with-swagger-ui-net-6-0-86835e616deb
         services.AddSwaggerGen(options =>
         {
             options.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme

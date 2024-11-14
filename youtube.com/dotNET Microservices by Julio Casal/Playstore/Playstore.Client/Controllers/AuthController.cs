@@ -20,12 +20,15 @@ public class AuthController : Controller
 
     private readonly IJwtTokenService _jwtTokenService;
 
+    private readonly ITokenStorageService _tokenStorageService;
+
     /// <summary>Create a new instance.</summary>
     /// <param name="authClient">Client to use for performing authentication / authorization.</param>
-    public AuthController(IAuthClient authClient, IJwtTokenService jwtTokenService)
+    public AuthController(IAuthClient authClient, IJwtTokenService jwtTokenService, ITokenStorageService tokenStorageService)
     {
         _authClient = authClient;
         _jwtTokenService = jwtTokenService;
+        _tokenStorageService = tokenStorageService;
     }
 
     [HttpGet]
@@ -46,7 +49,10 @@ public class AuthController : Controller
                 ClaimsPrincipal principal = _jwtTokenService.GetPrincipal(
                     CookieAuthenticationDefaults.AuthenticationScheme, 
                     loginResponse.Token);
+
                 await HttpContext.SignInAsync(principal);
+                _tokenStorageService.Store(loginResponse.Token);
+
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -113,6 +119,8 @@ public class AuthController : Controller
     public async Task<IActionResult> LogoutAsync()
     {
         await HttpContext.SignOutAsync();
+        _tokenStorageService.Clear();
+
         return RedirectToAction("Index", "Home");
     }
 }

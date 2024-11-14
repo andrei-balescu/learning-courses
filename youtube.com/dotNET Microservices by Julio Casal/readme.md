@@ -19,12 +19,13 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 - Catalog microservice: .NET 6 WebAPI - performs CRUD operations on items in the DB
     - using MongoDB storage
     - posts updates to message broker (RabbitMQ)
+    - authorization using JWT tokens
 - Inventory microservice: .NET 6 WebAPI - grants items from the catalog to the player's inventory
     - MongoDB storage
     - synchronizes local DB with any updates comming from message broker (RabbitMQ)
-- Client: .NET 6 MVC - Facade providing UI for microservice functionality
-    - validates and uses JWT security tokens coming from auth service
-- Client request resilience using Polly
+    - authorization using JWT tokens
+- Client: .NET 6 MVC - Façade providing UI for microservice functionality
+    - Client request resilience using Polly
 - Unit testing using MSTest and Moq
 - Docker for containerization
 

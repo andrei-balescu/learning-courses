@@ -1,21 +1,20 @@
+using Playstore.Client.Services;
 using Playstore.Inventory.Contracts.DataTransferObjects;
 
 namespace Playstore.Client.ServiceClients;
 
 /// <summary>Client for accessing Inventory service.</summary>
-public class InventoryClient : IInventoryClient
+public class InventoryClient : AuthorizedServiceClient, IInventoryClient
 {
-    /// <summary>Client to use for communication.</summary>
-    private readonly HttpClient _httpClient;
-
     /// <summary>Endpoint for performing operations with inventory items.</summary>
     private const string c_ItemsEndpoint = "/items";
 
     /// <summary>Create new instance.</summary>
     /// <param name="httpClient">Client to use for communication.</param>
-    public InventoryClient(HttpClient httpClient)
+    /// <param name="tokenStorageService">Service that stores JWT tokens.</param>
+    public InventoryClient(HttpClient httpClient, ITokenStorageService tokenStorageService) 
+        : base(httpClient, tokenStorageService)
     {
-        _httpClient = httpClient;
     }
 
     /// <summary>Get the list of items in a user's inventory.</summary>
