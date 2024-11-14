@@ -79,6 +79,8 @@ public class AuthControllerTests
         IActionResult result = await _authController.LoginAsync(expectedLogin);
 
         // Assert
+        _tokenStorageService.Verify(m => m.Store(It.Is<string>(s => s == token)));
+
         Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
         var redirectResult = (RedirectToActionResult)result;
 
@@ -199,6 +201,8 @@ public class AuthControllerTests
         IActionResult result = await _authController.LogoutAsync();
 
         // Assert
+        _tokenStorageService.Verify(m => m.Clear());
+
         Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
         var redirectResult = (RedirectToActionResult)result;
 
