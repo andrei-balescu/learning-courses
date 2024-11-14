@@ -9,11 +9,11 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 
 ## Project
 **Description**: The project consists of a play store for a video game. The store's catalog contains in-game items (potions, weapons, armors) which can be purchased by players.
-- Game masters can add, update and remove items to the catalog.
+- Game masters can add, update and remove items from the catalog.
 - Players can browse the catalog and purchase items, which will then be added to their inventory.
 
 **Tech stack**  
-- Auth microservice: .NET 6 WebAPI - provides authentication / authorization
+- Auth microservice: .NET 6 WebAPI - provides user registration / authentication
     - using .NET Core identity
     - using SQL Server DB
 - Catalog microservice: .NET 6 WebAPI - performs CRUD operations on items in the DB
@@ -26,6 +26,7 @@ Learn the foundational elements of a microservices architecture with .NET in thi
     - authorization using JWT tokens
 - Client: .NET 6 MVC - Façade providing UI for microservice functionality
     - Client request resilience using Polly
+    - authorization using JWT tokens
 - Unit testing using MSTest and Moq
 - Docker for containerization
 
