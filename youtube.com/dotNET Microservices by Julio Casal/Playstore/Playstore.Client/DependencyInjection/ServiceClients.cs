@@ -2,10 +2,10 @@ using Playstore.Client.ServiceClients;
 using Playstore.Client.Settings;
 using Playstore.Common.DependencyInjection;
 
-namespace Playstore.Client;
+namespace Playstore.Client.DependencyInjection;
 
 /// <summary>Dependency injection extensions.</summary>
-public static class DependencyInjection
+public static class ServiceClients
 {
     /// <summary>Adds clients to access different services.</summary>
     /// <param name="serviceCollection">Service collection to register clients to.</param>

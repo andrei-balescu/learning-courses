@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Common;
 using Playstore.Inventory.Contracts.DataTransferObjects;
@@ -6,6 +7,7 @@ using Playstore.Inventory.Service.Entities;
 namespace Playstore.Inventory.Service.Controllers;
 
 /// <summary>Controller for managing inventory items.</summary>
+[Authorize(Roles = "Player")]
 [ApiController]
 [Route("items")]
 public class ItemsController : ControllerBase

@@ -1,4 +1,5 @@
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Playstore.Catalog.Contracts.DataTransferObjects;
 using Playstore.Catalog.Contracts.MassTransit;
@@ -30,6 +31,7 @@ public class ItemsController : ControllerBase
     /// <summary>Returns all items.</summary>
     /// <returns>A list of items</returns>
     /// <remarks>GET /items</remarks>
+    [Authorize(Roles = "GameMaster,Player")]
     [HttpGet]
     public async Task<IEnumerable<CatalogItemDto>> GetAsync()
     {
@@ -42,6 +44,7 @@ public class ItemsController : ControllerBase
     /// <param name="id">The <see cref="Guid"/> of the item</param>
     /// <returns>An item DTO.</returns>
     /// <remarks>GET /items/{id}</remarks>
+    [Authorize(Roles = "GameMaster,Player")]
     [HttpGet("{id}")]
     public async Task<ActionResult<CatalogItemDto>> GetByIdAsync(Guid id)
     {
@@ -59,6 +62,7 @@ public class ItemsController : ControllerBase
     /// <param name="createItemDto">Properties of the item to create</param>
     /// <returns>The result of the action.</returns>
     /// <remarks>POST /items</remarks>
+    [Authorize(Roles = "GameMaster")]
     [HttpPost]
     public async Task<ActionResult<CatalogItemDto>> CreateAsync(CreateCatalogItemDto createItemDto)
     {
@@ -83,6 +87,7 @@ public class ItemsController : ControllerBase
     /// <param name="updateItemDto">The properties that need to be updated.</param>
     /// <returns>No content if item updated; Not found if item not found.</returns>
     /// <remarks>PUT /items/{id}</remarks>
+    [Authorize(Roles = "GameMaster")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(Guid id, UpdateCatalogItemDto updateItemDto)
     {
@@ -108,6 +113,7 @@ public class ItemsController : ControllerBase
     /// <param name="id"></param>
     /// <returns>No content if item deleted; Not found if item not found.</returns>
     /// <remarks>DELETE /items/{id}</remarks>
+    [Authorize(Roles = "GameMaster")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {

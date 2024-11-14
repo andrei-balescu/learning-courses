@@ -26,6 +26,8 @@ public class AuthControllerTests
 
     private Mock<IJwtTokenService> _jwtTokenServiceMock;
 
+    private Mock<ITokenStorageService> _tokenStorageService;
+
     private AuthController _authController;
 
     [TestInitialize]
@@ -33,8 +35,9 @@ public class AuthControllerTests
     {
         _authClientMock = new Mock<IAuthClient>();
         _jwtTokenServiceMock = new Mock<IJwtTokenService>();
+        _tokenStorageService = new Mock<ITokenStorageService>();
 
-        _authController = new AuthController(_authClientMock.Object, _jwtTokenServiceMock.Object);
+        _authController = new AuthController(_authClientMock.Object, _jwtTokenServiceMock.Object, _tokenStorageService.Object);
 
         var tempDataProviderMock = new Mock<ITempDataProvider>();
         var tempDataDictionary = new TempDataDictionary(new DefaultHttpContext(), tempDataProviderMock.Object);
@@ -76,6 +79,8 @@ public class AuthControllerTests
         IActionResult result = await _authController.LoginAsync(expectedLogin);
 
         // Assert
+        _tokenStorageService.Verify(m => m.Store(It.Is<string>(s => s == token)));
+
         Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
         var redirectResult = (RedirectToActionResult)result;
 
@@ -196,6 +201,8 @@ public class AuthControllerTests
         IActionResult result = await _authController.LogoutAsync();
 
         // Assert
+        _tokenStorageService.Verify(m => m.Clear());
+
         Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
         var redirectResult = (RedirectToActionResult)result;
 
