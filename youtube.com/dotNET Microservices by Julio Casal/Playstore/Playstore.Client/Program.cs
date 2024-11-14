@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
