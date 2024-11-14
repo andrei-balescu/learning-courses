@@ -8,6 +8,11 @@ Learn the foundational elements of a microservices architecture with .NET in thi
 - Authentication / authorization functionality: https://www.youtube.com/watch?v=Nw4AZs1kLAs
 
 ## Project
+**Description**: The project consists of a play store for a video game. The store's catalog contains in-game items (potions, weapons, armors) which can be purchased by players.
+- Game masters can add, update and remove items to the catalog.
+- Players can browse the catalog and purchase items, which will then be added to their inventory.
+
+**Tech stack**  
 - .NET 6 WebAPI microservices
 - .NET 6 authentication / authorization microservice using .NET Core identity
 - .NET 6 MVC client
