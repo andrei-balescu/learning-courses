@@ -37,3 +37,25 @@ An OData request (eg. `http//localhost:5000/odata/People(2)/VinylRecords?$filter
     - `(2)` - entity key
     - `/VinylRecords` - navigation property
 - optional query options: `?$filter=Title eq 'Nirvana'`
+
+## Data Models
+
+Entity Data Model (EDM)
+- Abstract data model
+- Describes data exposed by an OData service
+- Stored form of data is irrelevant
+
+Conceptual model
+- Specific representation as entities and relationships
+- Defined in a domain specific language that implements the concepts of EDM
+    - eg.  OData-CSDL (Conceptual Schema Definition Language) implements concepts of EDM
+    - OData metadata is defined in the OData-CSDL
+
+Central concepts in the EDM
+- Entity - instance of entity type
+- Entity type - named structured type with a key
+- Complex type - named structured type without key
+- Type definition - named primitive type (eg. `Edm.String`, `Edm.Int32`) 
+    - fixed facet values (eg. maximum length, precision)
+- Navigation property - relationships from one entity to another (eg. a person has a set of vinyl records)
+- Entity set - named collections of entities (eg. vinyl records, people)
