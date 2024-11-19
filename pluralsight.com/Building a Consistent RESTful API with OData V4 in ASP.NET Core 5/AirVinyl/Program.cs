@@ -1,5 +1,8 @@
 using AirVinyl.DbContexts;
+using AirVinyl.EntityDataModels;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,10 @@ builder.Services.AddDbContext<AirVinylDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+IMvcBuilder mvcBuilder = builder.Services.AddControllers();
+// AddModel() renamed to AddRouteComponents() in OData 8.0
+mvcBuilder.AddOData(options => options.AddRouteComponents("odata", new AirVinylEntityDataModel().GetEntityDataModel()));
 
 var app = builder.Build();
 
@@ -43,6 +50,8 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+app.MapControllers();
 
 app.Run();
 
