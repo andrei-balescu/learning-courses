@@ -22,7 +22,7 @@ services:
      MSSQL_SA_PASSWORD: Pwd12345!
    # Do NOT mount /var/opt/mssql as volume -> causes container to refuse login / crash
    volumes:
-     - ~/Development/db/mssql2022:/var/opt/mssql/data
+     - ~/Development/db/mssql2022/data:/var/opt/mssql/data
    ports:
-     # VS code connect to: localhost,7000
-     - 7000:1433
+     # VS code connect to: localhost,6000
+     - 6000:1433
